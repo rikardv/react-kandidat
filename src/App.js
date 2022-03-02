@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import getTestData from './connections/getTestData.js';
 import { PieChart,Pie } from 'recharts';
 const App = () => {
-  const [testData, setTestData] = useState([]);
+  const [testData, setTestData] = useState();
 
   useEffect(() => {
     getTestData().then((res) => {
-      setTestData(res.data[0]);
+      setTestData(res.data);
+      console.log(res.data);
     });
   }, []);
 
-  return renderPieChart;
+  return <div>Hej</div>;
 };
 
 export default App;

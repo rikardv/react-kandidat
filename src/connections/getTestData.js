@@ -1,7 +1,7 @@
 export default async function () {
   var news;
 
-  await fetch('http://localhost:8080' + `/test`, {
+  await fetch('http://localhost:8080' + `/test/graph`, {
     //headers: { Authorization: `Bearer ${token}` },
     method: 'GET',
   })
