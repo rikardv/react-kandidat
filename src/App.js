@@ -11,38 +11,17 @@ const App = () => {
     });
   }, []);
 
-  return <div>Hej</div>;
+  return (<PieChart width={730} height={250}>
+    <Pie data={testData} dataKey="value" nameKey="" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
+    
+  </PieChart>);
 };
 
 export default App;
 
 
-const data = [{
-  "name": "5a",
-  "value": 400
 
-},
-{
-  "name": "3a",
-  "value": 300
-},
-{
-  "name": "4a",
-  "value": 300
-},
-{
-  "name": "U",
-  "value": 200
-},
-{
-  "name": "U",
-  "value": 2000
-}
-];
 
-const renderPieChart= (
-  <PieChart width={730} height={250}>
-  <Pie data={data} dataKey="value" nameKey="3a" cx="50%" cy="50%" outerRadius={50} fill="#8884d8" />
+
   
-</PieChart>
-);
+
