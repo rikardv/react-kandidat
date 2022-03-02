@@ -1,14 +1,14 @@
 export default async function () {
-  var news;
+  var betyg;
 
   await fetch('http://localhost:8080' + `/test/betyg`, {
     method: 'GET',
   })
     .then((response) => response.json())
     .then((response) => {
-      news = response;
+      betyg = response;
     })
     .catch((err) => console.log('Error fetching test endpoint', err));
 
-  return news;
+  return betyg;
 }
