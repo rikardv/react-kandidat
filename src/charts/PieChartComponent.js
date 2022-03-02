@@ -20,6 +20,7 @@ const PieChartComponent = (data) => {
           outerRadius={200}
           fill="#8884d8"
           dataKey="antal"
+          label
         >
           {newData.map((entry, index) => (
             <Cell
