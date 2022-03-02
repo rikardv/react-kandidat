@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import getTestData from './connections/getTestData.js';
 
 const App = () => {
-  const [testData, setTestData] = useState([]);
+  const [testData, setTestData] = useState();
 
   useEffect(() => {
     getTestData().then((res) => {
-      setTestData(res.data[0]);
+      setTestData(res.data);
+      console.log(res.data);
     });
   }, []);
 
-  return <div>Hej {testData.PERSONNUMMER}</div>;
+  return <div>Hej</div>;
 };
 
 export default App;
