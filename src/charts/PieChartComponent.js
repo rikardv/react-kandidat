@@ -29,13 +29,8 @@ const PieChartComponent = (data) => {
           >
             {newData.map((entry, index) => (
               <Cell
-                onMouseOver={() =>
-                  setText(
-                    'Betyg: ' + entry.betyg + ' ' + 'Antal: ' + entry.antal
-                  )
-                }
                 key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
+                fill={'#' + Math.floor(Math.random() * 16777215).toString(16)}
               />
             ))}
           </Pie>

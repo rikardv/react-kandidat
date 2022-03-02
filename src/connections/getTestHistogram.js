@@ -1,7 +1,7 @@
 export default async function () {
   var news;
 
-  await fetch('http://localhost:8080' + `/test/betyg`, {
+  await fetch('http://localhost:8080' + `/test/avbrott`, {
     method: 'GET',
   })
     .then((response) => response.json())
