@@ -5,33 +5,43 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#202409'];
 
 const PieChartComponent = (data) => {
   const [newData, setNewData] = useState([]);
+
+  const [text, setText] = useState('hej');
   console.log(data);
   useEffect(() => {
     setNewData(data.data);
   }, [data]);
   return (
-    <ResponsiveContainer width="100%" height={450}>
-      <PieChart width={2000} height={2000}>
-        <Pie
-          data={newData}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          outerRadius={200}
-          fill="#8884d8"
-          dataKey="antal"
-          label
-        >
-          {newData.map((entry, index) => (
-            <Cell
-              onClick={() => console.log(entry)}
-              key={`cell-${index}`}
-              fill={COLORS[index % COLORS.length]}
-            />
-          ))}
-        </Pie>
-      </PieChart>
-    </ResponsiveContainer>
+    <div>
+      <div>{text}</div>
+      <ResponsiveContainer width="100%" height={450}>
+        <PieChart width={2000} height={2000}>
+          <Pie
+            data={newData}
+            cx="50%"
+            cy="50%"
+            labelLine={false}
+            outerRadius={200}
+            fill="#8884d8"
+            dataKey="antal"
+            label
+            legendType="rect"
+          >
+            {newData.map((entry, index) => (
+              <Cell
+                onMouseOver={() =>
+                  setText(
+                    'Betyg: ' + entry.betyg + ' ' + 'Antal: ' + entry.antal
+                  )
+                }
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 
