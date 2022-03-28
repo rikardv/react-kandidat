@@ -11,7 +11,7 @@ import {
 
 const Histogram = (data) => {
   const [newData, setNewData] = useState([]);
-  console.log(data);
+
   useEffect(() => {
     setNewData(data.data);
   }, [data]);

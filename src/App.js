@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import getTestData from './connections/getTestData.js';
-import PieChartComponent from './charts/PieChartComponent.js';
-import getTestHistogram from './connections/getTestHistogram.js';
-import Histogram from './charts/Histogram.js';
+import getBetyg from './connections/test/getBetyg.js';
+import PieChartComponent from './components/charts/PieChart.js';
+import getAvbrott from './connections/test/getAvbrott.js';
+import Histogram from './components/charts/Histogram.js';
 const App = () => {
-  const [testData, setTestData] = useState();
-  const [testHistogram, setTestHistogram] = useState();
+  const [betyg, setBetyg] = useState();
+  const [avbrott, setAvbrott] = useState();
 
   useEffect(() => {
-    getTestData().then((res) => {
-      setTestData(res.data);
-      console.log(res.data);
+    getBetyg().then((res) => {
+      setBetyg(res.data);
     });
 
-    getTestHistogram().then((res) => {
-      setTestHistogram(res.data);
+    getAvbrott().then((res) => {
+      setAvbrott(res.data);
     });
   }, []);
 
   return (
     <div>
-      {testData && <PieChartComponent data={testData}></PieChartComponent>}
-      {testHistogram && <Histogram data={testHistogram} />}
+      {betyg && <PieChartComponent data={betyg}></PieChartComponent>}
+      {avbrott && <Histogram data={avbrott} />}
     </div>
   );
 };

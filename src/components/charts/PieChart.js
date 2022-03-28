@@ -6,14 +6,11 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#202409'];
 const PieChartComponent = (data) => {
   const [newData, setNewData] = useState([]);
 
-  const [text, setText] = useState('hej');
-  console.log(data);
   useEffect(() => {
     setNewData(data.data);
   }, [data]);
   return (
     <div>
-      <div>{text}</div>
       <ResponsiveContainer width="100%" height={450}>
         <PieChart width={2000} height={2000}>
           <Pie
