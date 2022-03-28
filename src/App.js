@@ -10,6 +10,7 @@ const App = () => {
   useEffect(() => {
     getBetyg().then((res) => {
       setBetyg(res.data);
+      console.log(res.data);
     });
 
     getAvbrott().then((res) => {

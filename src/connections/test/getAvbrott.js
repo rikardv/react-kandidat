@@ -8,7 +8,7 @@ export default async function () {
     .then((response) => {
       avbrott = response;
     })
-    .catch((err) => console.log('Error fetching test endpoint', err));
+    .catch((err) => console.log('Error fetching avbrott endpoint', err));
 
   return avbrott;
 }
