@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, ResponsiveContainer, Cell } from 'recharts';
+import React, { useEffect, useState } from "react";
+import { PieChart, Pie, ResponsiveContainer, Cell } from "recharts";
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#202409'];
+const COLORS = ["#11636C", "#769BA1", "#654F6F", "#C0A0CF", "#D7B6AC"];
 
 const PieChartComponent = (data) => {
   const [newData, setNewData] = useState([]);
@@ -25,10 +25,7 @@ const PieChartComponent = (data) => {
             legendType="rect"
           >
             {newData.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={'#' + Math.floor(Math.random() * 16777215).toString(16)}
-              />
+              <Cell key={`cell-${index}`} fill={COLORS[index]} />
             ))}
           </Pie>
         </PieChart>
