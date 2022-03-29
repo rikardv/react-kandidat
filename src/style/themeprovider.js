@@ -28,6 +28,14 @@ const theme = createTheme({
     secondary: {
       main: '#E8B49ECC',
     },
+
+    error: {
+      main: '#ef5350',
+    },
+
+    warning: {
+      main: '#efa350',
+    },
   },
 });
 
