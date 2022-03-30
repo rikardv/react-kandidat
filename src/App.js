@@ -39,13 +39,13 @@ const App = () => {
         <MenyKort
           rubrik="EVALIUATE"
           index={1}
-          active={activeIndex == 1}
+          activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
         ></MenyKort>
         <MenyKort
           rubrik="BETYGSFÖRDELNING"
           index={2}
-          active={activeIndex == 2}
+          activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
         ></MenyKort>
         <MenyKort
@@ -53,7 +53,7 @@ const App = () => {
           antal="6"
           flagged={true}
           index={3}
-          active={activeIndex == 3}
+          activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
         ></MenyKort>
       </Grid>
