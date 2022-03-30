@@ -1,5 +1,9 @@
 import { createTheme } from '@mui/material/styles';
 
+/**
+ * Globalt tema för appen, färger, fonts, storlekar
+ * Globala styles läggs in här som är tänkt att återanvändas
+ */
 
 const theme = createTheme({
   typography: {

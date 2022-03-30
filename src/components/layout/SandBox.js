@@ -1,6 +1,12 @@
 import React from 'react';
 import { Button, Typography } from '@mui/material';
 
+/**
+ * Komponent för att testa de olika styles som finns i temat.
+ * Kan användas som lekyta för att testa komponenter
+ * @returns komponent
+ */
+
 const SandBox = () => {
   return (
     <div style={{ padding: 50, border: 'solid' }}>
