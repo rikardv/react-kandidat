@@ -25,14 +25,14 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container justifyContent="space-evenly">
-        <MenyKort rubrik="EVALIUATE" color="#769BA199"></MenyKort>
-        <MenyKort rubrik="BETYGSFÖRDELNING" color="#769BA199"></MenyKort>
-        <MenyKort
-          rubrik="FLAGGADE KURSER"
-          color="#E8B49ECC"
-          antal="6"
-        ></MenyKort>
+      <Grid
+        container
+        justifyContent="space-evenly"
+        style={{ padding: '5%', backgroundColor: '#EEEEEE' }}
+      >
+        <MenyKort rubrik="EVALIUATE"></MenyKort>
+        <MenyKort rubrik="BETYGSFÖRDELNING"></MenyKort>
+        <MenyKort rubrik="FLAGGADE KURSER" antal="6" flagged></MenyKort>
       </Grid>
       <div>
         <SandBox />
