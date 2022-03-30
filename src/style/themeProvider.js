@@ -37,6 +37,7 @@ const theme = createTheme({
 
     error: {
       main: '#ef5350',
+      light: '#f16a67',
     },
 
     warning: {

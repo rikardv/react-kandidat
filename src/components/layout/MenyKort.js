@@ -14,12 +14,11 @@ import { useTheme } from '@mui/material/styles';
 */
 
 export default function MenyKort(props) {
-  const [isSelected, toggleSelected] = useState(false);
   const theme = useTheme();
 
   const getColor = () => {
     if (props.flagged) {
-      return theme.palette.warning;
+      return theme.palette.error;
     }
     return theme.palette.primary;
   };
@@ -29,15 +28,15 @@ export default function MenyKort(props) {
         width: 'fit-content',
         boxShadow: `10px 10px 2px 1px ${getColor().light}`,
         height: '6.5rem',
-        bgcolor: () => (isSelected ? getColor().dark : 'white'),
-        color: isSelected ? 'white' : 'black',
+        bgcolor: () => (props.active ? getColor().dark : 'white'),
+        color: props.active ? 'white' : 'black',
         borderRadius: 2,
         marginLeft: -1,
         textAlign: 'center',
         cursor: 'pointer',
         userSelect: 'none',
       }}
-      onClick={() => toggleSelected(!isSelected)}
+      onClick={() => props.setActiveIndex(props.index)}
     >
       <CardContent>
         {/*Denna Typography används för rubrikerna.*/}
