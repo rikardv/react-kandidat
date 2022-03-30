@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import getBetyg from './connections/test/getBetyg.js';
-import PieChartComponent from './components/charts/PieChart.js';
-import getAvbrott from './connections/test/getAvbrott.js';
-import Histogram from './components/charts/Histogram.js';
-import theme from './style/themeprovider';
-import { ThemeProvider } from '@mui/material/styles';
-import { Typography } from '@mui/material';
-import SandBox from './components/layout/SandBox.js';
+import React, { useEffect, useState } from "react";
+import getBetyg from "./connections/test/getBetyg.js";
+import PieChartComponent from "./components/charts/PieChart.js";
+import getAvbrott from "./connections/test/getAvbrott.js";
+import Histogram from "./components/charts/Histogram.js";
+import theme from "./style/themeprovider";
+import SandBox from "./components/layout/SandBox.js";
+import MenyKort from "./components/layout/MenyKort.js";
+import { Grid, Typography, ThemeProvider } from "@mui/material";
 
 const App = () => {
   const [betyg, setBetyg] = useState();
@@ -25,6 +25,15 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      <Grid container justifyContent="space-evenly">
+        <MenyKort rubrik="EVALIUATE" color="#769BA199"></MenyKort>
+        <MenyKort rubrik="BETYGSFÖRDELNING" color="#769BA199"></MenyKort>
+        <MenyKort
+          rubrik="FLAGGADE KURSER"
+          color="#E8B49ECC"
+          antal="6"
+        ></MenyKort>
+      </Grid>
       <div>
         <SandBox />
         {betyg && <PieChartComponent data={betyg}></PieChartComponent>}
