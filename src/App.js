@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import getBetyg from "./connections/test/getBetyg.js";
-import PieChartComponent from "./components/charts/PieChart.js";
-import getAvbrott from "./connections/test/getAvbrott.js";
-import Histogram from "./components/charts/Histogram.js";
-import theme from "./style/themeprovider";
-import SandBox from "./components/layout/SandBox.js";
-import MenyKort from "./components/layout/MenyKort.js";
-import { Grid, Typography, ThemeProvider } from "@mui/material";
+import React, { useEffect, useState } from 'react';
+import getBetyg from './connections/test/getBetyg.js';
+import PieChartComponent from './components/charts/PieChart.js';
+import getAvbrott from './connections/test/getAvbrott.js';
+import Histogram from './components/charts/Histogram.js';
+import theme from './style/themeProvider';
+import SandBox from './components/layout/SandBox.js';
+import MenyKort from './components/layout/MenyKort.js';
+import { Grid, Typography, ThemeProvider } from '@mui/material';
 
 const App = () => {
   const [betyg, setBetyg] = useState();
