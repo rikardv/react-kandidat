@@ -9,7 +9,6 @@ import {
   Legend,
 } from 'recharts';
 
-//Work in progress... 
 const BarChartKursBetyg = (data) => {
   const [newData, setNewData] = useState([]);
 
@@ -17,6 +16,7 @@ const BarChartKursBetyg = (data) => {
     setNewData(data.data);
   }, [data]);
   //Kräver DataKey för varje period då vi vill kunna använda namn som datakey för Xaxeln och utvärderingsbetyget för Yaxeln
+  //Hämtar data i formatet [{name:****, 2019HT: ****,2020VT: ****, etc.... }]
   return (
   <BarChart width={1000} height={250} data={newData}>
     <CartesianGrid strokeDasharray="3 3" />
