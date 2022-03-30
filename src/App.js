@@ -4,7 +4,7 @@ import PieChartComponent from './components/charts/PieChart.js';
 import getAvbrott from './connections/test/getAvbrott.js';
 import Histogram from './components/charts/Histogram.js';
 
-import getKursUtvarderingsBetyg from './connections/test/getKursUtvarderingsBetyg.js';
+import getKursUtvarderingsBetyg from './connections/getKursUtvarderingsBetyg.js';
 import BarChartKursBetyg from './components/charts/BarChartKursBetyg.js';
 const App = () => {
   const [betyg, setBetyg] = useState();
