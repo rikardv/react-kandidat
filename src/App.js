@@ -12,6 +12,10 @@ const App = () => {
   const [kursutvarderingsbetyg, setKursUtvarderingsBetyg] = useState();
 
   useEffect(() => {
+    /**
+     * Test funktioner för att hämta data
+     * Dessa kan tas bort/modifieras sedan
+     */
     getBetyg().then((res) => {
       setBetyg(res.data);
       console.log(res.data);
@@ -21,7 +25,11 @@ const App = () => {
       setAvbrott(res.data);
       console.log(res.data);
     });
-    getKursUtvarderingsBetyg().then((res) => {
+
+    /**
+     * Riktiga funktioner för att hämta data
+     */
+    getKursUtvarderingsBetyg(10).then((res) => {
       setKursUtvarderingsBetyg(res.data);
       console.log(res.data);
     });
@@ -30,9 +38,10 @@ const App = () => {
   return (
     <div>
       {betyg && <PieChartComponent data={betyg}></PieChartComponent>}
-      {kursutvarderingsbetyg && <BarChartKursBetyg data = {kursutvarderingsbetyg}/>}
+      {kursutvarderingsbetyg && (
+        <BarChartKursBetyg data={kursutvarderingsbetyg} />
+      )}
       {avbrott && <Histogram data={avbrott} />}
-      
     </div>
   );
 };
