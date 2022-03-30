@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
 /**
  * Globalt tema för appen, färger, fonts, storlekar
@@ -27,23 +27,23 @@ const theme = createTheme({
 
   palette: {
     primary: {
-      main: '#11636C',
-      dark: '#0a3b40',
+      main: "#11636C",
+      light: "#11636C99",
     },
 
     secondary: {
-      main: '#E8B49ECC',
+      main: "#E8B49ECC",
     },
 
     error: {
-      main: '#ef5350',
-      light: '#f16a67',
+      main: "#E33429",
+      light: "#E3342999",
     },
 
     warning: {
-      main: '#efa350',
-      light: '#F1D2C4',
-      dark: '#E9B9A5',
+      main: "#efa350",
+      light: "#F1D2C4",
+      dark: "#E9B9A5",
     },
   },
 });

@@ -1,14 +1,11 @@
-import { useState } from 'react';
-import Card from '@mui/material/Card';
-import { Typography, CardContent } from '@mui/material';
-import { useTheme } from '@mui/material/styles';
+import Card from "@mui/material/Card";
+import { Typography, CardContent } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 /* Skapad 2022-03-30 */
-/* Version: 2       */
+/* Version: 3       */
 /* --------------------------------- FUNKTIONSBESKRIVNING-----------------------------------------------------
-  - Funktionen skapar först en Box med färgen props.color (det är den här färgen vi skickar in när vi kallar på funktionen) 
-    som är själva skuggan till rutan.
-  - Kortet består i övrigt av ett Card med typsnitt och storlek h3 och fontWeight medium. I Card hämtar vi rubriken med hjälp av 
+  - Funktionen skapar ett Card med typsnitt och storlek h3 och fontWeight medium. I Card hämtar vi rubriken med hjälp av 
     props.rubrik som är det vi skickar in när vi kallar på funktionen. 
   - Tar även in flagged som prop för att visa varningsfärg istället
 */
@@ -25,17 +22,17 @@ export default function MenyKort(props) {
   return (
     <Card
       sx={{
-        width: 'fit-content',
+        width: "fit-content",
         boxShadow: `10px 10px 2px 1px ${getColor().light}`,
-        height: '6.5rem',
+        height: "6.5rem",
         bgcolor: () =>
-          props.activeIndex == props.index ? getColor().dark : 'white',
-        color: props.activeIndex == props.index ? 'white' : 'black',
+          props.activeIndex == props.index ? getColor().main : "white",
+        color: props.activeIndex == props.index ? "white" : "black",
         borderRadius: 2,
         marginLeft: -1,
-        textAlign: 'center',
-        cursor: 'pointer',
-        userSelect: 'none',
+        textAlign: "center",
+        cursor: "pointer",
+        userSelect: "none",
       }}
       onClick={() => props.setActiveIndex(props.index)}
     >
@@ -49,9 +46,6 @@ export default function MenyKort(props) {
           {props.antal}
         </Typography>
       </CardContent>
-      {/*Definierar våra states (det här ska ändra färgen på Card till primary och texten till vit och sen tillbaka).
-          När man trycker på "Flaggade kurser" ska den dock inte skifta färg utan då ska den öppna en "sida", se Figma.*/}
-      {/*Skapar en knapp för att toggla state. (Hela objektet ska vara en knapp när vi fått det att funka.)*/}
     </Card>
   );
 }
