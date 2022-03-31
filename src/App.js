@@ -10,6 +10,8 @@ const App = () => {
   const [betyg, setBetyg] = useState();
   const [avbrott, setAvbrott] = useState();
   const [dagar, setDagar] = useState();
+  const [registrerade, setRegistrerade] = useState();
+  const kurs = 'TNG033';
 
   useEffect(() => {
     getBetyg().then((res) => {
@@ -20,8 +22,9 @@ const App = () => {
       setAvbrott(res.data);
     });
 
-    getDagar().then((res) => {
+    getDagar(kurs).then((res) => {
       setDagar(res.data);
+      setRegistrerade(res.data2);
     });
   }, []);
 
@@ -29,7 +32,8 @@ const App = () => {
     <div>
       {betyg && <PieChartComponent data={betyg}></PieChartComponent>}
       {avbrott && <Histogram data={avbrott} />}
-      {dagar && <Dagar data={dagar} />}
+      {kurs}
+      {dagar && registrerade && <Dagar data={dagar} data2={registrerade} />}
     </div>
   );
 };
