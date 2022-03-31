@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import getBetyg from "./connections/test/getBetyg.js";
-import PieChartComponent from "./components/charts/PieChart.js";
-import getAvbrott from "./connections/test/getAvbrott.js";
-import Histogram from "./components/charts/Histogram.js";
-import getDagar from "./connections/test/getDagar.js";
-import Dagar from "./components/charts/Dagar.js";
+import React, { useEffect, useState } from 'react';
+import getBetyg from './connections/test/getBetyg.js';
+import PieChartComponent from './components/charts/PieChart.js';
+import getAvbrott from './connections/test/getAvbrott.js';
+import Histogram from './components/charts/Histogram.js';
+import getDagar from './connections/test/getDagar.js';
+import Dagar from './components/charts/Dagar.js';
 
 const App = () => {
   const [betyg, setBetyg] = useState();
