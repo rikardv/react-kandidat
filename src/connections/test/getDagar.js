@@ -1,7 +1,7 @@
 export default async function (kurskod) {
   var dagar;
 
-  await fetch('http://localhost:8080' + `/test/dagar?kurskod=${kurskod}`, {
+  await fetch('http://localhost:8080' + `/kurser/avslut?kurskod=${kurskod}`, {
     method: 'GET',
   })
     .then((response) => response.json())
