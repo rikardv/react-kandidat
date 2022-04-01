@@ -8,18 +8,21 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
+import getAvbrott from '../../connections/test/getAvbrott';
 
-const Histogram = (data) => {
-  const [newData, setNewData] = useState([]);
+const Histogram = () => {
+  const [avbrott, setAvbrott] = useState([]);
 
   useEffect(() => {
-    setNewData(data.data);
-  }, [data]);
+    getAvbrott().then((data) => {
+      setAvbrott(data.data);
+    });
+  }, [avbrott]);
   return (
-    <BarChart width={1000} height={250} data={newData}>
+    <BarChart width={1000} height={250} data={avbrott}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="kurskod" />
-      <YAxis  />
+      <YAxis />
       <Tooltip />
       <Legend />
       <Bar dataKey="avbrott" fill="#8884d8" />
