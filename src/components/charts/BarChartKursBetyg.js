@@ -17,7 +17,7 @@ const BarChartKursBetyg = () => {
     getKursUtvarderingsBetyg(10).then((res) => {
       setKursUtvarderingsBetyg(res.data);
     });
-  }, [kursutvarderingsbetyg]);
+  }, []);
   //Kräver DataKey för varje period då vi vill kunna använda namn som datakey för Xaxeln och utvärderingsbetyget för Yaxeln
   //Hämtar data i formatet [{name:****, 2019HT: ****,2020VT: ****, etc.... }]
   return (

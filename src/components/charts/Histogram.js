@@ -17,7 +17,7 @@ const Histogram = () => {
     getAvbrott().then((data) => {
       setAvbrott(data.data);
     });
-  }, [avbrott]);
+  }, []);
   return (
     <BarChart width={1000} height={250} data={avbrott}>
       <CartesianGrid strokeDasharray="3 3" />
