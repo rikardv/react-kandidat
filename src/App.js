@@ -11,7 +11,8 @@ const App = () => {
   const [avbrott, setAvbrott] = useState();
   const [dagar, setDagar] = useState();
   const [registrerade, setRegistrerade] = useState();
-  const kurs = 'TNG033';
+  const kurs = 'TNA001';
+  const startdatum = '2021-08-17'; //startdatum för när man började utbildningen. (Måste vara exakt just nu, annars måste vi ändra i handler och sätta > istället för =)
 
   useEffect(() => {
     getBetyg().then((res) => {
@@ -22,7 +23,7 @@ const App = () => {
       setAvbrott(res.data);
     });
 
-    getDagar(kurs).then((res) => {
+    getDagar(kurs, startdatum).then((res) => {
       setDagar(res.data);
       setRegistrerade(res.data2);
     });
@@ -30,9 +31,8 @@ const App = () => {
 
   return (
     <div>
-      {betyg && <PieChartComponent data={betyg}></PieChartComponent>}
-      {avbrott && <Histogram data={avbrott} />}
-      {kurs}
+      Kurs: {kurs}
+      <div>Startdatum: {startdatum}</div>
       {dagar && registrerade && <Dagar data={dagar} data2={registrerade} />}
     </div>
   );
