@@ -19,7 +19,7 @@ const Histogram = (data) => {
     <BarChart width={1000} height={250} data={newData}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="kurskod" />
-      <YAxis />
+      <YAxis  />
       <Tooltip />
       <Legend />
       <Bar dataKey="avbrott" fill="#8884d8" />
