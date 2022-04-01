@@ -22,9 +22,11 @@ const BarChartKursBetyg = () => {
   //Hämtar data i formatet [{name:****, 2019HT: ****,2020VT: ****, etc.... }]
   return (
     <BarChart width={1000} height={250} data={kursutvarderingsbetyg}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis type="number" domain={[0, 5]} />
+      <CartesianGrid strokeDasharray="3 0" />
+      <XAxis dataKey="name" tick={false}/>
+      
+      <YAxis type="number" domain={[0, 5]} ticks={[1,2,3,4,5]} />
+
       <Tooltip />
       <Legend />
       <Bar dataKey="2019HT" fill="#8884d8" />
