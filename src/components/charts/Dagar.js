@@ -42,42 +42,59 @@ const Dagar = () => {
   const clearData = () => {
     setDagarData([]);
   };
+
+  const [isHidden, setIsHidden] = useState({
+    start_datum: false,
+  });
+
+  //Toggla linjer.
+  const toggle = (event) => {
+    isHidden[event] = !isHidden[event];
+    setIsHidden({ ...isHidden });
+  };
+
   return (
     <>
-      <ResponsiveContainer width="80%" height={250}>
+      <ResponsiveContainer width='80%' height={250}>
         <LineChart width={1000} height={250}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis type="number" dataKey="antal_dagar" domain={[0, 'dataMax']}>
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis type='number' dataKey='antal_dagar' domain={[0, 'dataMax']}>
             <Label
-              value="Antal dagar till avslutad kurs"
+              value='Antal dagar till avslutad kurs'
               offset={0}
-              position="insideBottom"
+              position='insideBottom'
             />
           </XAxis>
           <YAxis
-            dataKey="andel_procent"
+            dataKey='andel_procent'
             domain={[0, 100]}
             label={{ value: 'Procent', angle: -90, position: 'insideLeft' }}
           />
           <YAxis />
           <Tooltip />
-          <Legend verticalAlign="top" height={30} />
+          <Legend
+            verticalAlign='top'
+            height={30}
+            onClick={() => toggle('start_datum')}
+          />
           {dagarData &&
             dagarData.map((data, indx) => (
               <Line
-                type="monotone"
-                dataKey="andel_procent"
+                type='monotone'
+                dataKey='andel_procent'
                 name={data[0].start_datum}
                 data={data}
                 stroke={colorArray[indx]}
                 connectNulls
+                dot={false}
+                hide={isHidden.start_datum}
               />
             ))}
         </LineChart>
       </ResponsiveContainer>
 
       <DatesList kurskod={kurskod} handleSelectDate={handleSelectDate} />
-      <Button onClick={() => clearData()} variant="outlined">
+      <Button onClick={() => clearData()} variant='outlined'>
         Rensa
       </Button>
     </>
