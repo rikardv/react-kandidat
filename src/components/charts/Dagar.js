@@ -35,7 +35,7 @@ const Dagar = () => {
 
   const handleSelectDate = (startdatum) => {
     getDagar(kurskod, startdatum).then((res) => {
-      setDagarData([...dagarData, res.data]);
+      setDagarData([...dagarData, { res: res.data, active: false }]);
     });
   };
 
@@ -43,16 +43,17 @@ const Dagar = () => {
     setDagarData([]);
   };
 
-  const [isHidden, setIsHidden] = useState({
-    start_datum: false,
-  });
-
-  //Toggla linjer.
-  const toggle = (event) => {
-    isHidden[event] = !isHidden[event];
-    setIsHidden({ ...isHidden });
+  const handleActive = (e) => {
+    for (var i = 0; i < dagarData.length; i++) {
+      if (dagarData[i].res[0].start_datum == e.value) {
+        let newArr = [...dagarData];
+        let item = { ...newArr[i] };
+        item.active = !item.active;
+        newArr[i] = item;
+        setDagarData(newArr);
+      }
+    }
   };
-
   return (
     <>
       <ResponsiveContainer width='80%' height={250}>
@@ -72,22 +73,17 @@ const Dagar = () => {
           />
           <YAxis />
           <Tooltip />
-          <Legend
-            verticalAlign='top'
-            height={30}
-            onClick={() => toggle('start_datum')}
-          />
+          <Legend verticalAlign='top' height={30} onClick={handleActive} />
           {dagarData &&
             dagarData.map((data, indx) => (
               <Line
                 type='monotone'
                 dataKey='andel_procent'
-                name={data[0].start_datum}
-                data={data}
+                name={data.res[0].start_datum}
+                data={data.res}
+                hide={data.active}
                 stroke={colorArray[indx]}
                 connectNulls
-                dot={false}
-                hide={isHidden.start_datum}
               />
             ))}
         </LineChart>
