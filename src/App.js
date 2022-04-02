@@ -3,7 +3,7 @@ import BarChartKursBetyg from './components/charts/BarChartKursBetyg.js';
 import Histogram from './components/charts/Histogram.js';
 import theme from './style/themeProvider';
 import SandBoxContainer from './components/containers/SandBoxContainer.js';
-import { ThemeProvider } from '@mui/material';
+import { ThemeProvider, Typography } from '@mui/material';
 import HeaderContainer from './components/containers/HeaderContainer.js';
 
 const App = () => {
@@ -17,13 +17,26 @@ const App = () => {
   const componentToRender = (selectedView) => {
     switch (selectedView) {
       case 1:
-        return <SandBoxContainer />;
+        return (
+          <Typography variant='h1'>
+            Tillfällen till klarad tenta placeras här
+          </Typography>
+        );
 
       case 2:
-        return <BarChartKursBetyg />;
+        return <Typography variant='h1'>Eftersläp placeras här</Typography>;
 
       case 3:
-        return <Histogram />;
+        return (
+          <Typography variant='h1'>Betygsfördelning placeras här</Typography>
+        );
+
+      case 4:
+        return (
+          <Typography variant='h1'>
+            Avhopp per kurs/program placeras här
+          </Typography>
+        );
       default:
         return <div>No selection..</div>;
     }

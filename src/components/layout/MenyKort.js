@@ -1,6 +1,6 @@
-import Card from "@mui/material/Card";
-import { Typography, CardContent } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import Card from '@mui/material/Card';
+import { Typography, CardContent } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 /* Skapad 2022-03-30 */
 /* Version: 3       */
@@ -22,27 +22,27 @@ export default function MenyKort(props) {
   return (
     <Card
       sx={{
-        width: "fit-content",
+        width: 'fit-content',
+        maxWidth: 200,
+        margin: 1,
         boxShadow: `10px 10px 2px 1px ${getColor().light}`,
-        height: "6.5rem",
         bgcolor: () =>
-          props.activeIndex == props.index ? getColor().main : "white",
-        color: props.activeIndex == props.index ? "white" : "black",
+          props.activeIndex == props.index ? getColor().main : 'white',
+        color: props.activeIndex == props.index ? 'white' : 'black',
         borderRadius: 2,
-        marginLeft: -1,
-        textAlign: "center",
-        cursor: "pointer",
-        userSelect: "none",
+        textAlign: 'center',
+        cursor: 'pointer',
+        userSelect: 'none',
       }}
       onClick={() => props.setActiveIndex(props.index)}
     >
       <CardContent>
         {/*Denna Typography används för rubrikerna.*/}
-        <Typography variant="h3" fontWeight="medium" gutterBottom>
+        <Typography variant='h3' fontWeight='medium' gutterBottom>
           {props.rubrik}
         </Typography>
         {/*Denna Typography används för "Flaggade kurser" där vi läser in en siffra som ska visas.*/}
-        <Typography variant="h1" fontWeight="bold" marginTop={1}>
+        <Typography variant='h1' fontWeight='bold' marginTop={1}>
           {props.antal}
         </Typography>
       </CardContent>
