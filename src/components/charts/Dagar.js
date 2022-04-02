@@ -35,40 +35,53 @@ const Dagar = () => {
 
   const handleSelectDate = (startdatum) => {
     getDagar(kurskod, startdatum).then((res) => {
-      setDagarData([...dagarData, res.data]);
+      setDagarData([...dagarData, { res: res.data, active: false }]);
     });
   };
 
   const clearData = () => {
     setDagarData([]);
   };
+
+  const handleActive = (e) => {
+    for (var i = 0; i < dagarData.length; i++) {
+      if (dagarData[i].res[0].start_datum == e.value) {
+        let newArr = [...dagarData];
+        let item = { ...newArr[i] };
+        item.active = !item.active;
+        newArr[i] = item;
+        setDagarData(newArr);
+      }
+    }
+  };
   return (
     <>
-      <ResponsiveContainer width="80%" height={250}>
+      <ResponsiveContainer width='80%' height={250}>
         <LineChart width={1000} height={250}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis type="number" dataKey="antal_dagar" domain={[0, 'dataMax']}>
+          <CartesianGrid strokeDasharray='3 3' />
+          <XAxis type='number' dataKey='antal_dagar' domain={[0, 'dataMax']}>
             <Label
-              value="Antal dagar till avslutad kurs"
+              value='Antal dagar till avslutad kurs'
               offset={0}
-              position="insideBottom"
+              position='insideBottom'
             />
           </XAxis>
           <YAxis
-            dataKey="andel_procent"
+            dataKey='andel_procent'
             domain={[0, 100]}
             label={{ value: 'Procent', angle: -90, position: 'insideLeft' }}
           />
           <YAxis />
           <Tooltip />
-          <Legend verticalAlign="top" height={30} />
+          <Legend verticalAlign='top' height={30} onClick={handleActive} />
           {dagarData &&
             dagarData.map((data, indx) => (
               <Line
-                type="monotone"
-                dataKey="andel_procent"
-                name={data[0].start_datum}
-                data={data}
+                type='monotone'
+                dataKey='andel_procent'
+                name={data.res[0].start_datum}
+                data={data.res}
+                hide={data.active}
                 stroke={colorArray[indx]}
                 connectNulls
               />
@@ -77,7 +90,7 @@ const Dagar = () => {
       </ResponsiveContainer>
 
       <DatesList kurskod={kurskod} handleSelectDate={handleSelectDate} />
-      <Button onClick={() => clearData()} variant="outlined">
+      <Button onClick={() => clearData()} variant='outlined'>
         Rensa
       </Button>
     </>
