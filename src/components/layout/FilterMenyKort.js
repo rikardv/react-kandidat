@@ -30,7 +30,7 @@ const FilterMeny = ({ titel, data }) => {
           {data.map((pgr) => (
             <>
               <Chip
-                label={<Typography variant='body'>{pgr}</Typography>}
+                label={<Typography variant='h3'>{pgr}</Typography>}
                 onDelete={() => console.log('')}
               />
               <Divider />

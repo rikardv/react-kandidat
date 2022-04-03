@@ -1,5 +1,4 @@
 import { createTheme } from '@mui/material/styles';
-
 /**
  * Globalt tema för appen, färger, fonts, storlekar
  * Globala styles läggs in här som är tänkt att återanvändas
@@ -7,7 +6,7 @@ import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   typography: {
-    fontFamily: "'Mulish', sans-serif",
+    fontFamily: 'Korolev',
     h1: {
       fontSize: 24,
     },
@@ -28,7 +27,6 @@ const theme = createTheme({
   palette: {
     primary: {
       main: '#11636C',
-      light: '#11636C99',
     },
 
     secondary: {
@@ -36,14 +34,11 @@ const theme = createTheme({
     },
 
     error: {
-      main: '#E33429',
-      light: '#E3342999',
+      main: '#ff6442',
     },
 
     warning: {
       main: '#efa350',
-      light: '#F1D2C4',
-      dark: '#E9B9A5',
     },
   },
 });

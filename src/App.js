@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import BarChartKursBetyg from './components/charts/BarChartKursBetyg.js';
-import Histogram from './components/charts/Histogram.js';
+import HistogramAvhopp from './components/charts/HistogramAvhopp.js';
 import theme from './style/themeProvider';
 import SandBoxContainer from './components/containers/SandBoxContainer.js';
-import { ThemeProvider, Typography, Grid } from '@mui/material';
+import { ThemeProvider, Typography, Grid, Stack } from '@mui/material';
 import HeaderContainer from './components/containers/HeaderContainer.js';
 import FiltreringContainer from './components/containers/FiltreringContainer.js';
 
@@ -28,43 +28,42 @@ const App = () => {
         return <Typography variant='h1'>Eftersläp placeras här</Typography>;
 
       case 3:
-        return (
-          <Typography variant='h1'>Betygsfördelning placeras här</Typography>
-        );
+        return <BarChartKursBetyg />;
 
       case 4:
-        return (
-          <Typography variant='h1'>
-            Avhopp per kurs/program placeras här
-          </Typography>
-        );
+        return <HistogramAvhopp />;
       default:
-        return <Typography>Inget valt</Typography>;
+        return <SandBoxContainer />;
     }
   };
   return (
     <ThemeProvider theme={theme}>
       <Grid container direction='row' md={12}>
         <Grid item sm={1} md={1} lg={1}>
-          Nav
+          <Typography> Vet inte vad vi vill ha här egentligen</Typography>
         </Grid>
         <Grid
           item
-          sm={8}
-          md={8}
-          lg={8}
+          sm={9}
+          md={9}
+          lg={9}
           style={{
             borderRight: '1px solid #D3D3D3',
             borderLeft: '1px solid #D3D3D3',
           }}
         >
-          <HeaderContainer
-            selectedView={selectedView}
-            setSelectedView={setSelectedView}
-          />
-          {componentToRender(selectedView)}
+          <Stack direction='column' spacing={3}>
+            <Typography alignSelf={'center'} variant='h1' fontWeight={'bold'}>
+              Instrumentpanel för grundutbildningen på Liu
+            </Typography>
+            <HeaderContainer
+              selectedView={selectedView}
+              setSelectedView={setSelectedView}
+            />
+            {componentToRender(selectedView)}
+          </Stack>
         </Grid>
-        <Grid item sm={3} md={3} lg={3}>
+        <Grid item sm={2} md={2} lg={2}>
           <FiltreringContainer />
         </Grid>
       </Grid>
