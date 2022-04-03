@@ -25,7 +25,7 @@ export default function MenyKort(props) {
         width: 'fit-content',
         maxWidth: 200,
         margin: 1,
-        boxShadow: `10px 10px 2px 1px ${getColor().light}`,
+        boxShadow: `5px 5px 2px 1px ${getColor().light}`,
         bgcolor: () =>
           props.activeIndex == props.index ? getColor().main : 'white',
         color: props.activeIndex == props.index ? 'white' : 'black',

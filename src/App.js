@@ -3,8 +3,9 @@ import BarChartKursBetyg from './components/charts/BarChartKursBetyg.js';
 import Histogram from './components/charts/Histogram.js';
 import theme from './style/themeProvider';
 import SandBoxContainer from './components/containers/SandBoxContainer.js';
-import { ThemeProvider, Typography } from '@mui/material';
+import { ThemeProvider, Typography, Grid } from '@mui/material';
 import HeaderContainer from './components/containers/HeaderContainer.js';
+import FiltreringContainer from './components/containers/FiltreringContainer.js';
 
 const App = () => {
   /**
@@ -38,16 +39,35 @@ const App = () => {
           </Typography>
         );
       default:
-        return <div>No selection..</div>;
+        return <Typography>Inget valt</Typography>;
     }
   };
   return (
     <ThemeProvider theme={theme}>
-      <HeaderContainer
-        selectedView={selectedView}
-        setSelectedView={setSelectedView}
-      />
-      {componentToRender(selectedView)}
+      <Grid container direction='row' md={12}>
+        <Grid item sm={1} md={1} lg={1}>
+          Nav
+        </Grid>
+        <Grid
+          item
+          sm={8}
+          md={8}
+          lg={8}
+          style={{
+            borderRight: '1px solid #D3D3D3',
+            borderLeft: '1px solid #D3D3D3',
+          }}
+        >
+          <HeaderContainer
+            selectedView={selectedView}
+            setSelectedView={setSelectedView}
+          />
+          {componentToRender(selectedView)}
+        </Grid>
+        <Grid item sm={3} md={3} lg={3}>
+          <FiltreringContainer />
+        </Grid>
+      </Grid>
     </ThemeProvider>
   );
 };
