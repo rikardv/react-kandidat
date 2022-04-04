@@ -12,10 +12,11 @@ import {
 } from 'recharts';
 import DatesList from './DatesList';
 import getDagar from '../../connections/test/getDagar';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 
 const Dagar = () => {
   const [dagarData, setDagarData] = useState([]);
+  const [emptyMessage, setEmptyMessage] = useState(false);
   const kurskod = 'TNM046';
   var colorArray = [
     '#FF6633',
@@ -28,7 +29,11 @@ const Dagar = () => {
 
   const handleSelectDate = (startdatum) => {
     getDagar(kurskod, startdatum).then((res) => {
-      setDagarData([...dagarData, { res: res.data, active: false }]);
+      if (res.data.length == 1) {
+        setEmptyMessage(true);
+      } else {
+        setDagarData([...dagarData, { res: res.data, active: false }]);
+      }
     });
   };
 
@@ -100,6 +105,7 @@ const Dagar = () => {
             ))}
         </LineChart>
       </ResponsiveContainer>
+      {emptyMessage ? <Typography>Inga på kursen</Typography> : null}
     </>
   );
 };
