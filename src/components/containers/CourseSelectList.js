@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { List, ListItem } from '@mui/material';
-
+import { List, ListItem,ListItemButton } from '@mui/material';
+import TestComponent from '../layout/TestComponent';
 import getProgramKoder from '../../connections/getProgramKoder';
 
-const CourseSelectList = () => {
-
-    const [state, setState] = useState({
-        loading: true,
-        response: null,
-        error: null
-        });
-    
+const CourseSelectList = ({setSelectedProgram}) => {  
     const [allaKurser, setAllaKurser] = useState();
     const [loading, setLoading] = useState();
         useEffect(() => {
@@ -21,16 +14,11 @@ const CourseSelectList = () => {
           });
           
         }, []);
-
-   // LÖS MED LOADSTATE, Datan måste hämtas innan det kan målas ut eller en Mappas...
-    const listaAllaKuser = allaKurser.map((kurs)=> console.log(kurs))
     
-    
-        
     
     return loading ? (
             <p>loading</p>
-    ): (<p>not loading</p>);
+    ): (<List>{allaKurser && allaKurser.map((kurs) => <ListItemButton key={kurs.YTTERSTA_KURSPAKETERING_SV} onClick={() => setSelectedProgram(kurs.YTTERSTA_KURSPAKETERING_KOD)}>{kurs.YTTERSTA_KURSPAKETERING_SV}</ListItemButton>)}</List>)
 
     
   };

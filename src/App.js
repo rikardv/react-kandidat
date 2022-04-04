@@ -6,6 +6,7 @@ import SandBoxContainer from './components/containers/SandBoxContainer.js';
 import { ThemeProvider, Typography } from '@mui/material';
 import HeaderContainer from './components/containers/HeaderContainer.js';
 import CourseSelectList from './components/containers/CourseSelectList.js';
+import CardWithCourses from './components/layout/CardWithCourses.js';
 
 const App = () => {
   /**
@@ -13,6 +14,7 @@ const App = () => {
    * Tillfällen till klarad tenta as default
    */
   const [selectedView, setSelectedView] = useState(null);
+  const [selectedProgram,setSelectedProgram] = useState("");
 
   //Function that takes in user selection and return component accordingly
   const componentToRender = (selectedView) => {
@@ -39,7 +41,8 @@ const App = () => {
 
             {//Skriver lite här
             }
-            <CourseSelectList></CourseSelectList>
+            <CourseSelectList setSelectedProgram={setSelectedProgram}></CourseSelectList>
+            <CardWithCourses selectedProgram={selectedProgram}/>
 
           </Typography>
         );
