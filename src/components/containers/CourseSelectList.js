@@ -12,10 +12,11 @@ const CourseSelectList = () => {
         });
     
     const [allaKurser, setAllaKurser] = useState();
-
+    const [loading, setLoading] = useState();
         useEffect(() => {
           getProgramKoder(10).then((res) => {
             setAllaKurser(res.data);
+            setLoading(false);
             
           });
           
@@ -27,11 +28,11 @@ const CourseSelectList = () => {
     
         
     
-    return (
-             <List>
-                 
-             </List>
-    );
+    return loading ? (
+            <p>loading</p>
+    ): (<p>not loading</p>);
+
+    
   };
   
   export default CourseSelectList;
