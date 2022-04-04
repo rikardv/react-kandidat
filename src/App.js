@@ -5,6 +5,7 @@ import theme from './style/themeProvider';
 import SandBoxContainer from './components/containers/SandBoxContainer.js';
 import { ThemeProvider, Typography } from '@mui/material';
 import HeaderContainer from './components/containers/HeaderContainer.js';
+import CourseSelectList from './components/containers/CourseSelectList.js';
 
 const App = () => {
   /**
@@ -35,6 +36,11 @@ const App = () => {
         return (
           <Typography variant='h1'>
             Avhopp per kurs/program placeras här
+
+            {//Skriver lite här
+            }
+            <CourseSelectList></CourseSelectList>
+
           </Typography>
         );
       default:
