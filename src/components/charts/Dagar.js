@@ -32,6 +32,7 @@ const Dagar = () => {
       if (res.data.length == 1) {
         setEmptyMessage(true);
       } else {
+        setEmptyMessage(false);
         setDagarData([...dagarData, { res: res.data, active: false }]);
       }
     });
