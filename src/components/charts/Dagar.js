@@ -19,18 +19,11 @@ const Dagar = () => {
   const kurskod = 'TNM046';
   var colorArray = [
     '#FF6633',
-    '#FFB399',
     '#FF33FF',
-    '#FFFF99',
-    '#00B3E6',
-    '#E6B333',
-    '#3366E6',
-    '#999966',
-    '#99FF99',
-    '#B34D4D',
-    '#80B300',
-    '#809900',
-    '#E6B3B3',
+    '#58508d',
+    '#bc5090',
+    '#ff6361',
+    '#ffa600',
   ];
 
   const handleSelectDate = (startdatum) => {
@@ -54,12 +47,31 @@ const Dagar = () => {
       }
     }
   };
+  useEffect(() => {
+    //console.log(dagarData.length);
+  });
   return (
     <>
-      <ResponsiveContainer width='80%' height={250}>
-        <LineChart width={1000} height={250}>
-          <CartesianGrid strokeDasharray='3 3' />
-          <XAxis type='number' dataKey='antal_dagar' domain={[0, 'dataMax']}>
+      <div>
+        Kurs: {kurskod}
+        <DatesList kurskod={kurskod} handleSelectDate={handleSelectDate} />
+        <Button onClick={() => clearData()} variant='outlined'>
+          Rensa
+        </Button>
+      </div>
+      <ResponsiveContainer width='80%' height={430}>
+        <LineChart>
+          <CartesianGrid
+            strokeDasharray='3 3'
+            horizontal={false}
+            vertical={false}
+          />
+          <XAxis
+            type='number'
+            dataKey='antal_dagar'
+            height={40}
+            domain={[0, 'dataMax']}
+          >
             <Label
               value='Antal dagar till avslutad kurs'
               offset={0}
@@ -88,11 +100,6 @@ const Dagar = () => {
             ))}
         </LineChart>
       </ResponsiveContainer>
-
-      <DatesList kurskod={kurskod} handleSelectDate={handleSelectDate} />
-      <Button onClick={() => clearData()} variant='outlined'>
-        Rensa
-      </Button>
     </>
   );
 };

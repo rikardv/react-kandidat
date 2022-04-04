@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import BarChartKursBetyg from './components/charts/BarChartKursBetyg.js';
 import HistogramAvhopp from './components/charts/HistogramAvhopp.js';
+import Dagar from './components/charts/Dagar.js';
 import theme from './style/themeProvider';
 import SandBoxContainer from './components/containers/SandBoxContainer.js';
 import { ThemeProvider, Typography, Grid, Stack } from '@mui/material';
@@ -33,7 +34,7 @@ const App = () => {
       case 4:
         return <HistogramAvhopp />;
       case 5:
-        return <SandBoxContainer />;
+        return <Dagar />;
 
       default:
         <Typography>Något gick snett om du hamnade här</Typography>;
