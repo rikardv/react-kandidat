@@ -7,7 +7,7 @@ const HeaderContainer = ({ selectedView, setSelectedView }) => {
     <Grid
       container
       justifyContent='space-evenly'
-      style={{ padding: 5, maxWidth: 1500 }}
+      style={{ padding: 5, maxWidth: 1200 }}
     >
       <MenyKort
         rubrik='TILLFÄLLEN TILL KLARAD TENTA'
@@ -33,6 +33,12 @@ const HeaderContainer = ({ selectedView, setSelectedView }) => {
         rubrik='AVHOPP PER KURS/PROGRAM'
         antal='6'
         index={4}
+        activeIndex={selectedView}
+        setActiveIndex={setSelectedView}
+      ></MenyKort>
+      <MenyKort
+        rubrik='LEKYTA - här kan du lägga dina komponenter som inte är färdiga för att se hur de ser ut'
+        index={5}
         activeIndex={selectedView}
         setActiveIndex={setSelectedView}
       ></MenyKort>
