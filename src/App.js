@@ -12,7 +12,7 @@ const App = () => {
    * Variable for setting what component to view
    * Tillfällen till klarad tenta as default
    */
-  const [selectedView, setSelectedView] = useState(null);
+  const [selectedView, setSelectedView] = useState(1);
 
   //Function that takes in user selection and return component accordingly
   const componentToRender = (selectedView) => {
@@ -32,8 +32,11 @@ const App = () => {
 
       case 4:
         return <HistogramAvhopp />;
-      default:
+      case 5:
         return <SandBoxContainer />;
+
+      default:
+        <Typography>Något gick snett om du hamnade här</Typography>;
     }
   };
   return (
@@ -52,8 +55,13 @@ const App = () => {
             borderLeft: '1px solid #D3D3D3',
           }}
         >
-          <Stack direction='column' spacing={3}>
-            <Typography alignSelf={'center'} variant='h1' fontWeight={'bold'}>
+          <Stack
+            direction='column'
+            spacing={3}
+            justifyContent='center'
+            alignItems={'center'}
+          >
+            <Typography variant='h1' fontWeight={'bold'}>
               Instrumentpanel för grundutbildningen på Liu
             </Typography>
             <HeaderContainer
