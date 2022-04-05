@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import Dagar from '../charts/Dagar';
 
 /**
  * Komponent för att testa de olika styles som finns i temat.
@@ -66,6 +67,7 @@ const SandBox = () => {
       >
         Warning light
       </Button>
+      <Dagar />
     </div>
   );
 };
