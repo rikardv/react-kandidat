@@ -13,7 +13,7 @@ import { useTheme } from '@mui/material/styles';
 import Loading from '../layout/Loading';
 
 const HistogramAvhopp = () => {
-  const program = '6KGDK';
+  const program = '6CDDD'; //6CMEN, 6CDDD, 6CIEN, 6CMJU, 6KGDK
   const startDatum = '2012-01-03';
   const slutDatum = '2022-03-04';
   const theme = useTheme();

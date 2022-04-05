@@ -54,7 +54,7 @@ const Dagar = () => {
     }
   };
   useEffect(() => {
-    //console.log(dagarData.length);
+    //console.log(dagarData[0]);
   });
   return (
     <>
@@ -102,11 +102,16 @@ const Dagar = () => {
                 hide={data.active}
                 stroke={colorArray[indx]}
                 connectNulls
+                dot={false}
               />
             ))}
         </LineChart>
       </ResponsiveContainer>
-      {emptyMessage ? <Typography>Inga på kursen</Typography> : null}
+      {emptyMessage ? (
+        <Typography>
+          Den är ännu ingen som klarat kursen med det här registreringsdatumet!
+        </Typography>
+      ) : null}
     </>
   );
 };
