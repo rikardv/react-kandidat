@@ -1,9 +1,13 @@
-export default async function () {
+export default async function (program, startDatum, slutDatum) {
   var avbrott;
 
-  await fetch('http://localhost:8080' + `/test/avbrott`, {
-    method: 'GET',
-  })
+  await fetch(
+    'http://localhost:8080' +
+      `/test/avbrott?program=${program}&startDatum=${startDatum}&slutDatum=${slutDatum}`,
+    {
+      method: 'GET',
+    }
+  )
     .then((response) => response.json())
     .then((response) => {
       avbrott = response;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import BarChartKursBetyg from './components/charts/BarChartKursBetyg.js';
 import HistogramAvhopp from './components/charts/HistogramAvhopp.js';
+import Dagar from './components/charts/Dagar.js';
 import theme from './style/themeProvider';
 import SandBoxContainer from './components/containers/SandBoxContainer.js';
 import { ThemeProvider, Typography, Grid, Stack } from '@mui/material';
