@@ -34,7 +34,7 @@ const App = () => {
       case 4:
         return <HistogramAvhopp />;
       case 5:
-        return <Dagar />;
+        return <SandBoxContainer />;
 
       default:
         <Typography>Något gick snett om du hamnade här</Typography>;
