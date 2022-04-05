@@ -6,6 +6,7 @@ import SandBoxContainer from './components/containers/SandBoxContainer.js';
 import { ThemeProvider, Typography, Grid, Stack } from '@mui/material';
 import HeaderContainer from './components/containers/HeaderContainer.js';
 import FiltreringContainer from './components/containers/FiltreringContainer.js';
+import HistogramSlapande from './components/charts/HistogramSlapande.js';
 
 const App = () => {
   /**
@@ -25,7 +26,7 @@ const App = () => {
         );
 
       case 2:
-        return <Typography variant='h1'>Eftersläp placeras här</Typography>;
+        return <HistogramSlapande />;
 
       case 3:
         return <BarChartKursBetyg />;
