@@ -1,4 +1,8 @@
 export default async function (programkod, startdatum) {
+  
+  /**
+  * Hämtar personer med släpande kurser med program och startdatum som parameter
+  */
   var slapande;
 
   await fetch(
