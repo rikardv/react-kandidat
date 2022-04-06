@@ -26,7 +26,7 @@ const App = () => {
         );
 
       case 2:
-        return <HistogramSlapande />;
+        return <HistogramSlapande startDatum='2019-09-19' programKod='6CMEN'/>;
 
       case 3:
         return <BarChartKursBetyg />;
