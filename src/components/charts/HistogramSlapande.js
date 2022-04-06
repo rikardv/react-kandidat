@@ -19,8 +19,10 @@ const HistogramSlapande = () => {
   const theme = useTheme();
 
   useEffect(() => {
+    //Hämtar antalet släpande kurser för personer
     getSlapande('6CMEN', '2019-08-19').then((res) => {
       setSlapande(res.data);
+      //Hämtning klar - avbrytt laddning
       setLoading(false);
     });
   }, []);
