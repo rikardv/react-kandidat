@@ -8,6 +8,7 @@ import { ThemeProvider, Typography, Grid, Stack } from '@mui/material';
 import HeaderContainer from './components/containers/HeaderContainer.js';
 import FiltreringContainer from './components/containers/FiltreringContainer.js';
 import HistogramSlapande from './components/charts/HistogramSlapande.js';
+import ComposedHP from './components/charts/ComposedHP.js';
 
 const App = () => {
   /**
@@ -20,11 +21,7 @@ const App = () => {
   const componentToRender = (selectedView) => {
     switch (selectedView) {
       case 1:
-        return (
-          <Typography variant='h1'>
-            Tillfällen till klarad tenta placeras här
-          </Typography>
-        );
+        return <ComposedHP startDatum='2019-08-19' programKod='6CMEN' />;
 
       case 2:
         return <HistogramSlapande startDatum='2019-08-19' programKod='6CMEN' />;
