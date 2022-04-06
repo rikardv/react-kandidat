@@ -13,7 +13,7 @@ import {
 import Loading from '../layout/Loading';
 import { useTheme } from '@mui/material';
 
-const HistogramSlapande = ({startDatum,programKod}) => {
+const HistogramSlapande = ({ startDatum, programKod }) => {
   const [slapande, setSlapande] = useState();
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
@@ -22,7 +22,7 @@ const HistogramSlapande = ({startDatum,programKod}) => {
     //Hämtar antalet släpande kurser för personer
     getSlapande(programKod, startDatum).then((res) => {
       setSlapande(res.data);
-      //Hämtning klar - avbrytt laddning
+      //Hämtning klar - avbryt laddning
       setLoading(false);
     });
   }, []);
@@ -35,7 +35,7 @@ const HistogramSlapande = ({startDatum,programKod}) => {
         <XAxis
           dataKey='name'
           label={{
-            value: 'Kurser släpande',
+            value: 'Antal kurser släpande',
             position: 'insideBottomRight',
             offset: 0,
           }}
@@ -50,7 +50,11 @@ const HistogramSlapande = ({startDatum,programKod}) => {
         />
         <Tooltip />
         <Legend />
-        <Bar fill={theme.palette.primary.main} dataKey='value' />
+        <Bar
+          fill={theme.palette.primary.main}
+          dataKey='value'
+          name='Antal personer'
+        />
       </BarChart>
     </ResponsiveContainer>
   );
