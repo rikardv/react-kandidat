@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { List, ListItem,ListItemButton } from '@mui/material';
-import TestComponent from '../layout/TestComponent';
+import CardWithCourses from '../layout/CardWithCourses';
 import getProgramKoder from '../../connections/getProgramKoder';
 
 const CourseSelectList = ({setSelectedProgram}) => {  
