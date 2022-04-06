@@ -13,14 +13,14 @@ import {
 import Loading from '../layout/Loading';
 import { useTheme } from '@mui/material';
 
-const HistogramSlapande = () => {
+const HistogramSlapande = ({startDatum,programKod}) => {
   const [slapande, setSlapande] = useState();
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
 
   useEffect(() => {
     //Hämtar antalet släpande kurser för personer
-    getSlapande('6CMEN', '2019-08-19').then((res) => {
+    getSlapande(programKod, startDatum).then((res) => {
       setSlapande(res.data);
       //Hämtning klar - avbrytt laddning
       setLoading(false);
