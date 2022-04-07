@@ -1,6 +1,6 @@
 export default async function (programkod, startdatum) {
   /**
-   * Hämtar personer med släpande kurser med program och startdatum som parameter
+   * Hämtar hur många HP en person har och hur många den läst med program och startdatum som parameter
    */
   var HP;
 

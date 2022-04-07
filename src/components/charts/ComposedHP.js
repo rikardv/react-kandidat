@@ -21,7 +21,7 @@ const HistogramSlapande = ({ startDatum, programKod }) => {
   const theme = useTheme();
 
   useEffect(() => {
-    //Hämtar antalet släpande kurser för personer
+    //Hämtar hur mycket HP en person och gränsen för CSN
     getHP(programKod, startDatum).then((res) => {
       setHP(res.data);
       //Hämtning klar - avbryt laddning
