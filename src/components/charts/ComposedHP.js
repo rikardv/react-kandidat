@@ -15,7 +15,7 @@ import {
 import Loading from '../layout/Loading';
 import { useTheme } from '@mui/material';
 
-const HistogramSlapande = ({ startDatum, programKod }) => {
+const ComposedHP = ({ startDatum, programKod }) => {
   const [HP, setHP] = useState();
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
@@ -54,4 +54,4 @@ const HistogramSlapande = ({ startDatum, programKod }) => {
   );
 };
 
-export default HistogramSlapande;
+export default ComposedHP;
