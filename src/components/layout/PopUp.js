@@ -28,7 +28,7 @@ const PopUp = (props) => {
     <Dialog fullWidth={true} onClose={handleClose} open={open}>
       <DialogTitle>
         <Typography variant='h1' fontWeight='bold' align='left'>
-          Lista Över Valbara {titel}
+          Valbara {titel}
         </Typography>
       </DialogTitle>
       <Stack direction='row' spacing={3}>
@@ -52,7 +52,7 @@ const PopUp = (props) => {
       <Divider />
       <DialogTitle>
         <Typography variant='h1' fontWeight='bold' align='left'>
-          Lista Över Valda {titel}
+          Valda {titel}
         </Typography>
       </DialogTitle>
       <Stack direction='row' spacing={3}>
