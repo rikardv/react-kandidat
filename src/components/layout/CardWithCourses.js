@@ -4,7 +4,6 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { listSubheaderClasses } from "@mui/material";
 
-
 /* Tar in selectedProgram som parameter, denna avänds i Autocomplete för att filtrera listan så att
 bara dom kurser som är en del av programmet visas upp */
 const CardWithCourses = ({ selectedProgram, setSelectedKurs }) => {
@@ -33,12 +32,8 @@ const CardWithCourses = ({ selectedProgram, setSelectedKurs }) => {
     setSelectedKurs(splitList[0]);
   };
 
-  
-
-  
   return (
     <div sytle={{ height: 520, width: "100%" }}>
-     
       <Autocomplete
         value={value}
         onChange={(event, newValue) => {
@@ -47,7 +42,7 @@ const CardWithCourses = ({ selectedProgram, setSelectedKurs }) => {
         }}
         disablePortal
         id='combo-box-demo'
-        options={kursnamn} 
+        options={kursnamn}
         sx={{ width: 400 }}
         renderInput={(params) => <TextField {...params} label='Kurser' />}
       />
