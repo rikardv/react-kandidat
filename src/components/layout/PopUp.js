@@ -1,27 +1,78 @@
-import React from 'react';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Dialog from '@mui/material/Dialog';
-
-const emails = ['Program1', 'Program2'];
+import React, { useState } from 'react';
+import {
+  Dialog,
+  DialogTitle,
+  Typography,
+  Chip,
+  Stack,
+  Divider,
+} from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import ClearIcon from '@mui/icons-material/Clear';
 
 const PopUp = (props) => {
-  const { onClose, open } = props;
+  const { onClose, open, data, titel } = props;
 
   const handleClose = () => {
     onClose();
   };
 
-  return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Lista över alla program</DialogTitle>
+  const [selected, setSelected] = useState([]);
 
-      {emails.map((email) => (
-        <ListItem>
-          <ListItemText primary={email} />
-        </ListItem>
-      ))}
+  const handleSelection = () => {
+    setSelected([...selected, {}]);
+    console.log(selected);
+  };
+
+  return (
+    <Dialog fullWidth={true} onClose={handleClose} open={open}>
+      <DialogTitle>
+        <Typography variant='h1' fontWeight='bold' align='left'>
+          Lista Över Valbara {titel}
+        </Typography>
+      </DialogTitle>
+      <Stack direction='row' spacing={3}>
+        {data.map((program) => (
+          <>
+            <Chip
+              variant='outlined'
+              clickable={true}
+              label={
+                <Typography variant='h3' fontWeight='medium'>
+                  {program}
+                </Typography>
+              }
+              onClick={handleSelection}
+              onDelete={handleSelection}
+              deleteIcon={<AddIcon />}
+            ></Chip>
+          </>
+        ))}
+      </Stack>
+      <Divider />
+      <DialogTitle>
+        <Typography variant='h1' fontWeight='bold' align='left'>
+          Lista Över Valda {titel}
+        </Typography>
+      </DialogTitle>
+      <Stack direction='row' spacing={3}>
+        {data.map((program) => (
+          <>
+            <Chip
+              variant='outlined'
+              clickable={true}
+              label={
+                <Typography variant='h3' fontWeight='medium'>
+                  {program}
+                </Typography>
+              }
+              onClick={handleSelection}
+              onDelete={handleSelection}
+              deleteIcon={<ClearIcon />}
+            ></Chip>
+          </>
+        ))}
+      </Stack>
     </Dialog>
   );
 };

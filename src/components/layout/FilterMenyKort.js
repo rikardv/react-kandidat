@@ -9,6 +9,7 @@ import {
   Chip,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import ClearIcon from '@mui/icons-material/Clear';
 import PopUp from './PopUp';
 
 const FilterMeny = ({ titel, data }) => {
@@ -36,14 +37,17 @@ const FilterMeny = ({ titel, data }) => {
           <IconButton onClick={handleClickOpen}>
             <AddIcon />
           </IconButton>
-          <PopUp open={open} onClose={handleClose} />
+          <PopUp open={open} onClose={handleClose} data={data} titel={titel} />
         </Stack>
         <Stack spacing={1}>
           {data.map((pgr) => (
             <>
               <Chip
+                variant='outlined'
                 label={<Typography variant='h3'>{pgr}</Typography>}
+                onClick={() => console.log('')}
                 onDelete={() => console.log('')}
+                deleteIcon={<ClearIcon />}
               />
               <Divider />
             </>
