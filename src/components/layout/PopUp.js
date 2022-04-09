@@ -19,8 +19,8 @@ const PopUp = (props) => {
 
   const [selected, setSelected] = useState([]);
 
-  const handleSelection = () => {
-    setSelected([...selected, {}]);
+  const handleSelection = (e, program) => {
+    setSelected({ program });
     console.log(selected);
   };
 
@@ -36,14 +36,15 @@ const PopUp = (props) => {
           <>
             <Chip
               variant='outlined'
+              key={program}
               clickable={true}
               label={
                 <Typography variant='h3' fontWeight='medium'>
                   {program}
                 </Typography>
               }
-              onClick={handleSelection}
-              onDelete={handleSelection}
+              onClick={(e) => handleSelection(e, program)}
+              onDelete={(e) => handleSelection(e, program)}
               deleteIcon={<AddIcon />}
             ></Chip>
           </>
@@ -66,8 +67,7 @@ const PopUp = (props) => {
                   {program}
                 </Typography>
               }
-              onClick={handleSelection}
-              onDelete={handleSelection}
+              onDelete={(e) => handleSelection(e, program)}
               deleteIcon={<ClearIcon />}
             ></Chip>
           </>
