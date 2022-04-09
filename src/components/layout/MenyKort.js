@@ -25,7 +25,7 @@ export default function MenyKort(props) {
         width: 'fit-content',
         maxWidth: 200,
         margin: 1,
-        boxShadow: `10px 10px 2px 1px ${getColor().light}`,
+        boxShadow: `3px 3px 2px 1px ${getColor().light}`,
         bgcolor: () =>
           props.activeIndex == props.index ? getColor().main : 'white',
         color: props.activeIndex == props.index ? 'white' : 'black',
@@ -38,7 +38,7 @@ export default function MenyKort(props) {
     >
       <CardContent>
         {/*Denna Typography används för rubrikerna.*/}
-        <Typography variant='h3' fontWeight='medium' gutterBottom>
+        <Typography variant='h3' gutterBottom>
           {props.rubrik}
         </Typography>
         {/*Denna Typography används för "Flaggade kurser" där vi läser in en siffra som ska visas.*/}
