@@ -6,9 +6,12 @@ import {
   Chip,
   Stack,
   Divider,
+  TextField,
+  Button,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
+import CloseIcon from '@mui/icons-material/Close';
 
 const PopUp = (props) => {
   const { onClose, open, data, titel } = props;
@@ -27,14 +30,21 @@ const PopUp = (props) => {
   return (
     <Dialog fullWidth={true} onClose={handleClose} open={open}>
       <DialogTitle>
-        <Typography variant='h1' fontWeight='bold' align='left'>
-          Valbara {titel}
+        <Typography variant='h2' fontWeight='medium' align='left'>
+          Lägg till {titel}
+          <CloseIcon
+            style={{ marginLeft: 'auto' }}
+            onClick={handleClose}
+            fontSize='small'
+          />
         </Typography>
       </DialogTitle>
-      <Stack direction='row' spacing={3}>
+      <Divider />
+      <Stack marginTop={3} direction='row' spacing={3}>
         {data.map((program) => (
           <>
             <Chip
+              style={{ marginBottom: 3, marginLeft: 15 }}
               variant='outlined'
               key={program}
               clickable={true}
@@ -50,16 +60,29 @@ const PopUp = (props) => {
           </>
         ))}
       </Stack>
+      <TextField
+        label={'Sök ' + titel}
+        variant='outlined'
+        size='small'
+        style={{ margin: 15 }}
+      />
       <Divider />
       <DialogTitle>
-        <Typography variant='h1' fontWeight='bold' align='left'>
+        <Typography
+          style={{ marginTop: 20 }}
+          variant='h2'
+          fontWeight='medium'
+          align='left'
+        >
           Valda {titel}
         </Typography>
       </DialogTitle>
-      <Stack direction='row' spacing={3}>
+      <Divider />
+      <Stack marginTop={3} direction='row' spacing={3}>
         {data.map((program) => (
           <>
             <Chip
+              style={{ marginBottom: 14, marginLeft: 15 }}
               variant='outlined'
               clickable={true}
               label={
@@ -73,6 +96,19 @@ const PopUp = (props) => {
           </>
         ))}
       </Stack>
+      <Button
+        style={{
+          marginBottom: 15,
+          width: 50,
+          borderRadius: 11,
+          marginLeft: 'auto',
+          marginRight: 15,
+        }}
+        variant='contained'
+        size='small'
+      >
+        Spara
+      </Button>
     </Dialog>
   );
 };
