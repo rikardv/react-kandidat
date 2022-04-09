@@ -33,18 +33,10 @@ const App = () => {
         return <BarChartKursBetyg />;
 
       case 4:
-        return (
-          <Typography variant='h1'>
-            Avhopp per kurs/program placeras här
-            {
-              //Skriver lite här
-            }
-            <CourseSelectList
-              setSelectedProgram={setSelectedProgram}
-            ></CourseSelectList>
-            <CardWithCourses selectedProgram={selectedProgram} />
-          </Typography>
-        );
+        return <HistogramAvhopp/>;
+
+      case 5: 
+        return <SandBoxContainer selectedProgram={selectedProgram} setSelectedProgram={setSelectedProgram}/>;
       default:
         <Typography>Något gick snett om du hamnade här</Typography>;
     }

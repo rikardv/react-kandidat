@@ -33,7 +33,7 @@ const CardWithCourses = ({ selectedProgram, setSelectedKurs }) => {
   };
 
   return (
-    <div style={{ height: 520, width: "100%" }}>
+    <div style={{ height: "100%", width: "100%" }}>
       <Autocomplete
         value={value}
         onChange={(event, newValue) => {
