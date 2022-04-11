@@ -38,15 +38,22 @@ const PopUp = (props) => {
 
   return (
     <Dialog fullWidth={true} onClose={handleClose} open={open}>
-      <DialogTitle>
-        <Typography variant='h2' fontWeight='medium' align='left'>
+      <DialogTitle
+        style={{
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+          display: 'flex',
+        }}
+      >
+        <Typography variant='h2' fontWeight='medium'>
           Lägg till {titel}
-          <CloseIcon
-            style={{ marginLeft: 'auto' }}
-            onClick={handleClose}
-            fontSize='small'
-          />
         </Typography>
+
+        <CloseIcon
+          style={{ cursor: 'pointer' }}
+          onClick={handleClose}
+          fontSize='small'
+        />
       </DialogTitle>
       <Divider />
       {newList.length == 0 ? (
@@ -97,9 +104,11 @@ const PopUp = (props) => {
       </DialogTitle>
       <Divider />
       {selected.length == 0 ? (
-        <Typography>
-          Inga Valda {titel}, Var God Välj {titel} Ovan!
-        </Typography>
+        <DialogTitle>
+          <Typography>
+            Inga Valda {titel}, Var God Välj {titel} Ovan!
+          </Typography>
+        </DialogTitle>
       ) : (
         <Stack marginTop={3} direction='row' spacing={3}>
           {selected.map((element) => (
