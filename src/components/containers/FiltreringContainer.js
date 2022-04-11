@@ -31,7 +31,7 @@ const FiltreringContainer = ({
       </Typography>
       <FilterMenyKort
         titel='Program'
-        data={allaProgram.map((e) => e.YTTERSTA_KURSPAKETERING_SV)}
+        data={allaProgram.map((e) => e.YTTERSTA_KURSPAKETERING_KOD)}
         selected={selectedProgram}
         setSelected={setSelectedProgram}
       />
