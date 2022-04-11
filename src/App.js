@@ -18,52 +18,35 @@ const App = () => {
    * Tillfällen till klarad tenta as default
    */
   const [selectedView, setSelectedView] = useState(1);
-  const [selectedProgram, setSelectedProgram] = useState('6CMEN');
+  const [selectedProgram, setSelectedProgram] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState([]);
+  const [selectedStartDates, setSelectedStartDates] = useState([]);
+
+  console.log('Valda Program ' + selectedProgram);
+
+  console.log('Valda Kurser ' + selectedCourses);
+
+  console.log('Valda År ' + selectedStartDates);
 
   //Function that takes in user selection and return component accordingly
   const componentToRender = (selectedView) => {
     switch (selectedView) {
       case 1:
-        return (
-          <ComposedHP
-            startDatum='2019-08-19'
-            programKod={selectedProgram}
-            kursKoder={selectedCourses}
-          />
-        );
+        return <ComposedHP startDatum='2019-08-19' programKod='6CMEN' />;
 
       case 2:
-        return (
-          <HistogramSlapande
-            startDatum='2019-08-19'
-            programKod={selectedProgram}
-            kursKoder={selectedCourses}
-          />
-        );
+        return <HistogramSlapande startDatum='2019-08-19' programKod='6CMEN' />;
 
       case 3:
-        return (
-          <BarChartKursBetyg
-            programKod={selectedProgram}
-            kursKoder={selectedCourses}
-          />
-        );
+        return <BarChartKursBetyg />;
 
       case 4:
-        return (
-          <HistogramAvhopp
-            startDatum='2012-01-03'
-            slutDatum='2022-03-04'
-            programKod={selectedProgram}
-            kursKoder={selectedCourses}
-          />
-        );
+        return <HistogramAvhopp />;
 
       case 5:
         return (
           <SandBoxContainer
-            selectedProgram={selectedProgram}
+            selectedProgram={'6CMEN'}
             setSelectedProgram={setSelectedProgram}
           />
         );
@@ -104,7 +87,14 @@ const App = () => {
           </Stack>
         </Grid>
         <Grid item sm={2} md={2} lg={2}>
-          <FiltreringContainer />
+          <FiltreringContainer
+            selectedProgram={selectedProgram}
+            setSelectedProgram={setSelectedProgram}
+            selectedCourses={selectedCourses}
+            setSelectedCourses={setSelectedCourses}
+            selectedStartDates={selectedStartDates}
+            setSelectedStartDates={setSelectedStartDates}
+          />
         </Grid>
       </Grid>
     </ThemeProvider>

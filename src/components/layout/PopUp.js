@@ -14,14 +14,13 @@ import ClearIcon from '@mui/icons-material/Clear';
 import CloseIcon from '@mui/icons-material/Close';
 
 const PopUp = (props) => {
-  const { onClose, open, data, titel } = props;
+  const { onClose, open, data, titel, selected, setSelected } = props;
 
   //Stäng pop-upen.
   const handleClose = () => {
     onClose();
   };
 
-  const [selected, setSelected] = useState([]); //För att lagra valda program /kurser.
   const [newList, setNewList] = useState(data); //skapa ny lista för att kunna göra justeringar i den.
 
   //När man väljer ett program/kurs... så läggs elementet till i listan över valda och tas bort från listan över valbara.

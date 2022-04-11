@@ -12,7 +12,7 @@ import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
 import PopUp from './PopUp';
 
-const FilterMeny = ({ titel, data }) => {
+const FilterMenyKort = ({ titel, data, selected, setSelected }) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -37,10 +37,17 @@ const FilterMeny = ({ titel, data }) => {
           <IconButton onClick={handleClickOpen}>
             <AddIcon />
           </IconButton>
-          <PopUp open={open} onClose={handleClose} data={data} titel={titel} />
+          <PopUp
+            open={open}
+            onClose={handleClose}
+            data={data}
+            titel={titel}
+            selected={selected}
+            setSelected={setSelected}
+          />
         </Stack>
         <Stack spacing={1}>
-          {data.map((pgr) => (
+          {selected.map((pgr) => (
             <>
               <Chip
                 variant='outlined'
@@ -58,4 +65,4 @@ const FilterMeny = ({ titel, data }) => {
   );
 };
 
-export default FilterMeny;
+export default FilterMenyKort;
