@@ -30,7 +30,7 @@ const HistogramAvhopp = ({
       setAvbrott(data.data);
       setLoading(false);
     });
-  }, []);
+  }, [programKod]);
   return loading ? (
     <Loading />
   ) : (
