@@ -21,13 +21,11 @@ const HistogramSlapande = ({ startDatum, programKod, kursKoder }) => {
   useEffect(() => {
     //Hämtar antalet släpande kurser för personer
     getSlapande(programKod, startDatum).then((res) => {
-      console.log(programKod);
-      console.log(startDatum);
       setSlapande(res.data);
       //Hämtning klar - avbryt laddning
       setLoading(false);
     });
-  }, []);
+  }, [programKod]);
   return loading ? (
     <Loading></Loading>
   ) : (
