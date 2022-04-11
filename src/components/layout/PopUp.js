@@ -56,8 +56,11 @@ const PopUp = (props) => {
         />
       </DialogTitle>
       <Divider />
+
       {newList.length == 0 ? (
-        <Typography>Alla {titel} Är Valda</Typography>
+        <DialogTitle>
+          <Typography>Alla {titel} Är Valda</Typography>
+        </DialogTitle>
       ) : (
         <Stack marginTop={3} direction='row' spacing={3}>
           {newList.map((element) => (
