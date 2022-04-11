@@ -8,6 +8,7 @@ import {
   Divider,
   TextField,
   Button,
+  Autocomplete,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -21,15 +22,19 @@ const PopUp = (props) => {
     onClose();
   };
 
-  const [newList, setNewList] = useState(data); //skapa ny lista för att kunna göra justeringar i den.
+  //skapa ny lista för att kunna göra justeringar i den. UseState för att den ska uppdateras.
+  const [newList, setNewList] = useState([]);
+  useEffect(() => {
+    setNewList(data);
+  }, [data]);
 
-  //När man väljer ett program/kurs... så läggs elementet till i listan över valda och tas bort från listan över valbara.
+  //När man väljer ett element så läggs elementet till i listan över valda och tas bort från listan över valbara.
   const handleSelection = (element) => {
     setSelected([...selected, element]);
     setNewList(newList.filter((item) => item !== element));
   };
 
-  //När man tar bort ett program/kurs... så läggs elementet till i listan över valbara och tas bort från listan över valda.
+  //När man tar bort ett element så läggs elementet till i listan över valbara och tas bort från listan över valda.
   const handleDelete = (element) => {
     setNewList([...newList, element]);
     setSelected(selected.filter((item) => item !== element));
@@ -61,37 +66,44 @@ const PopUp = (props) => {
           <Typography>Alla {titel} Är Valda</Typography>
         </DialogTitle>
       ) : (
-        <Stack marginTop={3} direction='row' spacing={3}>
-          {newList.map((element) => (
-            <>
-              <Chip
-                style={{ marginBottom: 3, marginLeft: 15 }}
-                variant='outlined'
-                key={element}
-                clickable={true}
-                label={
-                  <Typography variant='h3' fontWeight='medium'>
-                    {element}
-                  </Typography>
-                }
-                onClick={() => handleSelection(element)}
-                onDelete={() => handleSelection(element)}
-                deleteIcon={<AddIcon />}
-              ></Chip>
-            </>
-          ))}
-        </Stack>
-      )}
-
-      {newList.length == 0 ? (
-        <></>
-      ) : (
-        <TextField
-          label={'Sök ' + titel}
-          variant='outlined'
-          size='small'
-          style={{ margin: 15 }}
-        />
+        <>
+          <Autocomplete
+            style={{ margin: 15, marginTop: 20 }}
+            disablePortal
+            id='combo-box-demo'
+            options={newList}
+            renderInput={(params) => (
+              <TextField {...params} label={'Sök ' + titel} />
+            )}
+          />
+          <Stack
+            marginTop={3}
+            display='flex'
+            flexWrap='wrap'
+            rowGap={1}
+            direction='row'
+            spacing={3}
+          >
+            {newList.map((element) => (
+              <>
+                <Chip
+                  style={{ marginLeft: 15, marginBottom: 3, paddingRight: 3 }}
+                  variant='outlined'
+                  key={element}
+                  clickable={true}
+                  label={
+                    <Typography variant='h3' fontWeight='medium'>
+                      {element}
+                    </Typography>
+                  }
+                  onClick={() => handleSelection(element)}
+                  onDelete={() => handleSelection(element)}
+                  deleteIcon={<AddIcon />}
+                ></Chip>
+              </>
+            ))}
+          </Stack>
+        </>
       )}
       <Divider />
       <DialogTitle>

@@ -28,7 +28,7 @@ const ComposedHP = ({ startDatum, programKod, kursKoder }) => {
       setLoading(false);
       console.log(res.data);
     });
-  }, [programKod]);
+  }, [programKod, startDatum]);
 
   return loading ? (
     <Loading></Loading>

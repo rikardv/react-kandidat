@@ -2,7 +2,9 @@ import { Stack, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import FilterMenyKort from '../layout/FilterMenyKort';
 import getProgramKoder from '../../connections/getProgramKoder';
+import getKurserFranProgram from '../../connections/getKurserFranProgram';
 import Loading from '../layout/Loading';
+import getProgramStartDatum from '../../connections/getProgramStartDatum';
 
 const FiltreringContainer = ({
   selectedProgram,
@@ -12,15 +14,41 @@ const FiltreringContainer = ({
   selectedStartDates,
   setSelectedStartDates,
 }) => {
-  const [allaProgram, setAllaProgram] = useState();
+  const [programs, setPrograms] = useState([]);
+  const [courses, setCourses] = useState([]);
+  const [startDates, setStartDates] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  //Hämtar valt program
+  useEffect(() => {
+    getKurserFranProgram(selectedProgram).then((res) => {
+      setCourses(res.data);
+      setLoading(false);
+    });
+  }, [selectedProgram]);
+
+  //Hämtar och stätter alla kurser för valt program.
   useEffect(() => {
     getProgramKoder(10).then((res) => {
-      setAllaProgram(res.data);
+      setPrograms(res.data);
       setLoading(false);
     });
   }, []);
+
+  //Hämtar och stätter alla startdatum för valt program.
+  useEffect(() => {
+    getProgramStartDatum(selectedProgram).then((res) => {
+      setStartDates(res.data);
+      setLoading(false);
+    });
+  }, [selectedProgram]);
+
+  //Gör en ny lista för att kunna skicka med kurskod och kursnamn i samma.
+  //Ful lösning men Fungerar iaf med MUI Autocomplete.
+  const coursenames = [];
+  courses.map((course) =>
+    coursenames.push(course.UTBILDNING_KOD + ' : ' + course.UTBILDNING_SV)
+  );
 
   return loading ? (
     <Loading />
@@ -31,19 +59,21 @@ const FiltreringContainer = ({
       </Typography>
       <FilterMenyKort
         titel='Program'
-        data={allaProgram.map((e) => e.YTTERSTA_KURSPAKETERING_KOD)}
+        data={programs.map((e) => e.YTTERSTA_KURSPAKETERING_KOD)}
         selected={selectedProgram}
         setSelected={setSelectedProgram}
       />
       <FilterMenyKort
         titel='Kurser'
-        data={['Kurs1', 'Kurs2', 'Kurs3']}
+        data={coursenames}
         selected={selectedCourses}
         setSelected={setSelectedCourses}
       />
       <FilterMenyKort
         titel='Antagningsår'
-        data={['År1', 'År2']}
+        data={startDates.map(
+          (e) => e.YTTERSTA_KURSPAKETERINGSTILLFALLE_STARTDATUM
+        )}
         selected={selectedStartDates}
         setSelected={setSelectedStartDates}
       />

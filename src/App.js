@@ -20,9 +20,13 @@ const App = () => {
   const [selectedView, setSelectedView] = useState(1);
   const [selectedProgram, setSelectedProgram] = useState(['6CMEN']);
   const [selectedCourses, setSelectedCourses] = useState([]);
-  const [selectedStartDates, setSelectedStartDates] = useState([]);
+  const [selectedStartDates, setSelectedStartDates] = useState(['2019-08-19']);
 
+  /*
   console.log('Valda Program ' + selectedProgram[0]);
+  console.log('Valda Kurser ' + selectedCourses);
+  console.log('Startdatum ' + selectedStartDates[0]);
+*/
 
   //Function that takes in user selection and return component accordingly
   const componentToRender = (selectedView) => {
@@ -30,7 +34,7 @@ const App = () => {
       case 1:
         return (
           <ComposedHP
-            startDatum='2019-08-19'
+            startDatum={selectedStartDates[0]}
             programKod={selectedProgram[0]}
             kursKoder={selectedCourses}
           />
