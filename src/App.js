@@ -18,25 +18,55 @@ const App = () => {
    * Tillfällen till klarad tenta as default
    */
   const [selectedView, setSelectedView] = useState(1);
-  const [selectedProgram, setSelectedProgram] = useState('');
+  const [selectedProgram, setSelectedProgram] = useState('6CMEN');
+  const [selectedCourses, setSelectedCourses] = useState([]);
 
   //Function that takes in user selection and return component accordingly
   const componentToRender = (selectedView) => {
     switch (selectedView) {
       case 1:
-        return <ComposedHP startDatum='2019-08-19' programKod='6CMEN' />;
+        return (
+          <ComposedHP
+            startDatum='2019-08-19'
+            programKod={selectedProgram}
+            kursKoder={selectedCourses}
+          />
+        );
 
       case 2:
-        return <HistogramSlapande startDatum='2019-08-19' programKod='6CMEN' />;
+        return (
+          <HistogramSlapande
+            startDatum='2019-08-19'
+            programKod={selectedProgram}
+            kursKoder={selectedCourses}
+          />
+        );
 
       case 3:
-        return <BarChartKursBetyg />;
+        return (
+          <BarChartKursBetyg
+            programKod={selectedProgram}
+            kursKoder={selectedCourses}
+          />
+        );
 
       case 4:
-        return <HistogramAvhopp/>;
+        return (
+          <HistogramAvhopp
+            startDatum='2012-01-03'
+            slutDatum='2022-03-04'
+            programKod={selectedProgram}
+            kursKoder={selectedCourses}
+          />
+        );
 
-      case 5: 
-        return <SandBoxContainer selectedProgram={selectedProgram} setSelectedProgram={setSelectedProgram}/>;
+      case 5:
+        return (
+          <SandBoxContainer
+            selectedProgram={selectedProgram}
+            setSelectedProgram={setSelectedProgram}
+          />
+        );
       default:
         <Typography>Något gick snett om du hamnade här</Typography>;
     }

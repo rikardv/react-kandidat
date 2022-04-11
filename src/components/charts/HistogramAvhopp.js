@@ -12,16 +12,21 @@ import getAvbrott from '../../connections/test/getAvbrott';
 import { useTheme } from '@mui/material/styles';
 import Loading from '../layout/Loading';
 
-const HistogramAvhopp = () => {
-  const program = '6CDDD'; //6CMEN, 6CDDD, 6CIEN, 6CMJU, 6KGDK
-  const startDatum = '2012-01-03';
-  const slutDatum = '2022-03-04';
+const HistogramAvhopp = ({
+  programKod,
+  selectedCourses,
+  startDatum,
+  slutDatum,
+}) => {
+  // const program = '6CDDD'; //6CMEN, 6CDDD, 6CIEN, 6CMJU, 6KGDK
+  // const startDatum = '2012-01-03';
+  // const slutDatum = '2022-03-04';
   const theme = useTheme();
   const [avbrott, setAvbrott] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAvbrott(program, startDatum, slutDatum).then((data) => {
+    getAvbrott(programKod, startDatum, slutDatum).then((data) => {
       setAvbrott(data.data);
       setLoading(false);
     });
