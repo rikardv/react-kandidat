@@ -3,8 +3,6 @@ import {
   Dialog,
   DialogTitle,
   Typography,
-  Chip,
-  Stack,
   Divider,
   TextField,
   Button,
@@ -13,6 +11,7 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
 import CloseIcon from '@mui/icons-material/Close';
+import PopUpContent from '../containers/PopUpContent';
 
 const PopUp = (props) => {
   const { onClose, open, data, titel, selected, setSelected } = props;
@@ -39,6 +38,10 @@ const PopUp = (props) => {
     setNewList([...newList, element]);
     setSelected(selected.filter((item) => item !== element));
   };
+
+  //SearchTerm baseras på det man skriver i Autocomplete.
+  //OBS!! När man sökt en gång (tryck enter) och sen tar bort all text från sökningen så kraschar programmet.
+  const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <Dialog fullWidth={true} onClose={handleClose} open={open}>
@@ -67,42 +70,21 @@ const PopUp = (props) => {
         </DialogTitle>
       ) : (
         <>
+          <PopUpContent
+            data={newList}
+            funktion={handleSelection}
+            icon={<AddIcon />}
+            search={searchTerm}
+          />
           <Autocomplete
             style={{ margin: 15, marginTop: 20 }}
-            disablePortal
-            id='combo-box-demo'
             options={newList}
             renderInput={(params) => (
               <TextField {...params} label={'Sök ' + titel} />
             )}
+            onChange={(event, value) => setSearchTerm(value)}
+            freeSolo={true}
           />
-          <Stack
-            marginTop={3}
-            display='flex'
-            flexWrap='wrap'
-            rowGap={1}
-            direction='row'
-            spacing={3}
-          >
-            {newList.map((element) => (
-              <>
-                <Chip
-                  style={{ marginLeft: 15, marginBottom: 3, paddingRight: 3 }}
-                  variant='outlined'
-                  key={element}
-                  clickable={true}
-                  label={
-                    <Typography variant='h3' fontWeight='medium'>
-                      {element}
-                    </Typography>
-                  }
-                  onClick={() => handleSelection(element)}
-                  onDelete={() => handleSelection(element)}
-                  deleteIcon={<AddIcon />}
-                ></Chip>
-              </>
-            ))}
-          </Stack>
         </>
       )}
       <Divider />
@@ -124,25 +106,12 @@ const PopUp = (props) => {
           </Typography>
         </DialogTitle>
       ) : (
-        <Stack marginTop={3} direction='row' spacing={3}>
-          {selected.map((element) => (
-            <>
-              <Chip
-                style={{ marginBottom: 14, marginLeft: 15 }}
-                variant='outlined'
-                clickable={true}
-                label={
-                  <Typography variant='h3' fontWeight='medium'>
-                    {element}
-                  </Typography>
-                }
-                onDelete={() => handleDelete(element)}
-                onClick={() => handleDelete(element)}
-                deleteIcon={<ClearIcon />}
-              ></Chip>
-            </>
-          ))}
-        </Stack>
+        <PopUpContent
+          data={selected}
+          funktion={handleDelete}
+          icon={<ClearIcon />}
+          search={''}
+        />
       )}
       <Button
         style={{
