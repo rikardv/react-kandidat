@@ -6,6 +6,10 @@ import getKurserFranProgram from '../../connections/getKurserFranProgram';
 import Loading from '../layout/Loading';
 import getProgramStartDatum from '../../connections/getProgramStartDatum';
 
+/*I den här filen tar vi in flera selected och setSelected-funktioner. Dessa kommer baseras på data vi väljer 
+i PopUpContent.js så att vi kan komma åt dom i App.js. Vi kallar på FilterMenyKort som i sin tur kallar på PopUp som slutligen kallar på 
+PopUpContent.js*/
+
 const FiltreringContainer = ({
   selectedProgram,
   setSelectedProgram,
@@ -57,18 +61,21 @@ const FiltreringContainer = ({
       <Typography style={{ margin: 10 }} variant='h1'>
         Filtreringar
       </Typography>
+      {/*FilterMenyKort för program*/}
       <FilterMenyKort
         titel='Program'
         data={programs.map((e) => e.YTTERSTA_KURSPAKETERING_KOD)}
         selected={selectedProgram}
         setSelected={setSelectedProgram}
       />
+      {/*FilterMenyKort för kurser*/}
       <FilterMenyKort
         titel='Kurser'
         data={coursenames}
         selected={selectedCourses}
         setSelected={setSelectedCourses}
       />
+      {/*FilterMenyKort för antagningsår*/}
       <FilterMenyKort
         titel='Antagningsår'
         data={startDates.map(
