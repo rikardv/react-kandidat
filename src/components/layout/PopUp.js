@@ -13,6 +13,11 @@ import ClearIcon from '@mui/icons-material/Clear';
 import CloseIcon from '@mui/icons-material/Close';
 import PopUpContent from '../containers/PopUpContent';
 
+/* I den här filen tar vi in open och onClose för att kolla om fönstret är stängt eller inte. I övrigt tar vi in data i form av ....
+, en titel och selected/setSelected som alla skickats vidare från FilterMenyKort.js. Vi kallar på PopUpContent för att filtrera data 
+som ska visualiseras.
+*/
+
 const PopUp = (props) => {
   const { onClose, open, data, titel, selected, setSelected } = props;
 
@@ -45,6 +50,8 @@ const PopUp = (props) => {
 
   return (
     <Dialog fullWidth={true} onClose={handleClose} open={open}>
+      {/*Här är rutan som dyker upp när man öppnar filtreringen.
+       */}
       <DialogTitle
         style={{
           justifyContent: 'space-between',
@@ -63,7 +70,8 @@ const PopUp = (props) => {
         />
       </DialogTitle>
       <Divider />
-
+      {/*Här kollar om vi alla kurser är valda eller inte. Annars visas valbara kurser genom att kalla på PopUpContent
+          Autocomplete är för att kunna söka efter kurser som sedan filtreras i PopUpContent.*/}
       {newList.length == 0 ? (
         <DialogTitle>
           <Typography>Alla {titel} Är Valda</Typography>
@@ -99,6 +107,7 @@ const PopUp = (props) => {
         </Typography>
       </DialogTitle>
       <Divider />
+      {/*Här kollar om vi inga kurser är valda eller inte. Annars visas valda kurser genom att kalla på PopUpContent*/}
       {selected.length == 0 ? (
         <DialogTitle>
           <Typography>
