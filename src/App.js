@@ -6,8 +6,6 @@ import theme from './style/themeProvider';
 import SandBoxContainer from './components/containers/SandBoxContainer.js';
 import { ThemeProvider, Typography, Grid, Stack } from '@mui/material';
 import HeaderContainer from './components/containers/HeaderContainer.js';
-import CourseSelectList from './components/containers/CourseSelectList.js';
-import CardWithCourses from './components/layout/CardWithCourses.js';
 import FiltreringContainer from './components/containers/FiltreringContainer.js';
 import HistogramSlapande from './components/charts/HistogramSlapande.js';
 import ComposedHP from './components/charts/ComposedHP.js';
