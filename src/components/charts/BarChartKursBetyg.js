@@ -12,7 +12,7 @@ import {
 import getKursUtvarderingsBetyg from '../../connections/getKursUtvarderingsBetyg';
 import Loading from '../layout/Loading';
 
-const BarChartKursBetyg = () => {
+const BarChartKursBetyg = ({ programKod, kursKoder, selectedCourses }) => {
   const [kursutvarderingsbetyg, setKursUtvarderingsBetyg] = useState();
   const [loading, setLoading] = useState(true);
 

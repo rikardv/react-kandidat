@@ -6,8 +6,11 @@ import theme from './style/themeProvider';
 import SandBoxContainer from './components/containers/SandBoxContainer.js';
 import { ThemeProvider, Typography, Grid, Stack } from '@mui/material';
 import HeaderContainer from './components/containers/HeaderContainer.js';
+import CourseSelectList from './components/containers/CourseSelectList.js';
+import CardWithCourses from './components/layout/CardWithCourses.js';
 import FiltreringContainer from './components/containers/FiltreringContainer.js';
 import HistogramSlapande from './components/charts/HistogramSlapande.js';
+import ComposedHP from './components/charts/ComposedHP.js';
 
 const App = () => {
   /**
@@ -15,28 +18,55 @@ const App = () => {
    * Tillfällen till klarad tenta as default
    */
   const [selectedView, setSelectedView] = useState(1);
+  const [selectedProgram, setSelectedProgram] = useState('6CMEN');
+  const [selectedCourses, setSelectedCourses] = useState([]);
 
   //Function that takes in user selection and return component accordingly
   const componentToRender = (selectedView) => {
     switch (selectedView) {
       case 1:
         return (
-          <Typography variant='h1'>
-            Tillfällen till klarad tenta placeras här
-          </Typography>
+          <ComposedHP
+            startDatum='2019-08-19'
+            programKod={selectedProgram}
+            kursKoder={selectedCourses}
+          />
         );
 
       case 2:
-        return <HistogramSlapande startDatum='2019-08-19' programKod='6CMEN' />;
+        return (
+          <HistogramSlapande
+            startDatum='2019-08-19'
+            programKod={selectedProgram}
+            kursKoder={selectedCourses}
+          />
+        );
 
       case 3:
-        return <BarChartKursBetyg />;
+        return (
+          <BarChartKursBetyg
+            programKod={selectedProgram}
+            kursKoder={selectedCourses}
+          />
+        );
 
       case 4:
-        return <HistogramAvhopp />;
-      case 5:
-        return <SandBoxContainer />;
+        return (
+          <HistogramAvhopp
+            startDatum='2012-01-03'
+            slutDatum='2022-03-04'
+            programKod={selectedProgram}
+            kursKoder={selectedCourses}
+          />
+        );
 
+      case 5:
+        return (
+          <SandBoxContainer
+            selectedProgram={selectedProgram}
+            setSelectedProgram={setSelectedProgram}
+          />
+        );
       default:
         <Typography>Något gick snett om du hamnade här</Typography>;
     }
