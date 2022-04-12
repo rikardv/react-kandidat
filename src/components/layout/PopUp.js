@@ -45,7 +45,6 @@ const PopUp = (props) => {
   };
 
   //SearchTerm baseras på det man skriver i Autocomplete.
-  //OBS!! När man sökt en gång (tryck enter) och sen tar bort all text från sökningen så kraschar programmet.
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
@@ -90,7 +89,9 @@ const PopUp = (props) => {
             renderInput={(params) => (
               <TextField {...params} label={'Sök ' + titel} />
             )}
-            onChange={(event, value) => setSearchTerm(value)}
+            onChange={(event, value) =>
+              setSearchTerm(value == null ? '' : value)
+            }
             freeSolo={true}
           />
         </>
