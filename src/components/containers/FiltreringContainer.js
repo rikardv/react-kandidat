@@ -51,7 +51,7 @@ const FiltreringContainer = ({
   //Ful lösning men Fungerar iaf med MUI Autocomplete.
   const coursenames = [];
   courses.map((course) =>
-    coursenames.push(course.UTBILDNING_KOD + ' : ' + course.UTBILDNING_SV)
+    coursenames.push(course.UTBILDNING_KOD + ': ' + course.UTBILDNING_SV)
   );
 
   return loading ? (
