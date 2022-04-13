@@ -39,6 +39,7 @@ const BarChartKursBetyg = ({ programKod, kursKoder, selectedCourses }) => {
               strokeDasharray='3 0'
               CartesianGrid
               stroke='#d9d9d9'
+              vertical={false}
             />
             <XAxis
               height={100}
