@@ -12,13 +12,15 @@ import {
 import getKursUtvarderingsBetyg from '../../connections/getKursUtvarderingsBetyg';
 import Loading from '../layout/Loading';
 import { Card, CardContent, Typography } from '@mui/material';
+import formatDataToRequest from '../../functions/formatDataToRequest';
 
 const BarChartKursBetyg = ({ programKod, kursKoder, selectedCourses }) => {
   const [kursutvarderingsbetyg, setKursUtvarderingsBetyg] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getKursUtvarderingsBetyg(kursKoder).then((res) => {
+    const formattedKurskoder = formatDataToRequest(kursKoder, 'kurskod');
+    getKursUtvarderingsBetyg(formattedKurskoder).then((res) => {
       setKursUtvarderingsBetyg(res.data);
       setLoading(false);
     });
