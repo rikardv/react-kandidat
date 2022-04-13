@@ -15,7 +15,7 @@ import {
 import Loading from '../layout/Loading';
 import { useTheme } from '@mui/material';
 
-const ComposedHP = ({ startDatum, programKod, kursKoder }) => {
+const CSN = ({ startDatum, programKod, kursKoder }) => {
   const [HP, setHP] = useState();
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
@@ -54,4 +54,4 @@ const ComposedHP = ({ startDatum, programKod, kursKoder }) => {
   );
 };
 
-export default ComposedHP;
+export default CSN;

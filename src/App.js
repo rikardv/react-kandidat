@@ -8,7 +8,7 @@ import { ThemeProvider, Typography, Grid, Stack } from '@mui/material';
 import HeaderContainer from './components/containers/HeaderContainer.js';
 import FiltreringContainer from './components/containers/FiltreringContainer.js';
 import HistogramSlapande from './components/charts/HistogramSlapande.js';
-import ComposedHP from './components/charts/ComposedHP.js';
+import CSN from './components/charts/ComposedCSN.js';
 
 const App = () => {
   /**
@@ -37,7 +37,7 @@ const App = () => {
       case 1:
         return (
           //CSN
-          <ComposedHP
+          <CSN
             startDatum={selectedStartDates[0]}
             programKod={selectedProgram[0]}
             kursKoder={selectedCourses}
