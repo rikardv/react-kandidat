@@ -18,11 +18,11 @@ const BarChartKursBetyg = ({ programKod, kursKoder, selectedCourses }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getKursUtvarderingsBetyg(10).then((res) => {
+    getKursUtvarderingsBetyg(kursKoder).then((res) => {
       setKursUtvarderingsBetyg(res.data);
       setLoading(false);
     });
-  }, [programKod]);
+  }, [programKod, kursKoder]);
   //Kräver DataKey för varje period då vi vill kunna använda namn som datakey för Xaxeln och utvärderingsbetyget för Yaxeln
   //Hämtar data i formatet [{name:****, 2019HT: ****,2020VT: ****, etc.... }]
   return loading ? (
