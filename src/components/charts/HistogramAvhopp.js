@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import getAvbrott from '../../connections/test/getAvbrott';
-import { useTheme } from '@mui/material/styles';
+import { useTheme, Card, CardContent, Typography } from '@mui/material';
 import Loading from '../layout/Loading';
 
 const HistogramAvhopp = ({
@@ -34,27 +34,41 @@ const HistogramAvhopp = ({
   return loading ? (
     <Loading />
   ) : (
-    <ResponsiveContainer height={550} width='90%'>
-      <BarChart data={avbrott}>
-        <CartesianGrid
-          strokeDasharray='3 3'
-          horizontal={false}
-          vertical={false}
-        />
-        <XAxis
-          height={100}
-          dataKey='kurskod'
-          angle={-90}
-          textAnchor='end'
-          interval={0}
-          tickMargin={10}
-        />
-        <YAxis />
-        <Tooltip />
+    <Card style={{ width: '90%', height: 550 }}>
+      <CardContent>
+        <Typography variant='h1' fontWeight='medium' align='center'>
+          Studenter under- eller nära CSN-gränsen
+        </Typography>
+        <ResponsiveContainer height={500} width='100%'>
+          <BarChart data={avbrott}>
+            <CartesianGrid
+              strokeDasharray='3 3'
+              horizontal={false}
+              vertical={false}
+            />
+            <XAxis
+              height={100}
+              dataKey='kurskod'
+              angle={-90}
+              textAnchor='end'
+              interval={0}
+              tickMargin={10}
+              label={{ value: 'Kurskod', position: 'insideBottom' }}
+            />
+            <YAxis
+              label={{
+                value: 'Antal studenter',
+                angle: -90,
+                position: 'insideLeft',
+              }}
+            />
+            <Tooltip />
 
-        <Bar dataKey='avbrott' fill={theme.palette.primary.main} />
-      </BarChart>
-    </ResponsiveContainer>
+            <Bar dataKey='avbrott' fill={theme.palette.primary.main} />
+          </BarChart>
+        </ResponsiveContainer>
+      </CardContent>
+    </Card>
   );
 };
 

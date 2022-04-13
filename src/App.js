@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import BarChartKursBetyg from './components/charts/BarChartKursBetyg.js';
 import HistogramAvhopp from './components/charts/HistogramAvhopp.js';
-import Dagar from './components/charts/Dagar.js';
 import theme from './style/themeProvider';
 import SandBoxContainer from './components/containers/SandBoxContainer.js';
 import { ThemeProvider, Typography, Grid, Stack } from '@mui/material';
@@ -9,6 +8,7 @@ import HeaderContainer from './components/containers/HeaderContainer.js';
 import FiltreringContainer from './components/containers/FiltreringContainer.js';
 import HistogramSlapande from './components/charts/HistogramSlapande.js';
 import CSN from './components/charts/ComposedCSN.js';
+import Dagar from './components/charts/Dagar.js';
 
 const App = () => {
   /**
@@ -83,11 +83,9 @@ const App = () => {
         );
 
       case 6:
-        return (
-          <>
-            <SandBoxContainer />
-          </>
-        );
+        return <Dagar />;
+      case 7:
+        return <SandBoxContainer />;
       default:
         <Typography>Något gick snett om du hamnade här</Typography>;
     }

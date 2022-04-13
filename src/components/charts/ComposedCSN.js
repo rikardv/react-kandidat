@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import getHP from '../../connections/getHP';
 import {
   ComposedChart,
-  Line,
   Area,
   Bar,
   CartesianGrid,
@@ -13,7 +12,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import Loading from '../layout/Loading';
-import { useTheme } from '@mui/material';
+import { useTheme, Card, CardContent, Typography } from '@mui/material';
 
 const CSN = ({ startDatum, programKod, kursKoder }) => {
   const [HP, setHP] = useState();
@@ -33,24 +32,43 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
   return loading ? (
     <Loading></Loading>
   ) : (
-    <ResponsiveContainer height={500} width='90%'>
-      <ComposedChart width={730} height={250} data={HP}>
-        <XAxis dataKey='name' tick={false} />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <CartesianGrid stroke='#f5f5f5' />
+    <Card style={{ width: '90%', height: 550 }}>
+      <CardContent>
+        <Typography variant='h1' fontWeight='medium' align='center'>
+          Studenter under- eller nära CSN-gränsen
+        </Typography>
+        <ResponsiveContainer height={500} width='100%'>
+          <ComposedChart data={HP}>
+            <XAxis
+              dataKey='name'
+              tick={false}
+              label={{ value: 'Student', position: 'insideBottom' }}
+            />
+            <YAxis
+              label={{ value: 'Antal HP', angle: -90, position: 'insideLeft' }}
+            />
+            <Tooltip />
+            <Legend verticalAlign='top' align='right' />
+            <CartesianGrid stroke='#f5f5f5' />
 
-        <Bar dataKey='actual' barSize={8} fill='#413ea0' />
-        <Area
-          type='monotone'
-          dataKey='required'
-          fill={theme.palette.secondary.main}
-          opacity={0.7}
-          stroke='#ff7300'
-        />
-      </ComposedChart>
-    </ResponsiveContainer>
+            <Bar
+              name='HP för student'
+              dataKey='actual'
+              barSize={8}
+              fill='#413ea0'
+            />
+            <Area
+              name='HP-gräns'
+              type='monotone'
+              dataKey='required'
+              fill={theme.palette.secondary.main}
+              opacity={0.7}
+              stroke='#ff7300'
+            />
+          </ComposedChart>
+        </ResponsiveContainer>
+      </CardContent>
+    </Card>
   );
 };
 

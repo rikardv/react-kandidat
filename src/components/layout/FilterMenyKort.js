@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Card,
   Typography,
@@ -9,7 +9,6 @@ import {
   Chip,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import ClearIcon from '@mui/icons-material/Clear';
 import PopUp from './PopUp';
 
 /* I den här filen tar vi in en titel, data, selected och setSelected från FilteringContainer. Alla dessa props är olika beroende på 

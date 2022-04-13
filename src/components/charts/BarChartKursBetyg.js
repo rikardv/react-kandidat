@@ -11,6 +11,7 @@ import {
 } from 'recharts';
 import getKursUtvarderingsBetyg from '../../connections/getKursUtvarderingsBetyg';
 import Loading from '../layout/Loading';
+import { Card, CardContent, Typography } from '@mui/material';
 
 const BarChartKursBetyg = ({ programKod, kursKoder, selectedCourses }) => {
   const [kursutvarderingsbetyg, setKursUtvarderingsBetyg] = useState();
@@ -27,24 +28,44 @@ const BarChartKursBetyg = ({ programKod, kursKoder, selectedCourses }) => {
   return loading ? (
     <Loading />
   ) : (
-    <ResponsiveContainer height={400}>
-      <BarChart data={kursutvarderingsbetyg} height={250}>
-        <CartesianGrid strokeDasharray='3 0' />
-        <XAxis dataKey='name' tick={false} />
+    <Card style={{ width: '90%', height: 550 }}>
+      <CardContent>
+        <Typography variant='h1' fontWeight='medium' align='center'>
+          Snittbetyg för kurser i EvaLIUate
+        </Typography>
+        <ResponsiveContainer height={500} width='100%'>
+          <BarChart data={kursutvarderingsbetyg} height={250}>
+            <CartesianGrid strokeDasharray='3 0' />
+            <XAxis
+              dataKey='name'
+              tick={false}
+              label={{ value: 'Kurskod', position: 'insideBottom' }}
+            />
 
-        <YAxis type='number' domain={[0, 5]} ticks={[1, 2, 3, 4, 5]} />
+            <YAxis
+              type='number'
+              domain={[0, 5]}
+              ticks={[1, 2, 3, 4, 5]}
+              label={{
+                value: 'Snittbetyg',
+                angle: -90,
+                position: 'insideLeft',
+              }}
+            />
 
-        <Tooltip />
-        <Legend />
+            <Tooltip />
+            <Legend verticalAlign='top' align='right' />
 
-        <Bar dataKey='2019HT' fill='#8884d8' />
-        <Bar dataKey='2019VT' fill='#82ca9d' />
-        <Bar dataKey='2020HT' fill='#2284d8' />
-        <Bar dataKey='2020VT' fill='#8224d8' />
-        <Bar dataKey='2021HT' fill='#8822d8' />
-        <Bar dataKey='2021VT' fill='#888422' />
-      </BarChart>
-    </ResponsiveContainer>
+            <Bar dataKey='2019HT' fill='#8884d8' />
+            <Bar dataKey='2019VT' fill='#82ca9d' />
+            <Bar dataKey='2020HT' fill='#2284d8' />
+            <Bar dataKey='2020VT' fill='#8224d8' />
+            <Bar dataKey='2021HT' fill='#8822d8' />
+            <Bar dataKey='2021VT' fill='#888422' />
+          </BarChart>
+        </ResponsiveContainer>
+      </CardContent>
+    </Card>
   );
 };
 

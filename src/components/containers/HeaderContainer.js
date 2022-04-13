@@ -44,8 +44,14 @@ const HeaderContainer = ({ selectedView, setSelectedView }) => {
         setActiveIndex={setSelectedView}
       ></MenyKort>
       <MenyKort
-        rubrik='LEKYTA - här kan du lägga dina komponenter som inte är färdiga för att se hur de ser ut'
+        rubrik='DAGAR TILL AVKLARAD KURS'
         index={6}
+        activeIndex={selectedView}
+        setActiveIndex={setSelectedView}
+      ></MenyKort>
+      <MenyKort
+        rubrik='LEKYTA - här kan du lägga dina komponenter som inte är färdiga för att se hur de ser ut'
+        index={7}
         activeIndex={selectedView}
         setActiveIndex={setSelectedView}
       ></MenyKort>
