@@ -17,12 +17,19 @@ const App = () => {
    */
   const [selectedView, setSelectedView] = useState(1);
   const [selectedProgram, setSelectedProgram] = useState(['6CMEN']); //Alla progarmkoder lagras i denna, defaultvärde satt.
-  const [selectedCourses, setSelectedCourses] = useState([]); //Alla kurser lagras i denna, inget defaultvärde satt ännu.
+  const [selectedCoursesTemp, setSelectedCourses] = useState([
+    'TNM089: Bildteknik',
+  ]); //Alla kurser lagras i denna temporärt och kursnamnet filtreras sedan bort.
   const [selectedStartDates, setSelectedStartDates] = useState(['2019-08-19']); //Alla startdatum lagras i denna, defaultvärde satt.
 
-  /*
-  console.log('Valda Kurser ' + selectedCourses);
- */
+  //Filtrera bort kursnamnet så vi endast skickar kurskoden till API:et.
+  const selectedCourses = [];
+  selectedCoursesTemp.map((course) =>
+    selectedCourses.push(course.split(':')[0])
+  );
+
+  console.log('Valda Kurser före: ' + selectedCoursesTemp);
+  console.log('Valda Kurser efter: ' + selectedCourses);
 
   //Function that takes in user selection and return component accordingly
   const componentToRender = (selectedView) => {
@@ -76,7 +83,11 @@ const App = () => {
         );
 
       case 6:
-        return <SandBoxContainer />;
+        return (
+          <>
+            <SandBoxContainer />
+          </>
+        );
       default:
         <Typography>Något gick snett om du hamnade här</Typography>;
     }
@@ -117,7 +128,7 @@ const App = () => {
           <FiltreringContainer
             selectedProgram={selectedProgram}
             setSelectedProgram={setSelectedProgram}
-            selectedCourses={selectedCourses}
+            selectedCourses={selectedCoursesTemp}
             setSelectedCourses={setSelectedCourses}
             selectedStartDates={selectedStartDates}
             setSelectedStartDates={setSelectedStartDates}

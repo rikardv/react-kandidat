@@ -59,9 +59,6 @@ const FilterMenyKort = ({ titel, data, selected, setSelected }) => {
               <Chip
                 variant='outlined'
                 label={<Typography variant='h3'>{pgr}</Typography>}
-                onClick={() => console.log('')}
-                onDelete={() => console.log('')}
-                deleteIcon={<ClearIcon />}
               />
               <Divider />
             </>

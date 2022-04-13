@@ -9,14 +9,14 @@ import Dagar from '../charts/Dagar';
  * @returns komponent
  */
 
-const SandBox = ({}) => {
+const SandBox = ({ kursKoder }) => {
   const theme = useTheme();
   return (
     <Stack spacing={3} direction='row'>
       <Card>
         <CardContent>
           <Typography variant='h1'>Dagar till klarad kurs</Typography>
-          <Dagar />
+          <Dagar kurskod={kursKoder} />
         </CardContent>
       </Card>
 
