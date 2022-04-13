@@ -31,7 +31,7 @@ const HistogramSlapande = ({ startDatum, programKod, kursKoder }) => {
     <Card style={{ width: '90%', height: 550 }}>
       <CardContent>
         <Typography variant='h1' fontWeight='medium' align='center'>
-          Antal kurser släpande per student
+          Antal släpande kurser per student
         </Typography>
         <ResponsiveContainer height={500} width='100%'>
           <BarChart data={slapande}>
