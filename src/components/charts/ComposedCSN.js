@@ -48,7 +48,7 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
             />
             <Tooltip />
             <Legend verticalAlign='top' align='right' />
-            <CartesianGrid stroke='#f5f5f5' />
+            <CartesianGrid horizontal={false} vertical={false} />
 
             <Bar
               name='HP för student'

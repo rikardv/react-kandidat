@@ -35,10 +35,18 @@ const BarChartKursBetyg = ({ programKod, kursKoder, selectedCourses }) => {
         </Typography>
         <ResponsiveContainer height={500} width='100%'>
           <BarChart data={kursutvarderingsbetyg} height={250}>
-            <CartesianGrid strokeDasharray='3 0' />
+            <CartesianGrid
+              strokeDasharray='3 0'
+              CartesianGrid
+              stroke='#d9d9d9'
+            />
             <XAxis
+              height={100}
+              angle={-90}
+              textAnchor='end'
+              interval={0}
+              tickMargin={10}
               dataKey='name'
-              tick={false}
               label={{ value: 'Kurskod', position: 'insideBottom' }}
             />
 

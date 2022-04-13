@@ -41,11 +41,7 @@ const HistogramAvhopp = ({
         </Typography>
         <ResponsiveContainer height={500} width='100%'>
           <BarChart data={avbrott}>
-            <CartesianGrid
-              strokeDasharray='3 3'
-              horizontal={false}
-              vertical={false}
-            />
+            <CartesianGrid horizontal={false} vertical={false} />
             <XAxis
               height={100}
               dataKey='kurskod'

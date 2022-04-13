@@ -35,7 +35,7 @@ const HistogramSlapande = ({ startDatum, programKod, kursKoder }) => {
         </Typography>
         <ResponsiveContainer height={500} width='100%'>
           <BarChart data={slapande}>
-            <CartesianGrid strokeDasharray='3 3' />
+            <CartesianGrid horizontal={false} vertical={false} />
             <XAxis
               height={60}
               dataKey='name'
