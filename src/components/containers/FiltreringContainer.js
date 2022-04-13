@@ -75,9 +75,9 @@ const FiltreringContainer = ({
         selected={selectedCourses}
         setSelected={setSelectedCourses}
       />
-      {/*FilterMenyKort för antagningsår*/}
+      {/*FilterMenyKort för antagningsdatum*/}
       <FilterMenyKort
-        titel='Antagningsår'
+        titel='Antagningsdatum'
         data={startDates.map(
           (e) => e.YTTERSTA_KURSPAKETERINGSTILLFALLE_STARTDATUM
         )}

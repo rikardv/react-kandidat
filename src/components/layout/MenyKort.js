@@ -22,8 +22,7 @@ export default function MenyKort(props) {
   return (
     <Card
       sx={{
-        width: 'fit-content',
-        maxWidth: 200,
+        width: 175,
         margin: 1,
         boxShadow: `3px 3px 2px 1px ${getColor().light}`,
         bgcolor: () =>

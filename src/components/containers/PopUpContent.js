@@ -7,6 +7,8 @@ Iconer är Add- respektive ClearIcon och search är sökningen som gjorts. Searc
 */
 
 const PopUpContent = ({ data, funktion, icon, search }) => {
+  var limit = 20;
+
   return (
     <Stack
       marginTop={3}
@@ -22,6 +24,7 @@ const PopUpContent = ({ data, funktion, icon, search }) => {
           else if (element.toLowerCase().includes(search.toLowerCase()))
             return element;
         })
+        .slice(0, limit)
         .map((element) => (
           <>
             <Chip
