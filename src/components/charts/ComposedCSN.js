@@ -25,7 +25,6 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
       setHP(res.data);
       //Hämtning klar - avbryt laddning
       setLoading(false);
-      console.log(res.data);
     });
   }, [programKod, startDatum]);
 

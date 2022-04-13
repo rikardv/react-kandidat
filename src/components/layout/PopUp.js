@@ -87,7 +87,7 @@ const PopUp = (props) => {
             style={{ margin: 15, marginTop: 20 }}
             options={newList}
             renderInput={(params) => (
-              <TextField {...params} label={'Sök ' + titel} />
+              <TextField {...params} label={'Sök Efter ' + titel} />
             )}
             onChange={(event, value) =>
               setSearchTerm(value == null ? '' : value)

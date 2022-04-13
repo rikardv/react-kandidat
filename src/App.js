@@ -28,9 +28,6 @@ const App = () => {
     selectedCourses.push(course.split(':')[0])
   );
 
-  console.log('Valda Kurser före: ' + selectedCoursesTemp);
-  console.log('Valda Kurser efter: ' + selectedCourses);
-
   //Function that takes in user selection and return component accordingly
   const componentToRender = (selectedView) => {
     switch (selectedView) {
@@ -83,7 +80,7 @@ const App = () => {
         );
 
       case 6:
-        return <Dagar />;
+        return <Dagar kurskod={selectedCourses} />;
       case 7:
         return <SandBoxContainer />;
       default:

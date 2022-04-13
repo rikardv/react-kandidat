@@ -14,10 +14,10 @@ import DatesList from './DatesList';
 import getDagar from '../../connections/test/getDagar';
 import { Button, Typography, Card, CardContent } from '@mui/material';
 
-const Dagar = () => {
+const Dagar = ({ kurskod }) => {
   const [dagarData, setDagarData] = useState([]);
   const [emptyMessage, setEmptyMessage] = useState(false);
-  const kurskod = 'TNM046';
+
   var colorArray = [
     '#FF6633',
     '#FF33FF',
