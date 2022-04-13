@@ -13,18 +13,16 @@ import ComposedHP from './components/charts/ComposedHP.js';
 const App = () => {
   /**
    * Variable for setting what component to view
-   * Tillfällen till klarad tenta as default
+   * CSN-gräns as default
    */
   const [selectedView, setSelectedView] = useState(1);
-  const [selectedProgram, setSelectedProgram] = useState(['6CMEN']);
-  const [selectedCourses, setSelectedCourses] = useState([]);
-  const [selectedStartDates, setSelectedStartDates] = useState(['2019-08-19']);
+  const [selectedProgram, setSelectedProgram] = useState(['6CMEN']); //Alla progarmkoder lagras i denna, defaultvärde satt.
+  const [selectedCourses, setSelectedCourses] = useState([]); //Alla kurser lagras i denna, inget defaultvärde satt ännu.
+  const [selectedStartDates, setSelectedStartDates] = useState(['2019-08-19']); //Alla startdatum lagras i denna, defaultvärde satt.
 
   /*
-  console.log('Valda Program ' + selectedProgram[0]);
   console.log('Valda Kurser ' + selectedCourses);
-  console.log('Startdatum ' + selectedStartDates[0]);
-*/
+ */
 
   //Function that takes in user selection and return component accordingly
   const componentToRender = (selectedView) => {
