@@ -31,6 +31,7 @@ const App = () => {
     switch (selectedView) {
       case 1:
         return (
+          //CSN
           <ComposedHP
             startDatum={selectedStartDates[0]}
             programKod={selectedProgram[0]}
@@ -40,8 +41,9 @@ const App = () => {
 
       case 2:
         return (
+          //Släpande kurser
           <HistogramSlapande
-            startDatum='2019-08-19'
+            startDatum={selectedStartDates}
             programKod={selectedProgram[0]}
             kursKoder={selectedCourses}
           />
@@ -49,6 +51,7 @@ const App = () => {
 
       case 3:
         return (
+          //Betygsfördelning
           <BarChartKursBetyg
             programKod={selectedProgram[0]}
             kursKoder={selectedCourses}
@@ -57,6 +60,7 @@ const App = () => {
 
       case 4:
         return (
+          //Avhopp per kurs
           <HistogramAvhopp
             startDatum='2012-01-03'
             slutDatum='2022-03-04'
@@ -64,8 +68,16 @@ const App = () => {
             kursKoder={selectedCourses}
           />
         );
-
       case 5:
+        return (
+          //Kursbetyg evaliuate
+          <BarChartKursBetyg
+            programKod={selectedProgram[0]}
+            kursKoder={selectedCourses}
+          />
+        );
+
+      case 6:
         return <SandBoxContainer />;
       default:
         <Typography>Något gick snett om du hamnade här</Typography>;

@@ -10,7 +10,7 @@ const HeaderContainer = ({ selectedView, setSelectedView }) => {
       style={{ padding: 5, maxWidth: 1200 }}
     >
       <MenyKort
-        rubrik='TILLFÄLLEN TILL KLARAD TENTA'
+        rubrik='CSN-GRÄNS'
         index={1}
         activeIndex={selectedView}
         setActiveIndex={setSelectedView}
@@ -30,15 +30,22 @@ const HeaderContainer = ({ selectedView, setSelectedView }) => {
         setActiveIndex={setSelectedView}
       ></MenyKort>
       <MenyKort
-        rubrik='AVHOPP PER KURS/PROGRAM'
+        rubrik='AVHOPP PER KURS'
         antal='6'
         index={4}
         activeIndex={selectedView}
         setActiveIndex={setSelectedView}
       ></MenyKort>
       <MenyKort
-        rubrik='LEKYTA - här kan du lägga dina komponenter som inte är färdiga för att se hur de ser ut'
+        rubrik='EVALIUATE'
+        antal='6'
         index={5}
+        activeIndex={selectedView}
+        setActiveIndex={setSelectedView}
+      ></MenyKort>
+      <MenyKort
+        rubrik='LEKYTA - här kan du lägga dina komponenter som inte är färdiga för att se hur de ser ut'
+        index={6}
         activeIndex={selectedView}
         setActiveIndex={setSelectedView}
       ></MenyKort>
