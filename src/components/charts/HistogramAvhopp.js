@@ -37,7 +37,7 @@ const HistogramAvhopp = ({
     <Card style={{ width: '90%', height: 550 }}>
       <CardContent>
         <Typography variant='h1' fontWeight='medium' align='center'>
-          Studenter under- eller nära CSN-gränsen
+          Avhopp per kurs för valt program
         </Typography>
         <ResponsiveContainer height={500} width='100%'>
           <BarChart data={avbrott}>
