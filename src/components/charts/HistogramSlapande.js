@@ -7,11 +7,10 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from 'recharts';
 import Loading from '../layout/Loading';
-import { useTheme } from '@mui/material';
+import { useTheme, Card, CardContent, Typography } from '@mui/material';
 
 const HistogramSlapande = ({ startDatum, programKod, kursKoder }) => {
   const [slapande, setSlapande] = useState();
@@ -29,34 +28,39 @@ const HistogramSlapande = ({ startDatum, programKod, kursKoder }) => {
   return loading ? (
     <Loading></Loading>
   ) : (
-    <ResponsiveContainer height={500} width='90%'>
-      <BarChart data={slapande}>
-        <CartesianGrid strokeDasharray='3 3' />
-        <XAxis
-          dataKey='name'
-          label={{
-            value: 'Antal kurser släpande',
-            position: 'insideBottomRight',
-            offset: 0,
-          }}
-        />
-        <YAxis
-          dataKey='value'
-          label={{
-            value: 'Antal personer',
-            angle: -90,
-            position: 'insideLeft',
-          }}
-        />
-        <Tooltip />
-        <Legend />
-        <Bar
-          fill={theme.palette.primary.main}
-          dataKey='value'
-          name='Antal personer'
-        />
-      </BarChart>
-    </ResponsiveContainer>
+    <Card style={{ width: '90%', height: 550 }}>
+      <CardContent>
+        <Typography variant='h1' fontWeight='medium' align='center'>
+          Antal kurser släpande per student
+        </Typography>
+        <ResponsiveContainer height={500} width='100%'>
+          <BarChart data={slapande}>
+            <CartesianGrid strokeDasharray='3 3' />
+            <XAxis
+              height={60}
+              dataKey='name'
+              tickMargin={5}
+              textAnchor='end'
+              label={{
+                value: 'Antal kurser släpande',
+                position: 'insideBottom',
+              }}
+            />
+            <YAxis
+              dataKey='value'
+              label={{
+                value: 'Antal studenter',
+                angle: -90,
+                position: 'insideLeft',
+              }}
+            />
+            <Tooltip />
+
+            <Bar fill={theme.palette.primary.main} dataKey='value' />
+          </BarChart>
+        </ResponsiveContainer>
+      </CardContent>
+    </Card>
   );
 };
 

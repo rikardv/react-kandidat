@@ -15,13 +15,6 @@ const SandBox = ({ kursKoder }) => {
     <Stack spacing={3} direction='row'>
       <Card>
         <CardContent>
-          <Typography variant='h1'>Dagar till klarad kurs</Typography>
-          <Dagar kurskod={kursKoder} />
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardContent>
           <Typography variant='h1'>Här är det tomt just nu!</Typography>
           <Typography variant='h2'>
             Men misströsta inte, det kommer nytt content inom kort!{' '}
