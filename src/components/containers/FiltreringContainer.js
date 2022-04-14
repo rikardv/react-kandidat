@@ -64,6 +64,7 @@ const FiltreringContainer = ({
     });
   }
 
+  //Formatera om data för startdatum
   const startDatesMapped = [];
   for (var i = 0; i < startDates.length; i++) {
     startDates[i].map((date) => {
@@ -79,7 +80,6 @@ const FiltreringContainer = ({
       }
     });
   }
-  console.log(coursenames);
 
   return loading ? (
     <Loading />
