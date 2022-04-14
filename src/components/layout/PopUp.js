@@ -29,8 +29,9 @@ const PopUp = (props) => {
   //skapa ny lista för att kunna göra justeringar i den. UseState för att den ska uppdateras.
   const [newList, setNewList] = useState([]);
   useEffect(() => {
+    console.log(data);
     setNewList(data);
-  }, [data]);
+  }, [data, newList]);
 
   //När man väljer ett element så läggs elementet till i listan över valda och tas bort från listan över valbara.
   const handleSelection = (element) => {

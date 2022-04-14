@@ -27,7 +27,14 @@ const FiltreringContainer = ({
   //Hämtar valt program
   useEffect(() => {
     getKurserFranProgram(formattedProgramKoder).then((res) => {
-      setCourses(res.data);
+      let items = [];
+      res.data.map((courses) => {
+        courses.map((c) => {
+          !courses.includes(c.UTBILDNING_KOD + ': ' + c.UTBILDNING_SV) &&
+            items.push(c.UTBILDNING_KOD + ': ' + c.UTBILDNING_SV);
+        });
+      });
+      setCourses(items);
       setLoading(false);
     });
   }, [selectedProgram]);
@@ -50,19 +57,19 @@ const FiltreringContainer = ({
 
   //Gör en ny lista för att kunna skicka med kurskod och kursnamn i samma.
   //Ful lösning men Fungerar iaf med MUI Autocomplete.
-  const coursenames = [];
-  for (var i = 0; i < courses.length; i++) {
-    courses[i].map((course) => {
-      //Do not duplicate courses.
-      if (
-        !coursenames.includes(
-          course.UTBILDNING_KOD + ': ' + course.UTBILDNING_SV
-        )
-      ) {
-        coursenames.push(course.UTBILDNING_KOD + ': ' + course.UTBILDNING_SV);
-      }
-    });
-  }
+  // const coursenames = [];
+  // for (var i = 0; i < courses.length; i++) {
+  //   courses[i].map((course) => {
+  //     //Do not duplicate courses.
+  //     if (
+  //       !coursenames.includes(
+  //         course.UTBILDNING_KOD + ': ' + course.UTBILDNING_SV
+  //       )
+  //     ) {
+  //       coursenames.push(course.UTBILDNING_KOD + ': ' + course.UTBILDNING_SV);
+  //     }
+  //   });
+  // }
 
   //Formatera om data för startdatum
   const startDatesMapped = [];
@@ -98,7 +105,7 @@ const FiltreringContainer = ({
       {/*FilterMenyKort för kurser*/}
       <FilterMenyKort
         titel='Kurser'
-        data={coursenames}
+        data={courses && courses}
         selected={selectedCourses}
         setSelected={setSelectedCourses}
       />
