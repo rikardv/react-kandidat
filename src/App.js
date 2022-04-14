@@ -80,7 +80,7 @@ const App = () => {
         );
 
       case 6:
-        return <Dagar kurskod={selectedCourses} />;
+        return <Dagar kurskod={selectedCourses[0]} />;
       case 7:
         return <SandBoxContainer />;
       default:
