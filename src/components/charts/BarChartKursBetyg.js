@@ -68,11 +68,10 @@ const BarChartKursBetyg = ({ programKod, kursKoder, selectedCourses }) => {
             <Legend verticalAlign='top' align='right' />
 
             <Bar dataKey='2019HT' fill='#8884d8' />
-            <Bar dataKey='2019VT' fill='#82ca9d' />
-            <Bar dataKey='2020HT' fill='#2284d8' />
             <Bar dataKey='2020VT' fill='#8224d8' />
-            <Bar dataKey='2021HT' fill='#8822d8' />
+            <Bar dataKey='2020HT' fill='#2284d8' />
             <Bar dataKey='2021VT' fill='#888422' />
+            <Bar dataKey='2021HT' fill='#8822d8' />
           </BarChart>
         </ResponsiveContainer>
       </CardContent>
