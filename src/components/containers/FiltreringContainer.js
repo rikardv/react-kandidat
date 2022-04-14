@@ -5,6 +5,7 @@ import getProgramKoder from '../../connections/getProgramKoder';
 import getKurserFranProgram from '../../connections/getKurserFranProgram';
 import Loading from '../layout/Loading';
 import getProgramStartDatum from '../../connections/getProgramStartDatum';
+import formatDataToRequest from '../../functions/formatDataToRequest';
 
 /*I den här filen tar vi in flera selected och setSelected-funktioner. Dessa kommer baseras på data vi väljer 
 i PopUpContent.js så att vi kan komma åt dom i App.js. Vi kallar på FilterMenyKort som i sin tur kallar på PopUp som slutligen kallar på 
@@ -25,7 +26,11 @@ const FiltreringContainer = ({
 
   //Hämtar valt program
   useEffect(() => {
-    getKurserFranProgram(selectedProgram).then((res) => {
+    const formattedProgramKoder = formatDataToRequest(
+      selectedProgram,
+      'program'
+    );
+    getKurserFranProgram(formattedProgramKoder).then((res) => {
       setCourses(res.data);
       setLoading(false);
     });
@@ -33,7 +38,7 @@ const FiltreringContainer = ({
 
   //Hämtar och stätter alla kurser för valt program.
   useEffect(() => {
-    getProgramKoder(10).then((res) => {
+    getProgramKoder().then((res) => {
       setPrograms(res.data);
       setLoading(false);
     });
@@ -50,9 +55,18 @@ const FiltreringContainer = ({
   //Gör en ny lista för att kunna skicka med kurskod och kursnamn i samma.
   //Ful lösning men Fungerar iaf med MUI Autocomplete.
   const coursenames = [];
-  courses.map((course) =>
-    coursenames.push(course.UTBILDNING_KOD + ': ' + course.UTBILDNING_SV)
-  );
+  for (var i = 0; i < courses.length; i++) {
+    courses[i].map((course) => {
+      //Do not duplicate courses.
+      if (
+        !coursenames.includes(
+          course.UTBILDNING_KOD + ': ' + course.UTBILDNING_SV
+        )
+      ) {
+        coursenames.push(course.UTBILDNING_KOD + ': ' + course.UTBILDNING_SV);
+      }
+    });
+  }
 
   return loading ? (
     <Loading />
