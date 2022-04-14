@@ -1,7 +1,7 @@
 export default async function (program) {
   var kursKoder;
 
-  await fetch('http://localhost:8080' + `/program/kurser?program=${program}`, {
+  await fetch('http://localhost:8080' + `/program/kurser?${program}`, {
     method: 'GET',
   })
     .then((response) => response.json())
