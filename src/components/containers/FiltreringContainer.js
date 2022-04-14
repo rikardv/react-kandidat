@@ -26,6 +26,7 @@ const FiltreringContainer = ({
   const formattedProgramKoder = formatDataToRequest(selectedProgram, 'program');
   //Hämtar valt program
   useEffect(() => {
+    setLoading(true);
     getKurserFranProgram(formattedProgramKoder).then((res) => {
       let items = [];
       res.data.map((courses) => {
@@ -37,10 +38,11 @@ const FiltreringContainer = ({
       setCourses(items);
       setLoading(false);
     });
-  }, [selectedProgram]);
+  }, []);
 
   //Hämtar och stätter alla kurser för valt program.
   useEffect(() => {
+    setLoading(true);
     getProgramKoder().then((res) => {
       setPrograms(res.data);
       setLoading(false);
@@ -49,27 +51,12 @@ const FiltreringContainer = ({
 
   //Hämtar och stätter alla startdatum för valt program.
   useEffect(() => {
+    setLoading(true);
     getProgramStartDatum(formattedProgramKoder).then((res) => {
       setStartDates(res.data);
       setLoading(false);
     });
-  }, [selectedProgram]);
-
-  //Gör en ny lista för att kunna skicka med kurskod och kursnamn i samma.
-  //Ful lösning men Fungerar iaf med MUI Autocomplete.
-  // const coursenames = [];
-  // for (var i = 0; i < courses.length; i++) {
-  //   courses[i].map((course) => {
-  //     //Do not duplicate courses.
-  //     if (
-  //       !coursenames.includes(
-  //         course.UTBILDNING_KOD + ': ' + course.UTBILDNING_SV
-  //       )
-  //     ) {
-  //       coursenames.push(course.UTBILDNING_KOD + ': ' + course.UTBILDNING_SV);
-  //     }
-  //   });
-  // }
+  }, []);
 
   //Formatera om data för startdatum
   const startDatesMapped = [];
