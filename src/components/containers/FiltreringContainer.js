@@ -38,7 +38,7 @@ const FiltreringContainer = ({
       setCourses(items);
       setLoading(false);
     });
-  }, []);
+  }, [selectedProgram]);
 
   //Hämtar och stätter alla kurser för valt program.
   useEffect(() => {
