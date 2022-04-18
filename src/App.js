@@ -9,6 +9,7 @@ import FiltreringContainer from './components/containers/FiltreringContainer.js'
 import HistogramSlapande from './components/charts/HistogramSlapande.js';
 import CSN from './components/charts/ComposedCSN.js';
 import Dagar from './components/charts/Dagar.js';
+import PieChartSlapande from './components/charts/PieChartSlapande.js';
 
 const App = () => {
   /**
@@ -44,11 +45,18 @@ const App = () => {
       case 2:
         return (
           //Släpande kurser
-          <HistogramSlapande
-            startDatum={selectedStartDates}
-            programKod={selectedProgram[0]}
-            kursKoder={selectedCourses}
-          />
+          <>
+            <PieChartSlapande
+              startDatum={selectedStartDates}
+              programKod={selectedProgram[0]}
+              kursKoder={selectedCourses}
+            />
+            <HistogramSlapande
+              startDatum={selectedStartDates}
+              programKod={selectedProgram[0]}
+              kursKoder={selectedCourses}
+            />
+          </>
         );
 
       case 3:

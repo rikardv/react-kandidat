@@ -25,6 +25,7 @@ const HistogramSlapande = ({ startDatum, programKod, kursKoder }) => {
       setLoading(false);
     });
   }, [programKod, startDatum]);
+
   return loading ? (
     <Loading></Loading>
   ) : (

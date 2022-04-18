@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  ReferenceArea,
 } from 'recharts';
 import getKursUtvarderingsBetyg from '../../connections/getKursUtvarderingsBetyg';
 import Loading from '../layout/Loading';
@@ -72,6 +73,13 @@ const BarChartKursBetyg = ({ programKod, kursKoder, selectedCourses }) => {
             <Bar dataKey='2020HT' fill='#2284d8' />
             <Bar dataKey='2021VT' fill='#888422' />
             <Bar dataKey='2021HT' fill='#8822d8' />
+            <ReferenceArea
+              y1={0}
+              y2={3}
+              stroke='red'
+              strokeDasharray='8 8'
+              strokeOpacity={0.5}
+            />
           </BarChart>
         </ResponsiveContainer>
       </CardContent>
