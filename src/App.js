@@ -74,7 +74,7 @@ const App = () => {
           <HistogramAvhopp
             startDatum='2012-01-03'
             slutDatum='2022-03-04'
-            programKod={selectedProgram[0]}
+            programKod={selectedProgram}
             kursKoder={selectedCourses}
           />
         );

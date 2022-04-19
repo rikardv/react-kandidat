@@ -3,7 +3,7 @@ export default async function (program, startDatum, slutDatum) {
 
   await fetch(
     'http://localhost:8080' +
-      `/test/avbrott?program=${program}&startDatum=${startDatum}&slutDatum=${slutDatum}`,
+      `/test/avbrott?${program}&startDatum=${startDatum}&slutDatum=${slutDatum}`,
     {
       method: 'GET',
     }
