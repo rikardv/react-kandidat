@@ -37,7 +37,7 @@ const App = () => {
           //CSN
           <CSN
             startDatum={selectedStartDates[0]}
-            programKod={selectedProgram[0]}
+            programKod={selectedProgram}
             kursKoder={selectedCourses}
           />
         );
