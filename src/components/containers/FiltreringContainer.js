@@ -24,6 +24,7 @@ const FiltreringContainer = ({
   const [startDates, setStartDates] = useState([]);
   const [loading, setLoading] = useState(true);
   const formattedProgramKoder = formatDataToRequest(selectedProgram, 'program');
+
   //Hämtar valt program
   useEffect(() => {
     setLoading(true);
@@ -53,27 +54,25 @@ const FiltreringContainer = ({
   useEffect(() => {
     setLoading(true);
     getProgramStartDatum(formattedProgramKoder).then((res) => {
-      setStartDates(res.data);
-      setLoading(false);
+      //Formatera om data för startdatum
+      let startDatesMapped = [];
+      res.data.map((date) => {
+        date.map((d) => {
+          //Do not duplicate dates.
+          if (
+            !startDatesMapped.includes(
+              d.YTTERSTA_KURSPAKETERINGSTILLFALLE_STARTDATUM
+            )
+          )
+            startDatesMapped.push(
+              d.YTTERSTA_KURSPAKETERINGSTILLFALLE_STARTDATUM
+            );
+        });
+        setStartDates(startDatesMapped);
+        setLoading(false);
+      });
     });
-  }, []);
-
-  //Formatera om data för startdatum
-  const startDatesMapped = [];
-  for (var i = 0; i < startDates.length; i++) {
-    startDates[i].map((date) => {
-      //Do not duplicate dates.
-      if (
-        !startDatesMapped.includes(
-          date.YTTERSTA_KURSPAKETERINGSTILLFALLE_STARTDATUM
-        )
-      ) {
-        startDatesMapped.push(
-          date.YTTERSTA_KURSPAKETERINGSTILLFALLE_STARTDATUM
-        );
-      }
-    });
-  }
+  }, [selectedProgram]);
 
   return loading ? (
     <Loading />
@@ -99,7 +98,7 @@ const FiltreringContainer = ({
       {/*FilterMenyKort för antagningsdatum*/}
       <FilterMenyKort
         titel='Antagningsdatum'
-        data={startDatesMapped}
+        data={startDates}
         selected={selectedStartDates}
         setSelected={setSelectedStartDates}
       />
