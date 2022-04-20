@@ -46,14 +46,9 @@ const App = () => {
         return (
           //Släpande kurser
           <>
-            <PieChartSlapande
-              startDatum={selectedStartDates}
-              programKod={selectedProgram[0]}
-              kursKoder={selectedCourses}
-            />
             <HistogramSlapande
               startDatum={selectedStartDates}
-              programKod={selectedProgram[0]}
+              programKod={selectedProgram}
               kursKoder={selectedCourses}
             />
           </>
