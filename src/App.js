@@ -10,6 +10,8 @@ import HistogramSlapande from './components/charts/HistogramSlapande.js';
 import CSN from './components/charts/ComposedCSN.js';
 import Dagar from './components/charts/Dagar.js';
 import PieChartSlapande from './components/charts/PieChartSlapande.js';
+import Betygsfordelning from './components/charts/Betygsfordelning.js';
+import Omtenta from './components/charts/Omtenta.js';
 
 const App = () => {
   /**
@@ -57,7 +59,7 @@ const App = () => {
       case 3:
         return (
           //Betygsfördelning
-          <BarChartKursBetyg
+          <Betygsfordelning
             programKod={selectedProgram[0]}
             kursKoder={selectedCourses}
           />
@@ -85,6 +87,14 @@ const App = () => {
       case 6:
         return <Dagar kurskod={selectedCourses[0]} />;
       case 7:
+        return (
+          //Betygsfördelning
+          <Omtenta
+            programKod={selectedProgram[0]}
+            kursKoder={selectedCourses}
+          />
+        );
+      case 8:
         return <SandBoxContainer />;
       default:
         <Typography>Något gick snett om du hamnade här</Typography>;
