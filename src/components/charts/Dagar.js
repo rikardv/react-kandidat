@@ -37,7 +37,7 @@ const Dagar = ({ kurskod }) => {
 
       if (res.data.length == 1) {
         setEmptyMessage(true);
-        setLoading(true);
+        setLoading(false);
       } else {
         setLoading(false);
         setEmptyMessage(false);
