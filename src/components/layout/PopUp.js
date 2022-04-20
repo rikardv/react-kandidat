@@ -19,7 +19,7 @@ som ska visualiseras.
 */
 
 const PopUp = (props) => {
-  const { onClose, open, data, titel, selected, setSelected } = props;
+  const { onClose, open, data, titel, selected, setSelected, loading } = props;
 
   //Stäng pop-upen.
   const handleClose = () => {
@@ -82,6 +82,7 @@ const PopUp = (props) => {
             funktion={handleSelection}
             icon={<AddIcon />}
             search={searchTerm}
+            loading={loading}
           />
           <Autocomplete
             style={{ margin: 15, marginTop: 20 }}
@@ -121,6 +122,7 @@ const PopUp = (props) => {
           funktion={handleDelete}
           icon={<ClearIcon />}
           search={''}
+          loading={loading}
         />
       )}
       <Button

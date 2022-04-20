@@ -16,7 +16,7 @@ vilket filtreringskort det handlar om. De olika propsen är för program, kurser
 PopUpContent för att visualisera och filtrera data baserat på sökning som gjorts. 
  */
 
-const FilterMenyKort = ({ titel, data, selected, setSelected }) => {
+const FilterMenyKort = ({ titel, data, selected, setSelected, loading }) => {
   const [open, setOpen] = useState(false);
 
   //Används i PopUp för att öppna fönstret.
@@ -50,6 +50,7 @@ const FilterMenyKort = ({ titel, data, selected, setSelected }) => {
             titel={titel}
             selected={selected}
             setSelected={setSelected}
+            loading={loading}
           />
         </Stack>
         <Stack spacing={1}>

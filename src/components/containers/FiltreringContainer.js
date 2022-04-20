@@ -45,10 +45,18 @@ const FiltreringContainer = ({
   useEffect(() => {
     setLoading(true);
     getProgramKoder().then((res) => {
-      setPrograms(res.data);
+      let programsMapped = [];
+      res.data.map((programs) => {
+        if (
+          !programsMapped.includes(programs.YTTERSTA_KURSPAKETERING_KOD) &&
+          !selectedProgram.includes(programs.YTTERSTA_KURSPAKETERING_KOD)
+        )
+          programsMapped.push(programs.YTTERSTA_KURSPAKETERING_KOD);
+      });
+      setPrograms(programsMapped);
       setLoading(false);
     });
-  }, []);
+  }, [selectedProgram]);
 
   //Hämtar och stätter alla startdatum för valt program.
   useEffect(() => {
@@ -74,9 +82,7 @@ const FiltreringContainer = ({
     });
   }, [selectedProgram]);
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <Stack justifyContent={'center'} alignItems='center' spacing={3}>
       <Typography style={{ margin: 10 }} variant='h1'>
         Filtreringar
@@ -84,9 +90,10 @@ const FiltreringContainer = ({
       {/*FilterMenyKort för program*/}
       <FilterMenyKort
         titel='Program'
-        data={programs.map((e) => e.YTTERSTA_KURSPAKETERING_KOD)}
+        data={programs}
         selected={selectedProgram}
         setSelected={setSelectedProgram}
+        loading={loading}
       />
       {/*FilterMenyKort för kurser*/}
       <FilterMenyKort
@@ -94,6 +101,7 @@ const FiltreringContainer = ({
         data={courses && courses}
         selected={selectedCourses}
         setSelected={setSelectedCourses}
+        loading={loading}
       />
       {/*FilterMenyKort för antagningsdatum*/}
       <FilterMenyKort
@@ -101,6 +109,7 @@ const FiltreringContainer = ({
         data={startDates}
         selected={selectedStartDates}
         setSelected={setSelectedStartDates}
+        loading={loading}
       />
     </Stack>
   );
