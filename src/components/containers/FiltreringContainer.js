@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import FilterMenyKort from '../layout/FilterMenyKort';
 import getProgramKoder from '../../connections/getProgramKoder';
 import getKurserFranProgram from '../../connections/getKurserFranProgram';
-import Loading from '../layout/Loading';
 import getProgramStartDatum from '../../connections/getProgramStartDatum';
 import formatDataToRequest from '../../functions/formatDataToRequest';
 
@@ -32,7 +31,10 @@ const FiltreringContainer = ({
       let items = [];
       res.data.map((courses) => {
         courses.map((c) => {
-          !courses.includes(c.UTBILDNING_KOD + ': ' + c.UTBILDNING_SV) &&
+          if (
+            !courses.includes(c.UTBILDNING_KOD + ': ' + c.UTBILDNING_SV) &&
+            !selectedCourses.includes(c.UTBILDNING_KOD + ': ' + c.UTBILDNING_SV)
+          )
             items.push(c.UTBILDNING_KOD + ': ' + c.UTBILDNING_SV);
         });
       });
@@ -69,6 +71,9 @@ const FiltreringContainer = ({
           //Do not duplicate dates.
           if (
             !startDatesMapped.includes(
+              d.YTTERSTA_KURSPAKETERINGSTILLFALLE_STARTDATUM
+            ) &&
+            !selectedStartDates.includes(
               d.YTTERSTA_KURSPAKETERINGSTILLFALLE_STARTDATUM
             )
           )
