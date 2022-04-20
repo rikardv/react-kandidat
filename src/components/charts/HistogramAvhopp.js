@@ -9,8 +9,9 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import getAvbrott from '../../connections/test/getAvbrott';
-import { useTheme, Card, CardContent, Typography } from '@mui/material';
+import { useTheme, Card, CardContent, Typography, Grid } from '@mui/material';
 import Loading from '../layout/Loading';
+import formatDataToRequest from '../../functions/formatDataToRequest';
 
 const HistogramAvhopp = ({
   programKod,
@@ -26,45 +27,63 @@ const HistogramAvhopp = ({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getAvbrott(programKod, startDatum, slutDatum).then((data) => {
+    const formattedProgramKod = formatDataToRequest(programKod, 'program');
+    getAvbrott(formattedProgramKod, startDatum, slutDatum).then((data) => {
       setAvbrott(data.data);
+      console.log(data.data);
       setLoading(false);
     });
   }, [programKod]);
   return loading ? (
     <Loading />
   ) : (
-    <Card style={{ width: '90%', height: 550 }}>
-      <CardContent>
-        <Typography variant='h1' fontWeight='medium' align='center'>
-          Avhopp per kurs för valt program
-        </Typography>
-        <ResponsiveContainer height={500} width='100%'>
-          <BarChart data={avbrott}>
-            <CartesianGrid horizontal={false} vertical={false} />
-            <XAxis
-              height={100}
-              dataKey='kurskod'
-              angle={-90}
-              textAnchor='end'
-              interval={0}
-              tickMargin={10}
-              label={{ value: 'Kurskod', position: 'insideBottom' }}
-            />
-            <YAxis
-              label={{
-                value: 'Antal studenter',
-                angle: -90,
-                position: 'insideLeft',
-              }}
-            />
-            <Tooltip />
+    <Grid
+      display='flex'
+      flexWrap='wrap'
+      rowGap={2}
+      justifyContent='space-evenly'
+      width='100%'
+    >
+      {avbrott &&
+        avbrott.map((res, indx) => (
+          <Card
+            style={{
+              width: '90%',
+              height: 'auto',
+            }}
+          >
+            <CardContent>
+              <Typography variant='h1' fontWeight='medium' align='center'>
+                Avhopp per kurs för {res.program}
+              </Typography>
+              <ResponsiveContainer height={500} width='100%'>
+                <BarChart data={res.data}>
+                  <CartesianGrid horizontal={false} vertical={false} />
+                  <XAxis
+                    height={100}
+                    dataKey='kurskod'
+                    angle={-90}
+                    textAnchor='end'
+                    interval={0}
+                    tickMargin={10}
+                    label={{ value: 'Kurskod', position: 'insideBottom' }}
+                  />
+                  <YAxis
+                    label={{
+                      value: 'Antal studenter',
+                      angle: -90,
+                      position: 'insideLeft',
+                    }}
+                  />
+                  <Tooltip />
 
-            <Bar dataKey='avbrott' fill={theme.palette.primary.main} />
-          </BarChart>
-        </ResponsiveContainer>
-      </CardContent>
-    </Card>
+                  <Bar dataKey='avbrott' fill={theme.palette.primary.main} />
+                </BarChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+        ))}
+    </Grid>
   );
 };
 

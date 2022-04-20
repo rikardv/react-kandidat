@@ -1,15 +1,18 @@
 import React from 'react';
 import { Stack, Typography, Chip } from '@mui/material';
+import Loading from '../layout/Loading';
 
 /* I den här filen tar vi in data som ska visas i filtreringskorten. Data är både valbara data samt vald data som skickas in separat. 
 Funktioner som skickas in är handleSelection och handleDelete som används för att flytta objekt mellan de två listorna. 
 Iconer är Add- respektive ClearIcon och search är sökningen som gjorts. Search används för att filtrera data efter sökningen.
 */
 
-const PopUpContent = ({ data, funktion, icon, search }) => {
+const PopUpContent = ({ data, funktion, icon, search, loading }) => {
   var limit = 20;
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <Stack
       marginTop={3}
       display='flex'

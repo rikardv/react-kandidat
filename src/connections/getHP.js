@@ -6,7 +6,7 @@ export default async function (programkod, startdatum) {
 
   await fetch(
     'http://localhost:8080' +
-      `/program/HP?program=${programkod}&startdatum=${startdatum}`,
+      `/program/HP?${programkod}&startdatum=${startdatum}`,
     {
       method: 'GET',
     }

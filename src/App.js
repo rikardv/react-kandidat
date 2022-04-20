@@ -9,6 +9,7 @@ import FiltreringContainer from './components/containers/FiltreringContainer.js'
 import HistogramSlapande from './components/charts/HistogramSlapande.js';
 import CSN from './components/charts/ComposedCSN.js';
 import Dagar from './components/charts/Dagar.js';
+import PieChartSlapande from './components/charts/PieChartSlapande.js';
 import Betygsfordelning from './components/charts/Betygsfordelning.js';
 import Omtenta from './components/charts/Omtenta.js';
 
@@ -38,7 +39,7 @@ const App = () => {
           //CSN
           <CSN
             startDatum={selectedStartDates[0]}
-            programKod={selectedProgram[0]}
+            programKod={selectedProgram}
             kursKoder={selectedCourses}
           />
         );
@@ -46,11 +47,13 @@ const App = () => {
       case 2:
         return (
           //Släpande kurser
-          <HistogramSlapande
-            startDatum={selectedStartDates}
-            programKod={selectedProgram[0]}
-            kursKoder={selectedCourses}
-          />
+          <>
+            <HistogramSlapande
+              startDatum={selectedStartDates}
+              programKod={selectedProgram}
+              kursKoder={selectedCourses}
+            />
+          </>
         );
 
       case 3:
@@ -68,7 +71,7 @@ const App = () => {
           <HistogramAvhopp
             startDatum='2012-01-03'
             slutDatum='2022-03-04'
-            programKod={selectedProgram[0]}
+            programKod={selectedProgram}
             kursKoder={selectedCourses}
           />
         );

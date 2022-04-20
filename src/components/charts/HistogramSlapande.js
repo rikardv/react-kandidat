@@ -10,7 +10,9 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import Loading from '../layout/Loading';
-import { useTheme, Card, CardContent, Typography } from '@mui/material';
+import { useTheme, Card, CardContent, Typography, Grid } from '@mui/material';
+import formatDataToRequest from '../../functions/formatDataToRequest';
+import PieChartSlapande from './PieChartSlapande';
 
 const HistogramSlapande = ({ startDatum, programKod, kursKoder }) => {
   const [slapande, setSlapande] = useState();
@@ -19,48 +21,59 @@ const HistogramSlapande = ({ startDatum, programKod, kursKoder }) => {
 
   useEffect(() => {
     //Hämtar antalet släpande kurser för personer
-    getSlapande(programKod, startDatum).then((res) => {
+    const formattedProgramKod = formatDataToRequest(programKod, 'program');
+    getSlapande(formattedProgramKod, startDatum).then((res) => {
       setSlapande(res.data);
       //Hämtning klar - avbryt laddning
       setLoading(false);
     });
   }, [programKod, startDatum]);
-  return loading ? (
-    <Loading></Loading>
-  ) : (
-    <Card style={{ width: '90%', height: 550 }}>
-      <CardContent>
-        <Typography variant='h1' fontWeight='medium' align='center'>
-          Antal släpande kurser per student
-        </Typography>
-        <ResponsiveContainer height={500} width='100%'>
-          <BarChart data={slapande}>
-            <CartesianGrid horizontal={false} vertical={false} />
-            <XAxis
-              height={60}
-              dataKey='name'
-              tickMargin={5}
-              textAnchor='end'
-              label={{
-                value: 'Antal kurser släpande',
-                position: 'insideBottom',
-              }}
-            />
-            <YAxis
-              dataKey='value'
-              label={{
-                value: 'Antal studenter',
-                angle: -90,
-                position: 'insideLeft',
-              }}
-            />
-            <Tooltip />
 
-            <Bar fill={theme.palette.primary.main} dataKey='value' />
-          </BarChart>
-        </ResponsiveContainer>
-      </CardContent>
-    </Card>
+  return loading ? (
+    <Loading />
+  ) : (
+    <Grid width='90%' height={300}>
+      {slapande &&
+        slapande.map((res, indx) => (
+          <Grid display='flex' justifyContent='space-evenly' marginTop={2}>
+            <Card style={{ width: '55%', height: 300 }}>
+              <CardContent>
+                <Typography variant='h2' fontWeight='medium' align='center'>
+                  Antal släpande kurser per student för {res.program}
+                </Typography>
+                <ResponsiveContainer height={250} width='100%'>
+                  <BarChart data={res.data}>
+                    <CartesianGrid horizontal={false} vertical={false} />
+                    <XAxis
+                      height={60}
+                      dataKey='name'
+                      tickMargin={5}
+                      textAnchor='end'
+                      label={{
+                        value: 'Antal kurser släpande',
+                        position: 'insideBottom',
+                      }}
+                    />
+                    <YAxis
+                      dataKey='value'
+                      label={{
+                        value: 'Antal studenter',
+                        angle: -90,
+                        position: 'insideBottomLeft',
+                        offset: '20',
+                      }}
+                    />
+                    <Tooltip />
+
+                    <Bar fill={theme.palette.primary.main} dataKey='value' />
+                  </BarChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+            <PieChartSlapande data={res.dataPie} title={res.program} />
+          </Grid>
+        ))}
+    </Grid>
   );
 };
 
