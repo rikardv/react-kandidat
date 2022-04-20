@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { MenuItem, InputLabel, FormControl } from '@mui/material';
 import getCourseStartDatesjs from '../../connections/test/getCourseStartDatesjs';
+import Loading from '../layout/Loading';
 
 const DatesList = ({ kurskod, handleSelectDate }) => {
   const [dates, setDates] = useState();
   const [selectedDate, setSelectedDate] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getCourseStartDatesjs(kurskod).then((data) => {
       //Create arr and add selected property
       let arr = data.data.map((element) => ({ ...element, disabled: false }));
       setDates(arr);
+      setLoading(false);
     });
   }, []);
 
@@ -29,7 +32,10 @@ const DatesList = ({ kurskod, handleSelectDate }) => {
     setDates(newArr);
   };
 
-  return (
+ 
+    return loading ? ( // Oklart om det är såhär vi vill visa upp den eller om vi helt enkelt ska låta den vara tom innan
+      <Loading />
+  ) : (
     <FormControl style={{ minWidth: 150 }}>
       <InputLabel id='demo-simple-select-label'>Välj kursstart</InputLabel>
       <Select label='Kursstart' value={selectedDate} onChange={handleSelect}>
