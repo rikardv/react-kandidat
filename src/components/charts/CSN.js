@@ -26,7 +26,6 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
     const formattedProgramKod = formatDataToRequest(programKod, 'program');
     getCSN(formattedProgramKod, startDatum).then((res) => {
       setHP(res.data);
-      console.log(res.data);
       //Hämtning klar - avbryt laddning
       setLoading(false);
     });
