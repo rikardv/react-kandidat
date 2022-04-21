@@ -36,14 +36,7 @@ export default function MenyKort(props) {
       onClick={() => props.setActiveIndex(props.index)}
     >
       <CardContent>
-        {/*Denna Typography används för rubrikerna.*/}
-        <Typography variant='h3' gutterBottom>
-          {props.rubrik}
-        </Typography>
-        {/*Denna Typography används för "Flaggade kurser" där vi läser in en siffra som ska visas.*/}
-        <Typography variant='h1' fontWeight='bold' marginTop={1}>
-          {props.antal}
-        </Typography>
+        <Typography variant='h3'>{props.rubrik}</Typography>
       </CardContent>
     </Card>
   );

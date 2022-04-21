@@ -50,12 +50,6 @@ const HeaderContainer = ({ selectedView, setSelectedView }) => {
         activeIndex={selectedView}
         setActiveIndex={setSelectedView}
       ></MenyKort>
-      <MenyKort
-        rubrik='LEKYTA - här kan du lägga dina komponenter som inte är färdiga för att se hur de ser ut'
-        index={8}
-        activeIndex={selectedView}
-        setActiveIndex={setSelectedView}
-      ></MenyKort>
     </Grid>
   );
 };

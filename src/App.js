@@ -4,7 +4,7 @@ import Avhopp from './components/charts/Avhopp.js';
 import theme from './style/themeProvider';
 import SandBoxContainer from './components/containers/SandBoxContainer.js';
 import { ThemeProvider, Typography, Grid, Stack } from '@mui/material';
-import HeaderContainer from './components/filtering/leftside/HeaderContainer.js';
+import VisualiseringMeny from './components/filtering/leftside/VisualiseringMeny.js';
 import FiltreringContainer from './components/filtering/rightside/FiltreringContainer.js';
 import SlapandeKurser from './components/charts/SlapandeKurser.js';
 import CSN from './components/charts/CSN.js';
@@ -13,6 +13,8 @@ import Betygsfordelning from './components/charts/Betygsfordelning.js';
 import Omtenta from './components/charts/Omtenta.js';
 import DagarNew from './components/charts/DagarNew.js';
 import LiuLogo from './img/LiU_primary_black.png';
+import BottomContainer from './components/containers/BottomContainer.js';
+import TopContainer from './components/containers/TopContainer.js';
 
 const App = () => {
   /**
@@ -108,23 +110,10 @@ const App = () => {
   };
   return (
     <ThemeProvider theme={theme}>
-      <Stack
-        direction='row'
-        justifyContent={'space-between'}
-        borderBottom='1px solid #D3D3D3'
-        alignItems='center'
-        height={70}
-        width='100%'
-      >
-        {' '}
-        <Typography variant='h1' fontWeight={'bold'} marginLeft='1%'>
-          Instrumentpanel för grundutbildningen på Liu
-        </Typography>
-        <img src={LiuLogo} height={'100%'} marginRight='1%'></img>
-      </Stack>
-      <Grid container direction='row' md={12}>
+      <TopContainer />
+      <Grid container direction='row' md={12} style={{ minHeight: '88vh' }}>
         <Grid item sm={2} md={2} lg={2}>
-          <HeaderContainer
+          <VisualiseringMeny
             selectedView={selectedView}
             setSelectedView={setSelectedView}
           />
@@ -138,7 +127,6 @@ const App = () => {
             borderRight: '1px solid #D3D3D3',
             borderLeft: '1px solid #D3D3D3',
           }}
-          padding={2}
         >
           <Stack
             direction='column'
@@ -160,6 +148,7 @@ const App = () => {
           />
         </Grid>
       </Grid>
+      <BottomContainer />
     </ThemeProvider>
   );
 };
