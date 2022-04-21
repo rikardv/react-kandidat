@@ -24,7 +24,7 @@ export default function MenyKort(props) {
       sx={{
         width: 175,
         margin: 1,
-        boxShadow: `3px 3px 2px 1px ${getColor().light}`,
+
         bgcolor: () =>
           props.activeIndex == props.index ? getColor().main : 'white',
         color: props.activeIndex == props.index ? 'white' : 'black',

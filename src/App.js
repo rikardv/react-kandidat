@@ -103,18 +103,22 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Grid container direction='row' md={12}>
-        <Grid item sm={1} md={1} lg={1}>
-          <Typography> Vet inte vad vi vill ha här egentligen</Typography>
+        <Grid item sm={2} md={2} lg={2}>
+          <HeaderContainer
+            selectedView={selectedView}
+            setSelectedView={setSelectedView}
+          />
         </Grid>
         <Grid
           item
-          sm={9}
-          md={9}
-          lg={9}
+          sm={8}
+          md={8}
+          lg={8}
           style={{
             borderRight: '1px solid #D3D3D3',
             borderLeft: '1px solid #D3D3D3',
           }}
+          padding={2}
         >
           <Stack
             direction='column'
@@ -125,10 +129,7 @@ const App = () => {
             <Typography variant='h1' fontWeight={'bold'}>
               Instrumentpanel för grundutbildningen på Liu
             </Typography>
-            <HeaderContainer
-              selectedView={selectedView}
-              setSelectedView={setSelectedView}
-            />
+
             {componentToRender(selectedView)}
           </Stack>
         </Grid>

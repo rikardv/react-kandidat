@@ -44,7 +44,7 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
         HP.map((res, indx) => (
           <Card
             style={{
-              width: 'auto',
+              width: '90%',
               height: 'auto',
             }}
           >
@@ -52,7 +52,7 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
               <Typography variant='h1' fontWeight='medium' align='center'>
                 Studenter under- eller nära CSN-gränsen för {res.program}
               </Typography>
-              <ResponsiveContainer height={500} width='100%'>
+              <ResponsiveContainer height={200} width='100%'>
                 <ComposedChart data={res.sort_HP}>
                   <XAxis
                     dataKey='name'

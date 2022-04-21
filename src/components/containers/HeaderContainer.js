@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import MenyKort from '../layout/MenyKort';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 
 const HeaderContainer = ({ selectedView, setSelectedView }) => {
   return (
-    <Grid
-      container
-      justifyContent='space-evenly'
-      style={{ padding: 5, maxWidth: 1200 }}
-    >
+    <Grid container justifyContent='space-evenly' style={{ maxWidth: 1200 }}>
+      <Typography variant='h1' style={{ textAlign: 'center', margin: 10 }}>
+        Visualisering
+      </Typography>
       <MenyKort
         rubrik='CSN-GRÄNS'
         index={1}
@@ -23,22 +22,18 @@ const HeaderContainer = ({ selectedView, setSelectedView }) => {
       ></MenyKort>
       <MenyKort
         rubrik='BETYGSFÖRDELNING'
-        antal='6'
-        flagged={true}
         index={3}
         activeIndex={selectedView}
         setActiveIndex={setSelectedView}
       ></MenyKort>
       <MenyKort
         rubrik='AVHOPP PER KURS'
-        antal='6'
         index={4}
         activeIndex={selectedView}
         setActiveIndex={setSelectedView}
       ></MenyKort>
       <MenyKort
         rubrik='EVALIUATE'
-        antal='6'
         index={5}
         activeIndex={selectedView}
         setActiveIndex={setSelectedView}
