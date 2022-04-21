@@ -8,17 +8,12 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import getAvbrott from '../../connections/test/getAvbrott';
+import getAvhopp from '../../connections/getAvhopp';
 import { useTheme, Card, CardContent, Typography, Grid } from '@mui/material';
 import Loading from '../layout/Loading';
 import formatDataToRequest from '../../functions/formatDataToRequest';
 
-const HistogramAvhopp = ({
-  programKod,
-  selectedCourses,
-  startDatum,
-  slutDatum,
-}) => {
+const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
   // const program = '6CDDD'; //6CMEN, 6CDDD, 6CIEN, 6CMJU, 6KGDK
   // const startDatum = '2012-01-03';
   // const slutDatum = '2022-03-04';
@@ -27,10 +22,10 @@ const HistogramAvhopp = ({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     const formattedProgramKod = formatDataToRequest(programKod, 'program');
-    getAvbrott(formattedProgramKod, startDatum, slutDatum).then((data) => {
+    getAvhopp(formattedProgramKod, startDatum, slutDatum).then((data) => {
       setAvbrott(data.data);
-      console.log(data.data);
       setLoading(false);
     });
   }, [programKod]);
@@ -87,4 +82,4 @@ const HistogramAvhopp = ({
   );
 };
 
-export default HistogramAvhopp;
+export default Avhopp;

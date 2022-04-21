@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { MenuItem, InputLabel, FormControl } from '@mui/material';
-import getCourseStartDatesjs from '../../connections/test/getCourseStartDatesjs';
+import getCourseStartDatesjs from '../../connections/getCourseStartDatesjs';
 
 const DatesList = ({ kurskod, handleSelectDate }) => {
   const [dates, setDates] = useState();

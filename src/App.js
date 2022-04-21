@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import BarChartKursBetyg from './components/charts/BarChartKursBetyg.js';
-import HistogramAvhopp from './components/charts/HistogramAvhopp.js';
+import Evaliuate from './components/charts/Evaliuate.js';
+import Avhopp from './components/charts/Avhopp.js';
 import theme from './style/themeProvider';
 import SandBoxContainer from './components/containers/SandBoxContainer.js';
 import { ThemeProvider, Typography, Grid, Stack } from '@mui/material';
-import HeaderContainer from './components/containers/HeaderContainer.js';
-import FiltreringContainer from './components/containers/FiltreringContainer.js';
-import HistogramSlapande from './components/charts/HistogramSlapande.js';
-import CSN from './components/charts/ComposedCSN.js';
+import HeaderContainer from './components/filtering/leftside/HeaderContainer.js';
+import FiltreringContainer from './components/filtering/rightside/FiltreringContainer.js';
+import SlapandeKurser from './components/charts/SlapandeKurser.js';
+import CSN from './components/charts/CSN.js';
 import Dagar from './components/charts/Dagar.js';
-import PieChartSlapande from './components/charts/PieChartSlapande.js';
 import Betygsfordelning from './components/charts/Betygsfordelning.js';
 import Omtenta from './components/charts/Omtenta.js';
 
@@ -48,7 +47,7 @@ const App = () => {
         return (
           //Släpande kurser
           <>
-            <HistogramSlapande
+            <SlapandeKurser
               startDatum={selectedStartDates}
               programKod={selectedProgram}
               kursKoder={selectedCourses}
@@ -68,7 +67,7 @@ const App = () => {
       case 4:
         return (
           //Avhopp per kurs
-          <HistogramAvhopp
+          <Avhopp
             startDatum='2012-01-03'
             slutDatum='2022-03-04'
             programKod={selectedProgram}
@@ -78,7 +77,7 @@ const App = () => {
       case 5:
         return (
           //Kursbetyg evaliuate
-          <BarChartKursBetyg
+          <Evaliuate
             programKod={selectedProgram[0]}
             kursKoder={selectedCourses}
           />

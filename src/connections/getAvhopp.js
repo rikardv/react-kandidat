@@ -1,18 +1,18 @@
 export default async function (program, startDatum, slutDatum) {
-  var avbrott;
+  var avhopp;
 
   await fetch(
     'http://localhost:8080' +
-      `/test/avbrott?${program}&startDatum=${startDatum}&slutDatum=${slutDatum}`,
+      `/kurser/avhopp?${program}&startDatum=${startDatum}&slutDatum=${slutDatum}`,
     {
       method: 'GET',
     }
   )
     .then((response) => response.json())
     .then((response) => {
-      avbrott = response;
+      avhopp = response;
     })
-    .catch((err) => console.log('Error fetching avbrott endpoint', err));
+    .catch((err) => console.log('Error fetching avhopp endpoint', err));
 
-  return avbrott;
+  return avhopp;
 }

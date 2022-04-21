@@ -10,18 +10,18 @@ import {
   ResponsiveContainer,
   ReferenceArea,
 } from 'recharts';
-import getKursUtvarderingsBetyg from '../../connections/getKursUtvarderingsBetyg';
+import getEvaliuate from '../../connections/getEvaliuate';
 import Loading from '../layout/Loading';
 import { Card, CardContent, Typography } from '@mui/material';
 import formatDataToRequest from '../../functions/formatDataToRequest';
 
-const BarChartKursBetyg = ({ programKod, kursKoder, selectedCourses }) => {
+const Evaliuate = ({ programKod, kursKoder, selectedCourses }) => {
   const [kursutvarderingsbetyg, setKursUtvarderingsBetyg] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const formattedKurskoder = formatDataToRequest(kursKoder, 'kurskod');
-    getKursUtvarderingsBetyg(formattedKurskoder).then((res) => {
+    getEvaliuate(formattedKurskoder).then((res) => {
       setKursUtvarderingsBetyg(res.data);
       setLoading(false);
     });
@@ -87,4 +87,4 @@ const BarChartKursBetyg = ({ programKod, kursKoder, selectedCourses }) => {
   );
 };
 
-export default BarChartKursBetyg;
+export default Evaliuate;

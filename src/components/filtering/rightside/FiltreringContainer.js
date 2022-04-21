@@ -1,10 +1,10 @@
 import { Stack, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import FilterMenyKort from '../layout/FilterMenyKort';
-import getProgramKoder from '../../connections/getProgramKoder';
-import getKurserFranProgram from '../../connections/getKurserFranProgram';
-import getProgramStartDatum from '../../connections/getProgramStartDatum';
-import formatDataToRequest from '../../functions/formatDataToRequest';
+import FilterMenyKort from './FilterMenyKort';
+import getProgramKoder from '../../../connections/getProgramKoder';
+import getKurserFranProgram from '../../../connections/getKurserFranProgram';
+import getProgramStartDatum from '../../../connections/getProgramStartDatum';
+import formatDataToRequest from '../../../functions/formatDataToRequest';
 
 /*I den här filen tar vi in flera selected och setSelected-funktioner. Dessa kommer baseras på data vi väljer 
 i PopUpContent.js så att vi kan komma åt dom i App.js. Vi kallar på FilterMenyKort som i sin tur kallar på PopUp som slutligen kallar på 
@@ -21,12 +21,10 @@ const FiltreringContainer = ({
   const [programs, setPrograms] = useState([]);
   const [courses, setCourses] = useState([]);
   const [startDates, setStartDates] = useState([]);
-  const [loading, setLoading] = useState(true);
   const formattedProgramKoder = formatDataToRequest(selectedProgram, 'program');
 
   //Hämtar valt program
   useEffect(() => {
-    setLoading(true);
     getKurserFranProgram(formattedProgramKoder).then((res) => {
       let items = [];
       res.data.map((courses) => {
@@ -39,13 +37,11 @@ const FiltreringContainer = ({
         });
       });
       setCourses(items);
-      setLoading(false);
     });
   }, [selectedProgram]);
 
   //Hämtar och stätter alla kurser för valt program.
   useEffect(() => {
-    setLoading(true);
     getProgramKoder().then((res) => {
       let programsMapped = [];
       res.data.map((programs) => {
@@ -56,13 +52,11 @@ const FiltreringContainer = ({
           programsMapped.push(programs.YTTERSTA_KURSPAKETERING_KOD);
       });
       setPrograms(programsMapped);
-      setLoading(false);
     });
   }, [selectedProgram]);
 
   //Hämtar och stätter alla startdatum för valt program.
   useEffect(() => {
-    setLoading(true);
     getProgramStartDatum(formattedProgramKoder).then((res) => {
       //Formatera om data för startdatum
       let startDatesMapped = [];
@@ -82,7 +76,6 @@ const FiltreringContainer = ({
             );
         });
         setStartDates(startDatesMapped);
-        setLoading(false);
       });
     });
   }, [selectedProgram]);
@@ -98,7 +91,6 @@ const FiltreringContainer = ({
         data={programs}
         selected={selectedProgram}
         setSelected={setSelectedProgram}
-        loading={loading}
       />
       {/*FilterMenyKort för kurser*/}
       <FilterMenyKort
@@ -106,7 +98,6 @@ const FiltreringContainer = ({
         data={courses && courses}
         selected={selectedCourses}
         setSelected={setSelectedCourses}
-        loading={loading}
       />
       {/*FilterMenyKort för antagningsdatum*/}
       <FilterMenyKort
@@ -114,7 +105,6 @@ const FiltreringContainer = ({
         data={startDates}
         selected={selectedStartDates}
         setSelected={setSelectedStartDates}
-        loading={loading}
       />
     </Stack>
   );

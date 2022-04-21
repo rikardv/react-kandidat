@@ -12,15 +12,16 @@ import {
 import Loading from '../layout/Loading';
 import { useTheme, Card, CardContent, Typography, Grid } from '@mui/material';
 import formatDataToRequest from '../../functions/formatDataToRequest';
-import PieChartSlapande from './PieChartSlapande';
+import PieSlapandeKurser from './PieSlapandeKurser';
 
-const HistogramSlapande = ({ startDatum, programKod, kursKoder }) => {
+const SlapandeKurser = ({ startDatum, programKod, kursKoder }) => {
   const [slapande, setSlapande] = useState();
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
 
   useEffect(() => {
     //Hämtar antalet släpande kurser för personer
+    setLoading(true);
     const formattedProgramKod = formatDataToRequest(programKod, 'program');
     getSlapande(formattedProgramKod, startDatum).then((res) => {
       setSlapande(res.data);
@@ -70,11 +71,11 @@ const HistogramSlapande = ({ startDatum, programKod, kursKoder }) => {
                 </ResponsiveContainer>
               </CardContent>
             </Card>
-            <PieChartSlapande data={res.dataPie} title={res.program} />
+            <PieSlapandeKurser data={res.dataPie} title={res.program} />
           </Grid>
         ))}
     </Grid>
   );
 };
 
-export default HistogramSlapande;
+export default SlapandeKurser;

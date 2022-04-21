@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import getHP from '../../connections/getHP';
+import getCSN from '../../connections/getCSN';
 import {
   ComposedChart,
   Area,
@@ -22,9 +22,11 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
 
   useEffect(() => {
     //Hämtar hur mycket HP en person och gränsen för CSN
+    setLoading(true);
     const formattedProgramKod = formatDataToRequest(programKod, 'program');
-    getHP(formattedProgramKod, startDatum).then((res) => {
+    getCSN(formattedProgramKod, startDatum).then((res) => {
       setHP(res.data);
+      console.log(res.data);
       //Hämtning klar - avbryt laddning
       setLoading(false);
     });

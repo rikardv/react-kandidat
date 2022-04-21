@@ -10,8 +10,8 @@ import {
   Label,
   ResponsiveContainer,
 } from 'recharts';
-import DatesList from './DatesList';
-import getDagar from '../../connections/test/getDagar';
+import DatesList from '../layout/DatesList';
+import getDagar from '../../connections/getDagar';
 import { Button, Typography, Card, CardContent } from '@mui/material';
 
 const Dagar = ({ kurskod }) => {

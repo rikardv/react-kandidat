@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, ResponsiveContainer, Cell } from 'recharts';
 import { useTheme, Card, CardContent, Typography } from '@mui/material';
 
-const PieChartSlapande = ({ data, title }) => {
+const PieSlapandeKurser = ({ data, title }) => {
   const theme = useTheme();
   const COLORS = [theme.palette.success.light, theme.palette.error.main];
 
@@ -38,4 +38,4 @@ const PieChartSlapande = ({ data, title }) => {
   );
 };
 
-export default PieChartSlapande;
+export default PieSlapandeKurser;

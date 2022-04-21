@@ -5,13 +5,12 @@ import {
   Typography,
   Divider,
   TextField,
-  Button,
   Autocomplete,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import ClearIcon from '@mui/icons-material/Clear';
 import CloseIcon from '@mui/icons-material/Close';
-import PopUpContent from '../containers/PopUpContent';
+import PopUpContent from './PopUpContent';
 
 /* I den här filen tar vi in open och onClose för att kolla om fönstret är stängt eller inte. I övrigt tar vi in data i form av ....
 , en titel och selected/setSelected som alla skickats vidare från FilterMenyKort.js. Vi kallar på PopUpContent för att filtrera data 
@@ -19,7 +18,7 @@ som ska visualiseras.
 */
 
 const PopUp = (props) => {
-  const { onClose, open, data, titel, selected, setSelected, loading } = props;
+  const { onClose, open, data, titel, selected, setSelected } = props;
 
   //Stäng pop-upen.
   const handleClose = () => {
@@ -82,7 +81,6 @@ const PopUp = (props) => {
             funktion={handleSelection}
             icon={<AddIcon />}
             search={searchTerm}
-            loading={loading}
           />
           <Autocomplete
             style={{ margin: 15, marginTop: 20 }}
@@ -122,22 +120,8 @@ const PopUp = (props) => {
           funktion={handleDelete}
           icon={<ClearIcon />}
           search={''}
-          loading={loading}
         />
       )}
-      <Button
-        style={{
-          marginBottom: 15,
-          width: 50,
-          borderRadius: 11,
-          marginLeft: 'auto',
-          marginRight: 15,
-        }}
-        variant='contained'
-        size='small'
-      >
-        Spara
-      </Button>
     </Dialog>
   );
 };
