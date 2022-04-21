@@ -14,6 +14,7 @@ import {
 import Loading from '../layout/Loading';
 import { useTheme, Card, CardContent, Typography, Grid } from '@mui/material';
 import formatDataToRequest from '../../functions/formatDataToRequest';
+import AnalysInfo from '../layout/AnalysInfo';
 
 const CSN = ({ startDatum, programKod, kursKoder }) => {
   const [HP, setHP] = useState();
@@ -41,6 +42,16 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
       flexDirection='row'
       rowGap={2}
     >
+      <AnalysInfo
+        firstVal={
+          HP && HP.reduce((total, currentVal) => total + currentVal.total, 0)
+        }
+        firstTitle='Antal studenter analyserade'
+        secondVal={
+          HP && HP.reduce((total, currentVal) => total + currentVal.under, 0)
+        }
+        secondTitle='Antal studenter under CSN gräns'
+      />
       {HP &&
         HP.map((res, indx) => (
           <Card
