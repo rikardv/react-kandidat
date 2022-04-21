@@ -12,6 +12,7 @@ import Dagar from './components/charts/Dagar.js';
 import Betygsfordelning from './components/charts/Betygsfordelning.js';
 import Omtenta from './components/charts/Omtenta.js';
 import DagarNew from './components/charts/DagarNew.js';
+import LiuLogo from './img/LiU_primary_black.png';
 
 const App = () => {
   /**
@@ -107,6 +108,20 @@ const App = () => {
   };
   return (
     <ThemeProvider theme={theme}>
+      <Stack
+        direction='row'
+        justifyContent={'space-between'}
+        borderBottom='1px solid #D3D3D3'
+        alignItems='center'
+        height={70}
+        width='100%'
+      >
+        {' '}
+        <Typography variant='h1' fontWeight={'bold'} marginLeft='1%'>
+          Instrumentpanel för grundutbildningen på Liu
+        </Typography>
+        <img src={LiuLogo} height={'100%'} marginRight='1%'></img>
+      </Stack>
       <Grid container direction='row' md={12}>
         <Grid item sm={2} md={2} lg={2}>
           <HeaderContainer
@@ -131,10 +146,6 @@ const App = () => {
             justifyContent='center'
             alignItems={'center'}
           >
-            <Typography variant='h1' fontWeight={'bold'}>
-              Instrumentpanel för grundutbildningen på Liu
-            </Typography>
-
             {componentToRender(selectedView)}
           </Stack>
         </Grid>
