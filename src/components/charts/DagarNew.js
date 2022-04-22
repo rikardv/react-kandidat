@@ -27,6 +27,21 @@ const DagarNew = ({ kurskod, startDatum }) => {
     });
   }, [kurskod, startDatum]);
 
+  //Hide course when clicked on label.
+  const handleActive = (e) => {
+    console.log(e.value);
+    for (var i = 0; i < dagar.length; i++) {
+      console.log(dagar[i].kurs);
+      if (dagar[i].kurs == e.value) {
+        let newArr = [...dagar];
+        let item = { ...newArr[i] };
+        item.active = !item.active;
+        newArr[i] = item;
+        setDagar(newArr);
+      }
+    }
+  };
+
   return (
     <Grid
       display='flex'
