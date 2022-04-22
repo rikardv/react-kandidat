@@ -17,9 +17,14 @@ import Loading from '../layout/Loading';
 const DagarNew = ({ kurskod, startDatum }) => {
   const [dagar, setDagar] = useState();
   const [loading, setLoading] = useState(true);
+  const [coursesWithState, setCoursesWithState] = useState();
 
   useEffect(() => {
     setLoading(true);
+    let activeFormatted = kurskod.map((kurs) => {
+      return { ...kurskod }, { kurs, active: true };
+    });
+    setCoursesWithState(activeFormatted);
     const formattedKursKoder = formatDataToRequest(kurskod, 'kurskod');
     getDagarNew(formattedKursKoder, startDatum).then((res) => {
       setDagar(res.data);
@@ -30,14 +35,13 @@ const DagarNew = ({ kurskod, startDatum }) => {
   //Hide course when clicked on label.
   const handleActive = (e) => {
     console.log(e.value);
-    for (var i = 0; i < dagar.length; i++) {
-      console.log(dagar[i][0]);
-      if (dagar[i].kurs == e.value) {
-        let newArr = [...dagar];
+    for (var i = 0; i < coursesWithState.length; i++) {
+      if (coursesWithState[i].kurs == e.value) {
+        let newArr = [...coursesWithState];
         let item = { ...newArr[i] };
         item.active = !item.active;
         newArr[i] = item;
-        setDagar(newArr);
+        setCoursesWithState(newArr);
       }
     }
   };
@@ -82,12 +86,12 @@ const DagarNew = ({ kurskod, startDatum }) => {
               />
               <Tooltip />
               <Legend verticalAlign='top' height={30} onClick={handleActive} />
-              {kurskod &&
-                kurskod.map((kurs) => (
+              {coursesWithState &&
+                coursesWithState.map((item) => (
                   <Line
                     type='monotone'
-                    dataKey={kurs}
-                    hide={kurs.active}
+                    dataKey={item.kurs}
+                    hide={!item.active}
                     dot={false}
                     connectNulls
                   />
