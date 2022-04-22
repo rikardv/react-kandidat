@@ -7,6 +7,7 @@ import {
   YAxis,
   Legend,
   ResponsiveContainer,
+  Tooltip,
 } from 'recharts';
 import { Typography, Card, CardContent, Grid } from '@mui/material';
 import formatDataToRequest from '../../functions/formatDataToRequest';
@@ -22,7 +23,6 @@ const DagarNew = ({ kurskod, startDatum }) => {
     const formattedKursKoder = formatDataToRequest(kurskod, 'kurskod');
     getDagarNew(formattedKursKoder, startDatum).then((res) => {
       setDagar(res.data);
-      console.log(res.data);
       setLoading(false);
     });
   }, [kurskod, startDatum]);
@@ -35,45 +35,42 @@ const DagarNew = ({ kurskod, startDatum }) => {
       justifyContent='space-evenly'
       width='100%'
     >
-      {dagar &&
-        dagar.map((res, indx) => (
-          <Card
-            style={{
-              width: '90%',
-              height: 'auto',
-            }}
-          >
-            <CardContent>
-              <Typography variant='h1' fontWeight='medium' align='center'>
-                TEMP
-              </Typography>
-              <ResponsiveContainer height={500} width='100%'>
-                <LineChart data={res.data}>
-                  <CartesianGrid horizontal={false} vertical={false} />
-                  <XAxis
-                    dataKey='antalDagar'
-                    label={{
-                      value: 'Antal dagar till avslutad kurs',
-                      position: 'insideBottom',
-                    }}
-                    domain={[0, 'dataMax']}
-                    height={40}
-                  />
-                  <YAxis
-                    domain={[0, 100]}
-                    label={{
-                      value: 'Procent',
-                      angle: -90,
-                      position: 'insideLeft',
-                    }}
-                  />
-
-                  <Line dataKey='andelProcent' />
-                </LineChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-        ))}
+      <Card
+        style={{
+          width: '90%',
+          height: 'auto',
+        }}
+      >
+        <CardContent>
+          <Typography variant='h1' fontWeight='medium' align='center'>
+            TEMP
+          </Typography>
+          <ResponsiveContainer height={500} width='100%'>
+            <LineChart data={dagar}>
+              <CartesianGrid horizontal={false} vertical={false} />
+              <XAxis
+                dataKey='antalDagar'
+                type='number'
+                label={{
+                  value: 'Antal dagar till avslutad kurs',
+                  position: 'insideBottom',
+                }}
+                height={40}
+              />
+              <YAxis
+                label={{
+                  value: 'Procent',
+                  angle: -90,
+                  position: 'insideLeft',
+                }}
+              />
+              <Tooltip />
+              <Legend />
+              {kurskod && kurskod.map((kurs) => <Line dataKey={kurs} />)}
+            </LineChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
     </Grid>
   );
 };
