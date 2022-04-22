@@ -31,7 +31,7 @@ const DagarNew = ({ kurskod, startDatum }) => {
   const handleActive = (e) => {
     console.log(e.value);
     for (var i = 0; i < dagar.length; i++) {
-      console.log(dagar[i].kurs);
+      console.log(dagar[i][0]);
       if (dagar[i].kurs == e.value) {
         let newArr = [...dagar];
         let item = { ...newArr[i] };
@@ -71,6 +71,7 @@ const DagarNew = ({ kurskod, startDatum }) => {
                   position: 'insideBottom',
                 }}
                 height={40}
+                domain={[0, 'dataMax']}
               />
               <YAxis
                 label={{
@@ -80,8 +81,17 @@ const DagarNew = ({ kurskod, startDatum }) => {
                 }}
               />
               <Tooltip />
-              <Legend />
-              {kurskod && kurskod.map((kurs) => <Line dataKey={kurs} />)}
+              <Legend verticalAlign='top' height={30} onClick={handleActive} />
+              {kurskod &&
+                kurskod.map((kurs) => (
+                  <Line
+                    type='monotone'
+                    dataKey={kurs}
+                    hide={kurs.active}
+                    dot={false}
+                    connectNulls
+                  />
+                ))}
             </LineChart>
           </ResponsiveContainer>
         </CardContent>
