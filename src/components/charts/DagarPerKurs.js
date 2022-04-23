@@ -32,22 +32,31 @@ const DagarPerKurs = ({ kurskod }) => {
   ];
 
   useEffect(() => {
-    getKursStartDatum(selectedCourse).then((res) => {
-      setStartdatum(res.data);
-    });
-    //Mappa om startdatumen för att skicka till formatdatatorequest.
-    let startDatumMappas = [];
-    startDatum.map((val) => {
-      startDatumMappas.push(val.STUDIEPERIOD_STARTDATUM);
-    });
-    const formattedStartDatum = formatDataToRequest(
-      startDatumMappas,
-      'startdatum'
-    );
-    getDagarPerKurs(formattedStartDatum, selectedCourse).then((res) => {
-      setDagarData(res.data);
-      console.log(res.data);
-    });
+    async function fetchAPI() {
+      let kurs_datum = await getKursStartDatum(selectedCourse).then((res) => {
+        return res.data;
+      });
+
+      setStartdatum(kurs_datum);
+
+      //Mappa om startdatumen för att skicka till formatdatatorequest.
+      let startDatumMappas = [];
+      startDatum.map((val) => {
+        startDatumMappas.push(val.STUDIEPERIOD_STARTDATUM);
+      });
+
+      const formattedStartDatum = formatDataToRequest(
+        kurs_datum.map((val) => {
+          return val.STUDIEPERIOD_STARTDATUM;
+        }),
+        'startdatum'
+      );
+      getDagarPerKurs(formattedStartDatum, selectedCourse).then((res) => {
+        setDagarData(res.data);
+      });
+    }
+
+    fetchAPI();
   }, [selectedCourse]);
 
   return (
