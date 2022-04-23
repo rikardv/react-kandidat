@@ -29,8 +29,12 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
     const formattedProgramKod = formatDataToRequest(programKod, 'program');
     getAvhopp(formattedProgramKod, startDatum, slutDatum).then((data) => {
       setAvbrott(data.data);
+<<<<<<< HEAD
       setNrAvbrott(data.total_avhopp);
       setNrKurser(data.total_kurser);
+=======
+      console.log(data.data);
+>>>>>>> main
       setLoading(false);
     });
   }, [programKod]);

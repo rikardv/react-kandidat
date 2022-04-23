@@ -22,6 +22,51 @@ const DagarNew = ({ kurskod, startDatum }) => {
   const [nrStudents, setNrStudents] = useState();
   const [nrCourses, setNrCourses] = useState();
 
+  const colorArray = [
+    '#FD7272',
+    '#54a0ff',
+    '#2ecc71',
+    '#9b59b6',
+    '#34495e',
+    '#16a085',
+    '#27ae60',
+    '#2980b9',
+    '#8e44ad',
+    '#2c3e50',
+    '#f1c40f',
+    '#e67e22',
+    '#e74c3c',
+    '#ecf0f1',
+    '#95a5a6',
+    '#f39c12',
+    '#d35400',
+    '#c0392b',
+    '#bdc3c7',
+    '#7f8c8d',
+    '#55efc4',
+    '#81ecec',
+    '#74b9ff',
+    '#a29bfe',
+    '#dfe6e9',
+    '#00b894',
+    '#00cec9',
+    '#0984e3',
+    '#6c5ce7',
+    '#ffeaa7',
+    '#fab1a0',
+    '#ff7675',
+    '#fd79a8',
+    '#fdcb6e',
+    '#e17055',
+    '#d63031',
+    '#feca57',
+    '#5f27cd',
+    '#54a0ff',
+    '#01a3a4',
+  ];
+
+  var randomColor = Math.floor(Math.random() * 16777215).toString(16);
+
   useEffect(() => {
     setLoading(true);
     let activeFormatted = kurskod.map((kurs) => {
@@ -50,7 +95,9 @@ const DagarNew = ({ kurskod, startDatum }) => {
     }
   };
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <Grid
       display='flex'
       flexWrap='wrap'
@@ -72,11 +119,11 @@ const DagarNew = ({ kurskod, startDatum }) => {
       >
         <CardContent>
           <Typography variant='h1' fontWeight='medium' align='center'>
-            TEMP
+            Dagar till avklarad kurs
           </Typography>
           <ResponsiveContainer height={500} width='100%'>
-            <LineChart data={dagar}>
-              <CartesianGrid horizontal={false} vertical={false} />
+            <LineChart data={dagar} margin={10}>
+              <CartesianGrid strokeDasharray='6 6' vertical={false} />
               <XAxis
                 dataKey='antalDagar'
                 type='number'
@@ -95,14 +142,15 @@ const DagarNew = ({ kurskod, startDatum }) => {
                 }}
               />
               <Tooltip />
-              <Legend verticalAlign='top' height={30} onClick={handleActive} />
+              <Legend verticalAlign='top' onClick={handleActive} />
               {coursesWithState &&
-                coursesWithState.map((item) => (
+                coursesWithState.map((item, indx) => (
                   <Line
                     type='monotone'
                     dataKey={item.kurs}
                     hide={!item.active}
                     dot={false}
+                    stroke={colorArray[indx]}
                     connectNulls
                   />
                 ))}
