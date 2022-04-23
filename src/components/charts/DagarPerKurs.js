@@ -21,6 +21,7 @@ import Loading from '../layout/Loading';
 const DagarPerKurs = ({ kurskod }) => {
   const [dagarData, setDagarData] = useState([]);
   const [startDatum, setStartdatum] = useState([]);
+  const [datesWithState, setDatesWithState] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState(kurskod[0]);
   const [loading, setLoading] = useState(true);
 
@@ -42,12 +43,18 @@ const DagarPerKurs = ({ kurskod }) => {
 
       setStartdatum(kurs_datum);
 
+      let temp_arr_datum = kurs_datum.map((val) => {
+        return val.STUDIEPERIOD_STARTDATUM;
+      });
       const formattedStartDatum = formatDataToRequest(
-        kurs_datum.map((val) => {
-          return val.STUDIEPERIOD_STARTDATUM;
-        }),
+        temp_arr_datum,
         'startdatum'
       );
+
+      let activeFormatted = temp_arr_datum.map((datum) => {
+        return { ...temp_arr_datum }, { datum, active: true };
+      });
+      setDatesWithState(activeFormatted);
       getDagarPerKurs(formattedStartDatum, selectedCourse).then((res) => {
         setDagarData(res.data);
         console.log(res.data);
@@ -57,6 +64,19 @@ const DagarPerKurs = ({ kurskod }) => {
 
     fetchAPI();
   }, [selectedCourse]);
+
+  //Hide course when clicked on label.
+  const handleActive = (e) => {
+    for (var i = 0; i < datesWithState.length; i++) {
+      if (datesWithState[i].datum == e.value) {
+        let newArr = [...datesWithState];
+        let item = { ...newArr[i] };
+        item.active = !item.active;
+        newArr[i] = item;
+        setDatesWithState(newArr);
+      }
+    }
+  };
 
   return loading ? (
     <Loading />
@@ -100,12 +120,13 @@ const DagarPerKurs = ({ kurskod }) => {
               <YAxis />
               <Tooltip />
 
-              <Legend verticalAlign='top' />
-              {dagarData &&
-                dagarData.map((res, indx) => (
+              <Legend verticalAlign='top' onClick={handleActive} />
+              {datesWithState &&
+                datesWithState.map((res, indx) => (
                   <Line
                     type='monotone'
-                    dataKey={res.startdatum}
+                    dataKey={res.datum}
+                    hide={!res.active}
                     stroke={colorArray[indx]}
                     connectNulls
                     dot={false}
