@@ -115,12 +115,14 @@ const PopUp = (props) => {
           </Typography>
         </DialogTitle>
       ) : (
-        <PopUpContent
-          data={selected}
-          funktion={handleDelete}
-          icon={<ClearIcon />}
-          search={''}
-        />
+        <div style={{ marginBottom: 12 }}>
+          <PopUpContent
+            data={selected}
+            funktion={handleDelete}
+            icon={<ClearIcon />}
+            search={''}
+          />
+        </div>
       )}
     </Dialog>
   );
