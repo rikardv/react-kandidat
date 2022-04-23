@@ -8,7 +8,7 @@ import VisualiseringMeny from './components/filtering/leftside/VisualiseringMeny
 import FiltreringContainer from './components/filtering/rightside/FiltreringContainer.js';
 import SlapandeKurser from './components/charts/SlapandeKurser.js';
 import CSN from './components/charts/CSN.js';
-import Dagar from './components/charts/Dagar.js';
+import DagarPerKurs from './components/charts/DagarPerKurs.js';
 import Betygsfordelning from './components/charts/Betygsfordelning.js';
 import Omtenta from './components/charts/Omtenta.js';
 import DagarNew from './components/charts/DagarNew.js';
@@ -89,8 +89,8 @@ const App = () => {
 
       case 6:
         return (
-          <DagarNew
-            startDatum={selectedStartDates[0]}
+          <DagarPerKurs
+            //startDatum={selectedStartDates[0]}
             kurskod={selectedCourses}
           />
         );

@@ -1,9 +1,8 @@
-export default async function (kurskod, startdatum) {
+export default async function (startdatum, kurskod) {
   var dagar;
 
   await fetch(
-    'http://localhost:8080' +
-      `/kurser/avslut?kurskod=${kurskod}&startdatum=${startdatum}`,
+    'http://localhost:8080' + `/kurser/avslut?${startdatum}&kurskod=${kurskod}`,
     {
       method: 'GET',
     }
