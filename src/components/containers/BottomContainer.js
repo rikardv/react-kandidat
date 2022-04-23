@@ -5,17 +5,17 @@ const BottomContainer = () => {
   const theme = useTheme();
   return (
     <Stack
-      height='5vh'
+      height='6vh'
       style={{ backgroundColor: 'black' }}
       width='100%'
-      direction='row'
-      alignItems='center'
+      direction='column'
+      alignItems='flex-start'
     >
       <Typography marginLeft='1%' color='white' fontWeight={'bold'}>
-        Kandidatarbete 2022
+        Kandidatarbete 2022. Hassan, Jane, John, Max, Rikard, Tim
       </Typography>
       <Typography marginLeft='1%' color='white'>
-        Hassan, Jane, John, Max, Rikard, Tim
+        Baseras på data från Evaliuate och Ladok.
       </Typography>
     </Stack>
   );

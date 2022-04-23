@@ -13,9 +13,12 @@ import Loading from '../layout/Loading';
 import { useTheme, Card, CardContent, Typography, Grid } from '@mui/material';
 import formatDataToRequest from '../../functions/formatDataToRequest';
 import PieSlapandeKurser from './PieSlapandeKurser';
+import AnalysInfo from '../layout/AnalysInfo';
 
 const SlapandeKurser = ({ startDatum, programKod, kursKoder }) => {
   const [slapande, setSlapande] = useState();
+  const [nrStudents, setNrStudents] = useState();
+  const [nrSlapande, setNrSlapande] = useState();
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
 
@@ -25,6 +28,8 @@ const SlapandeKurser = ({ startDatum, programKod, kursKoder }) => {
     const formattedProgramKod = formatDataToRequest(programKod, 'program');
     getSlapande(formattedProgramKod, startDatum).then((res) => {
       setSlapande(res.data);
+      setNrStudents(res.total);
+      setNrSlapande(res.total_slapande);
       //Hämtning klar - avbryt laddning
       setLoading(false);
     });
@@ -33,7 +38,14 @@ const SlapandeKurser = ({ startDatum, programKod, kursKoder }) => {
   return loading ? (
     <Loading />
   ) : (
-    <Grid width='90%' height={300}>
+    <Grid container width='90%' height={300}>
+      <AnalysInfo
+        firstVal={nrStudents && nrStudents}
+        firstTitle='Antal studenter analyserade'
+        secondVal={nrSlapande && nrSlapande}
+        secondTitle='Antal studenter med släpande kurser'
+      />
+
       {slapande &&
         slapande.map((res, indx) => (
           <Grid display='flex' justifyContent='space-evenly' marginTop={2}>

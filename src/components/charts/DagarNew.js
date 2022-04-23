@@ -13,11 +13,14 @@ import { Typography, Card, CardContent, Grid } from '@mui/material';
 import formatDataToRequest from '../../functions/formatDataToRequest';
 import getDagarNew from '../../connections/getDagarNew';
 import Loading from '../layout/Loading';
+import AnalysInfo from '../layout/AnalysInfo';
 
 const DagarNew = ({ kurskod, startDatum }) => {
   const [dagar, setDagar] = useState();
   const [loading, setLoading] = useState(true);
   const [coursesWithState, setCoursesWithState] = useState();
+  const [nrStudents, setNrStudents] = useState();
+  const [nrCourses, setNrCourses] = useState();
 
   useEffect(() => {
     setLoading(true);
@@ -29,12 +32,13 @@ const DagarNew = ({ kurskod, startDatum }) => {
     getDagarNew(formattedKursKoder, startDatum).then((res) => {
       setDagar(res.data);
       setLoading(false);
+      setNrStudents(res.total_studenter);
+      setNrCourses(res.total_kurser);
     });
   }, [kurskod, startDatum]);
 
   //Hide course when clicked on label.
   const handleActive = (e) => {
-    console.log(e.value);
     for (var i = 0; i < coursesWithState.length; i++) {
       if (coursesWithState[i].kurs == e.value) {
         let newArr = [...coursesWithState];
@@ -54,6 +58,12 @@ const DagarNew = ({ kurskod, startDatum }) => {
       justifyContent='space-evenly'
       width='100%'
     >
+      <AnalysInfo
+        firstVal={nrStudents && nrStudents}
+        firstTitle='Antalet studenter analyserade'
+        secondVal={nrCourses && nrCourses}
+        secondTitle='Antalet kurser analyserade'
+      />
       <Card
         style={{
           width: '90%',

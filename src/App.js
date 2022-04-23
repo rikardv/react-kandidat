@@ -111,7 +111,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <TopContainer />
-      <Grid container direction='row' md={12} style={{ minHeight: '88vh' }}>
+      <Grid container direction='row' md={12} style={{ minHeight: '87vh' }}>
         <Grid item sm={2} md={2} lg={2}>
           <VisualiseringMeny
             selectedView={selectedView}

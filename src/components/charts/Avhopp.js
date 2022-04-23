@@ -12,6 +12,7 @@ import getAvhopp from '../../connections/getAvhopp';
 import { useTheme, Card, CardContent, Typography, Grid } from '@mui/material';
 import Loading from '../layout/Loading';
 import formatDataToRequest from '../../functions/formatDataToRequest';
+import AnalysInfo from '../layout/AnalysInfo';
 
 const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
   // const program = '6CDDD'; //6CMEN, 6CDDD, 6CIEN, 6CMJU, 6KGDK
@@ -19,6 +20,8 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
   // const slutDatum = '2022-03-04';
   const theme = useTheme();
   const [avbrott, setAvbrott] = useState([]);
+  const [nrAvbrott, setNrAvbrott] = useState();
+  const [nrKurser, setNrKurser] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,7 +29,8 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
     const formattedProgramKod = formatDataToRequest(programKod, 'program');
     getAvhopp(formattedProgramKod, startDatum, slutDatum).then((data) => {
       setAvbrott(data.data);
-      console.log(data.data);
+      setNrAvbrott(data.total_avhopp);
+      setNrKurser(data.total_kurser);
       setLoading(false);
     });
   }, [programKod]);
@@ -40,6 +44,12 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
       justifyContent='space-evenly'
       width='100%'
     >
+      <AnalysInfo
+        firstVal={nrKurser && nrKurser}
+        firstTitle='Antalet kurser analyserade'
+        secondVal={nrAvbrott && nrAvbrott}
+        secondTitle='Antalet totala avhopp '
+      />
       {avbrott &&
         avbrott.map((res, indx) => (
           <Card
