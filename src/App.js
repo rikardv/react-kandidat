@@ -11,6 +11,7 @@ import CSN from './components/charts/CSN.js';
 import Dagar from './components/charts/Dagar.js';
 import Betygsfordelning from './components/charts/Betygsfordelning.js';
 import Omtenta from './components/charts/Omtenta.js';
+import DagarNew from './components/charts/DagarNew.js';
 
 const App = () => {
   /**
@@ -20,7 +21,7 @@ const App = () => {
   const [selectedView, setSelectedView] = useState(1);
   const [selectedProgram, setSelectedProgram] = useState(['6CMEN']); //Alla progarmkoder lagras i denna, defaultvärde satt.
   const [selectedCoursesTemp, setSelectedCourses] = useState([
-    'TNM089: Bildteknik',
+    'TNMK30: Elektronisk publicering',
   ]); //Alla kurser lagras i denna temporärt och kursnamnet filtreras sedan bort.
   const [selectedStartDates, setSelectedStartDates] = useState(['2019-08-19']); //Alla startdatum lagras i denna, defaultvärde satt.
 
@@ -84,7 +85,12 @@ const App = () => {
         );
 
       case 6:
-        return <Dagar kurskod={selectedCourses[0]} />;
+        return (
+          <DagarNew
+            startDatum={selectedStartDates[0]}
+            kurskod={selectedCourses}
+          />
+        );
       case 7:
         return (
           //Betygsfördelning
