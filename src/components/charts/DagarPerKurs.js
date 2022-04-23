@@ -77,7 +77,7 @@ const DagarPerKurs = ({ kurskod }) => {
       }
     }
   };
-
+  console.log(datesWithState);
   return loading ? (
     <Loading />
   ) : (
@@ -95,7 +95,7 @@ const DagarPerKurs = ({ kurskod }) => {
           </Typography>
 
           <ResponsiveContainer height={500} width='100%'>
-            <LineChart>
+            <LineChart data={dagarData}>
               <CartesianGrid strokeDasharray='6 6' vertical={false} />
               <XAxis
                 type='number'
