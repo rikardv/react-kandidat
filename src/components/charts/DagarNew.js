@@ -111,8 +111,8 @@ const DagarNew = ({ kurskod, startDatum }) => {
             Dagar till avklarad kurs
           </Typography>
           <ResponsiveContainer height={500} width='100%'>
-            <LineChart data={dagar}>
-              <CartesianGrid horizontal={false} vertical={false} />
+            <LineChart data={dagar} margin={10}>
+              <CartesianGrid strokeDasharray='6 6' vertical={false} />
               <XAxis
                 dataKey='antalDagar'
                 type='number'
@@ -131,7 +131,7 @@ const DagarNew = ({ kurskod, startDatum }) => {
                 }}
               />
               <Tooltip />
-              <Legend verticalAlign='top' height={30} onClick={handleActive} />
+              <Legend verticalAlign='top' onClick={handleActive} />
               {coursesWithState &&
                 coursesWithState.map((item, indx) => (
                   <Line
