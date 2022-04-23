@@ -16,11 +16,13 @@ import { Typography, Card, CardContent } from '@mui/material';
 import getKursStartDatum from '../../connections/getKursStartDatum';
 import getDagarPerKurs from '../../connections/getDagarPerKurs';
 import formatDataToRequest from '../../functions/formatDataToRequest';
+import Loading from '../layout/Loading';
 
 const DagarPerKurs = ({ kurskod }) => {
   const [dagarData, setDagarData] = useState([]);
   const [startDatum, setStartdatum] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState(kurskod[0]);
+  const [loading, setLoading] = useState(true);
 
   var colorArray = [
     '#FF6633',
@@ -32,18 +34,13 @@ const DagarPerKurs = ({ kurskod }) => {
   ];
 
   useEffect(() => {
+    setLoading(true);
     async function fetchAPI() {
       let kurs_datum = await getKursStartDatum(selectedCourse).then((res) => {
         return res.data;
       });
 
       setStartdatum(kurs_datum);
-
-      //Mappa om startdatumen för att skicka till formatdatatorequest.
-      let startDatumMappas = [];
-      startDatum.map((val) => {
-        startDatumMappas.push(val.STUDIEPERIOD_STARTDATUM);
-      });
 
       const formattedStartDatum = formatDataToRequest(
         kurs_datum.map((val) => {
@@ -53,13 +50,17 @@ const DagarPerKurs = ({ kurskod }) => {
       );
       getDagarPerKurs(formattedStartDatum, selectedCourse).then((res) => {
         setDagarData(res.data);
+        console.log(res.data);
+        setLoading(false);
       });
     }
 
     fetchAPI();
   }, [selectedCourse]);
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <>
       <CourseList
         kurskod={kurskod}
@@ -72,9 +73,10 @@ const DagarPerKurs = ({ kurskod }) => {
           <Typography variant='h1' fontWeight='medium' align='center'>
             Antal dagar till avslutad kurs
           </Typography>
+
           <ResponsiveContainer height={500} width='100%'>
             <LineChart>
-              <CartesianGrid strokeDasharray='6 6' horizontal={false} />
+              <CartesianGrid strokeDasharray='6 6' vertical={false} />
               <XAxis
                 type='number'
                 dataKey='antalDagar'
@@ -88,21 +90,22 @@ const DagarPerKurs = ({ kurskod }) => {
                 />
               </XAxis>
               <YAxis
-                dataKey='andelProcent'
                 domain={[0, 100]}
-                label={{ value: 'Procent', angle: -90, position: 'insideLeft' }}
+                label={{
+                  value: 'Procent',
+                  angle: -90,
+                  position: 'insideLeft',
+                }}
               />
               <YAxis />
               <Tooltip />
-              <Legend verticalAlign='top' />
 
+              <Legend verticalAlign='top' />
               {dagarData &&
                 dagarData.map((res, indx) => (
                   <Line
                     type='monotone'
-                    dataKey='andelProcent'
-                    data={res.data}
-                    hide={res.active}
+                    dataKey={res.startdatum}
                     stroke={colorArray[indx]}
                     connectNulls
                     dot={false}
