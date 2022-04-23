@@ -12,12 +12,9 @@ import Dagar from './components/charts/Dagar.js';
 import Betygsfordelning from './components/charts/Betygsfordelning.js';
 import Omtenta from './components/charts/Omtenta.js';
 import DagarNew from './components/charts/DagarNew.js';
-<<<<<<< HEAD
 import LiuLogo from './img/LiU_primary_black.png';
 import BottomContainer from './components/containers/BottomContainer.js';
 import TopContainer from './components/containers/TopContainer.js';
-=======
->>>>>>> main
 
 const App = () => {
   /**
