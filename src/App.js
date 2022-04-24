@@ -89,8 +89,8 @@ const App = () => {
 
       case 6:
         return (
-          <DagarPerKurs
-            //startDatum={selectedStartDates[0]}
+          <DagarNew
+            startDatum={selectedStartDates[0]}
             kurskod={selectedCourses}
           />
         );
