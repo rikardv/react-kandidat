@@ -1,25 +1,27 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import Loading from './Loading';
 
 const columns = [
-  { field: 'kurs', headerName: 'Kurs' },
+  { field: 'kurskod', headerName: 'Kurskod' },
+  { field: 'kurs', headerName: 'Kurs', minWidth: 330 },
   { field: 'betyg', headerName: 'Betyg' },
   {
-    field: 'beslutsdatum',
-    headerName: 'Beslutsdatum',
+    field: 'dagar',
+    headerName: 'Dagar till avklarad kurs',
   },
+  { field: 'avklarad', headerName: 'Avklarad Kurs' },
+  { field: 'omtentor', headerName: 'Antal omtentor' },
 ];
 
-const columnsSecond = [
-  { field: 'kurskod', headerName: 'Kurs' },
-  { field: 'omtentor', headerName: 'Omtentor' },
-];
-
-export default function DataTable({ rows, betyg }) {
-  return (
+export default function DataTable({ rows, loading }) {
+  return loading ? (
+    <Loading />
+  ) : (
     <DataGrid
+      style={{ width: 1000 }}
       rows={rows}
-      columns={betyg ? columns : columnsSecond}
+      columns={columns}
       checkboxSelection
       autoHeight
     />
