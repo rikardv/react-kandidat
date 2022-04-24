@@ -9,7 +9,7 @@ export default async function (person_nummer) {
   )
     .then((response) => response.json())
     .then((response) => {
-      info = response.data;
+      info = response;
     })
     .catch((err) => console.log('Error fetching avhopp endpoint', err));
 

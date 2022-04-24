@@ -1,21 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import getStudentInfo from '../../connections/getStudentInfo';
-import { Grid, Typography, Stack, Box } from '@mui/material';
+import {
+  Grid,
+  Typography,
+  Stack,
+  Box,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Dialog,
+  Button,
+} from '@mui/material';
 import StudentInfoTable from '../layout/StudentInfoTable';
-import getStudentStats from '../../connections/getStudentStats';
+import getStudentGrades from '../../connections/getStudentGrades';
 
 export default function StudentPopUp({ personNummer, handleClose }) {
   const [program, setProgram] = useState();
   const [kurser, setKurser] = useState();
   const [name, setName] = useState();
-  const [tableBetyg, setTableBetyg] = useState();
-  const [tableOmtentor, setTableOmtentor] = useState();
+  const [table, setTable] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getStudentInfo(personNummer).then((res) => {
@@ -24,9 +28,9 @@ export default function StudentPopUp({ personNummer, handleClose }) {
       setName(res.namn);
     });
 
-    getStudentStats(personNummer).then((res) => {
-      setTableBetyg(res.tableBetyg);
-      setTableOmtentor(res.tableOmtentor);
+    getStudentGrades(personNummer).then((res) => {
+      setTable(res.data);
+      setLoading(false);
     });
   }, []);
   return (
@@ -69,15 +73,8 @@ export default function StudentPopUp({ personNummer, handleClose }) {
           </Grid> */}
           <Stack direction='row' spacing={1}>
             <Box>
-              <Typography>Klarade kurser</Typography>
-              <StudentInfoTable rows={tableBetyg && tableBetyg} betyg />
-            </Box>
-            <Box>
-              <Typography>Omtentor i kurser</Typography>
-              <StudentInfoTable
-                rows={tableOmtentor && tableOmtentor}
-                betyg={false}
-              />
+              <Typography>Tillfällig rubrik</Typography>
+              <StudentInfoTable rows={table && table} loading={loading} />
             </Box>
           </Stack>
         </DialogContent>
