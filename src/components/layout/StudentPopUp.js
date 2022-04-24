@@ -6,12 +6,16 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import getStudentInfo from '../../connections/getStudentInfo';
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, Stack, Box } from '@mui/material';
+import StudentInfoTable from '../layout/StudentInfoTable';
+import getStudentStats from '../../connections/getStudentStats';
 
 export default function StudentPopUp({ personNummer, handleClose }) {
   const [program, setProgram] = useState();
   const [kurser, setKurser] = useState();
   const [name, setName] = useState();
+  const [tableBetyg, setTableBetyg] = useState();
+  const [tableOmtentor, setTableOmtentor] = useState();
 
   useEffect(() => {
     getStudentInfo(personNummer).then((res) => {
@@ -19,11 +23,17 @@ export default function StudentPopUp({ personNummer, handleClose }) {
       setProgram(res.program);
       setName(res.namn);
     });
+
+    getStudentStats(personNummer).then((res) => {
+      setTableBetyg(res.tableBetyg);
+      setTableOmtentor(res.tableOmtentor);
+    });
   }, []);
   return (
     <div>
       <Dialog
-        fullWidth={true}
+        fullScreen
+        fullWidth
         open
         onClose={handleClose}
         aria-labelledby='alert-dialog-title'
@@ -35,7 +45,7 @@ export default function StudentPopUp({ personNummer, handleClose }) {
           <Typography> {personNummer}</Typography>
         </DialogTitle>
         <DialogContent>
-          <Grid container spacing={3}>
+          {/* <Grid container spacing={3}>
             <Grid item md={5}>
               Registrerade program
               {program &&
@@ -56,11 +66,24 @@ export default function StudentPopUp({ personNummer, handleClose }) {
                   <Typography>{data.UTBILDNING_SV}</Typography>
                 ))}
             </Grid>
-          </Grid>
+          </Grid> */}
+          <Stack direction='row' spacing={1}>
+            <Box>
+              <Typography>Klarade kurser</Typography>
+              <StudentInfoTable rows={tableBetyg && tableBetyg} betyg />
+            </Box>
+            <Box>
+              <Typography>Omtentor i kurser</Typography>
+              <StudentInfoTable
+                rows={tableOmtentor && tableOmtentor}
+                betyg={false}
+              />
+            </Box>
+          </Stack>
         </DialogContent>
 
         <DialogActions>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={handleClose} autoFocus variant='contained'>
             Stäng
           </Button>
         </DialogActions>
