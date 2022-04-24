@@ -15,11 +15,13 @@ import Loading from '../layout/Loading';
 import { useTheme, Card, CardContent, Typography, Grid } from '@mui/material';
 import formatDataToRequest from '../../functions/formatDataToRequest';
 import AnalysInfo from '../layout/AnalysInfo';
+import StudentPopUp from '../layout/StudentPopUp';
 
 const CSN = ({ startDatum, programKod, kursKoder }) => {
   const [HP, setHP] = useState();
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
+  const [selectedPerson, setSelectedPerson] = useState();
 
   useEffect(() => {
     //Hämtar hur mycket HP en person och gränsen för CSN
@@ -31,6 +33,10 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
       setLoading(false);
     });
   }, [programKod, startDatum]);
+
+  const closeDialog = () => {
+    setSelectedPerson();
+  };
 
   return loading ? (
     <Loading></Loading>
@@ -52,6 +58,10 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
         }
         secondTitle='Antal studenter under CSN gräns'
       />
+
+      {selectedPerson && (
+        <StudentPopUp personNummer={selectedPerson} handleClose={closeDialog} />
+      )}
       {HP &&
         HP.map((res, indx) => (
           <Card
@@ -65,7 +75,10 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
                 Studenter under- eller nära CSN-gränsen för {res.program}
               </Typography>
               <ResponsiveContainer height={200} width='100%'>
-                <ComposedChart data={res.sort_HP}>
+                <ComposedChart
+                  data={res.sort_HP}
+                  onClick={(e) => setSelectedPerson(e.activeLabel)}
+                >
                   <XAxis
                     dataKey='name'
                     tick={false}
