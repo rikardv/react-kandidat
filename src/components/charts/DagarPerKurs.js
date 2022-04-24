@@ -57,7 +57,6 @@ const DagarPerKurs = ({ kurskod }) => {
       setDatesWithState(activeFormatted);
       getDagarPerKurs(formattedStartDatum, selectedCourse).then((res) => {
         setDagarData(res.data);
-        console.log(res.data);
         setLoading(false);
       });
     }
@@ -77,7 +76,7 @@ const DagarPerKurs = ({ kurskod }) => {
       }
     }
   };
-  console.log(datesWithState);
+
   return loading ? (
     <Loading />
   ) : (

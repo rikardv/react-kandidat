@@ -14,6 +14,7 @@ import formatDataToRequest from '../../functions/formatDataToRequest';
 import getDagarNew from '../../connections/getDagarNew';
 import Loading from '../layout/Loading';
 import AnalysInfo from '../layout/AnalysInfo';
+import DagarPerKurs from './DagarPerKurs';
 
 const DagarNew = ({ kurskod, startDatum }) => {
   const [dagar, setDagar] = useState();
@@ -113,7 +114,7 @@ const DagarNew = ({ kurskod, startDatum }) => {
       />
       <Card
         style={{
-          width: '90%',
+          width: '48%',
           height: 'auto',
         }}
       >
@@ -157,6 +158,14 @@ const DagarNew = ({ kurskod, startDatum }) => {
             </LineChart>
           </ResponsiveContainer>
         </CardContent>
+      </Card>
+      <Card
+        style={{
+          width: '48%',
+          height: 'auto',
+        }}
+      >
+        <DagarPerKurs kurskod={kurskod} />
       </Card>
     </Grid>
   );
