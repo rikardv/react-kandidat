@@ -7,6 +7,10 @@ const columns = [
   { field: 'kurs', headerName: 'Kurs', minWidth: 330 },
   { field: 'betyg', headerName: 'Betyg' },
   {
+    field: 'start_datum',
+    headerName: 'Startdatum',
+  },
+  {
     field: 'dagar',
     headerName: 'Dagar till avklarad kurs',
   },
