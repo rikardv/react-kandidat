@@ -97,13 +97,23 @@ const App = () => {
       case 7:
         return (
           //Betygsfördelning
+
+          <SandBoxContainer
+            programKod={selectedProgram}
+            startDatum={selectedStartDates[0]}
+          />
+          /*<Omtenta
+            programKod={selectedProgram[0]}
+            kursKoder={selectedCourses}
+        />*/
+        );
+      case 8:
+        return (
           <Omtenta
             programKod={selectedProgram[0]}
             kursKoder={selectedCourses}
           />
         );
-      case 8:
-        return <SandBoxContainer />;
       default:
         <Typography>Något gick snett om du hamnade här</Typography>;
     }

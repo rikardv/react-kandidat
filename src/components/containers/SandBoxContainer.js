@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Card, CardContent, Stack } from '@mui/material';
+import AllaStudeter from '../layout/AllaStudenter';
 
 /**
  * Komponent för att testa de olika styles som finns i temat.
@@ -7,17 +8,12 @@ import { Typography, Card, CardContent, Stack } from '@mui/material';
  * @returns komponent
  */
 
-const SandBox = ({}) => {
+const SandBox = ({ programKod, startDatum }) => {
   return (
     <Stack spacing={3} direction='row'>
       <Card>
         <CardContent>
-          <Typography variant='h1'>
-            Hoppsan! Här är det tomt just nu!
-          </Typography>
-          <Typography variant='h2'>
-            Men misströsta inte, det kommer nytt content inom kort!{' '}
-          </Typography>
+          <AllaStudeter programKod={programKod} startDatum={startDatum} />
         </CardContent>
       </Card>
     </Stack>
