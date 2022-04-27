@@ -29,7 +29,7 @@ export default function AllaStudeter({ programKod, startDatum }) {
       setTable(res.data);
       setLoading(false);
     });
-  }, []);
+  }, [programKod]);
 
   return loading ? (
     <Loading />
