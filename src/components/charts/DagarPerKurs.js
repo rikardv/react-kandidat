@@ -46,17 +46,19 @@ const DagarPerKurs = ({ kurskod }) => {
       let temp_arr_datum = kurs_datum.map((val) => {
         return val.STUDIEPERIOD_STARTDATUM;
       });
+
       const formattedStartDatum = formatDataToRequest(
         temp_arr_datum,
         'startdatum'
       );
 
-      let activeFormatted = temp_arr_datum.map((datum) => {
-        return { ...temp_arr_datum }, { datum, active: true };
-      });
-      setDatesWithState(activeFormatted);
       getDagarPerKurs(formattedStartDatum, selectedCourse).then((res) => {
         setDagarData(res.data);
+        let activeFormatted = res.dates.map((datum) => {
+          return { ...res.dates }, { datum, active: true };
+        });
+        setDatesWithState(activeFormatted);
+
         setLoading(false);
       });
     }
