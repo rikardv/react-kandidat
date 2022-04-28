@@ -3,6 +3,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import Loading from './Loading';
 import getStudenter from '../../connections/getStudenter';
 import formatDataToRequest from '../../functions/formatDataToRequest';
+import { Grid } from '@mui/material';
+import StudentPopUp from './StudentPopUp';
 
 const columns = [
   { field: 'PERSONNUMMER', headerName: 'Personnummer' },
@@ -22,6 +24,7 @@ const columns = [
 export default function AllaStudeter({ programKod, startDatum }) {
   const [table, setTable] = useState();
   const [loading, setLoading] = useState(true);
+  const [selectedPerson, setSelectedPerson] = useState();
   useEffect(() => {
     let formattedProgramKoder = formatDataToRequest(programKod, 'programKod');
     getStudenter(formattedProgramKoder, startDatum).then((res) => {
@@ -31,15 +34,25 @@ export default function AllaStudeter({ programKod, startDatum }) {
     });
   }, [programKod]);
 
+  const handleClose = () => {
+    setSelectedPerson();
+  };
+
   return loading ? (
     <Loading />
   ) : (
-    <DataGrid
-      style={{ width: 950 }}
-      rows={table}
-      columns={columns}
-      checkboxSelection
-      autoHeight
-    />
+    <Grid container>
+      <DataGrid
+        style={{ width: 950 }}
+        rows={table}
+        columns={columns}
+        checkboxSelection
+        autoHeight
+        onRowClick={(e) => setSelectedPerson(e.row.PERSONNUMMER)}
+      />
+      {selectedPerson && (
+        <StudentPopUp personNummer={selectedPerson} handleClose={handleClose} />
+      )}
+    </Grid>
   );
 }

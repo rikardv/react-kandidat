@@ -50,6 +50,12 @@ const HeaderContainer = ({ selectedView, setSelectedView }) => {
         activeIndex={selectedView}
         setActiveIndex={setSelectedView}
       ></MenyKort>
+      <MenyKort
+        rubrik='LISTA MED STUDENTER'
+        index={8}
+        activeIndex={selectedView}
+        setActiveIndex={setSelectedView}
+      ></MenyKort>
     </Grid>
   );
 };
