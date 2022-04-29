@@ -15,6 +15,7 @@ import DagarNew from './components/charts/DagarNew.js';
 import LiuLogo from './img/LiU_primary_black.png';
 import BottomContainer from './components/containers/BottomContainer.js';
 import TopContainer from './components/containers/TopContainer.js';
+import AllaStudenter from './components/layout/AllaStudenter.js';
 
 const App = () => {
   /**
@@ -104,7 +105,7 @@ const App = () => {
         );
       case 8:
         return (
-          <SandBoxContainer
+          <AllaStudenter
             programKod={selectedProgram}
             startDatum={selectedStartDates[0]}
           />

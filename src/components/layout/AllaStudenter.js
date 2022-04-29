@@ -3,11 +3,11 @@ import { DataGrid } from '@mui/x-data-grid';
 import Loading from './Loading';
 import getStudenter from '../../connections/getStudenter';
 import formatDataToRequest from '../../functions/formatDataToRequest';
-import { Grid } from '@mui/material';
+import { Card, CardContent, Typography } from '@mui/material';
 import StudentPopUp from './StudentPopUp';
 
 const columns = [
-  { field: 'PERSONNUMMER', headerName: 'Personnummer' },
+  { field: 'PERSONNUMMER', headerName: 'Personnummer', minWidth: 130 },
   { field: 'FORNAMN', headerName: 'Förnamn' },
   { field: 'EFTERNAMN', headerName: 'Efternamn' },
   { field: 'YTTERSTA_KURSPAKETERING_SV', headerName: 'Program', minWidth: 330 },
@@ -21,7 +21,7 @@ const columns = [
   },
 ];
 
-export default function AllaStudeter({ programKod, startDatum }) {
+export default function AllaStudenter({ programKod, startDatum }) {
   const [table, setTable] = useState();
   const [loading, setLoading] = useState(true);
   const [selectedPerson, setSelectedPerson] = useState();
@@ -38,21 +38,31 @@ export default function AllaStudeter({ programKod, startDatum }) {
     setSelectedPerson();
   };
 
+  const handleClick = (e) => {
+    setSelectedPerson(e.row.PERSONNUMMER);
+  };
+
   return loading ? (
-    <Loading />
+    <Loading title='Laddar in studenter.....' />
   ) : (
-    <Grid container>
-      <DataGrid
-        style={{ width: 950 }}
-        rows={table}
-        columns={columns}
-        checkboxSelection
-        autoHeight
-        onRowClick={(e) => setSelectedPerson(e.row.PERSONNUMMER)}
-      />
-      {selectedPerson && (
-        <StudentPopUp personNummer={selectedPerson} handleClose={handleClose} />
-      )}
-    </Grid>
+    <Card style={{ width: '90%', margin: 10 }}>
+      <CardContent width='100%' style={{ height: 500 }}>
+        <Typography>Header - något ska skrivas här</Typography>
+        <DataGrid
+          style={{ cursor: 'pointer' }}
+          rows={table}
+          columns={columns}
+          checkboxSelection={false}
+          onRowClick={(e) => handleClick(e)}
+          pageSize={30}
+        />
+        {selectedPerson && (
+          <StudentPopUp
+            personNummer={selectedPerson}
+            handleClose={handleClose}
+          />
+        )}
+      </CardContent>
+    </Card>
   );
 }

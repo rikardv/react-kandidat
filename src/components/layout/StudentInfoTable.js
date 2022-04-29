@@ -20,13 +20,13 @@ const columns = [
 
 export default function DataTable({ rows, loading }) {
   return loading ? (
-    <Loading />
+    <Loading title='Laddar information om studenten....' />
   ) : (
     <DataGrid
       style={{ width: 1000 }}
       rows={rows}
       columns={columns}
-      checkboxSelection
+      checkboxSelection={false}
       autoHeight
     />
   );

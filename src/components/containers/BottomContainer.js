@@ -5,7 +5,7 @@ const BottomContainer = () => {
   const theme = useTheme();
   return (
     <Stack
-      height='6vh'
+      height='8vh'
       style={{ backgroundColor: 'black' }}
       width='100%'
       direction='column'

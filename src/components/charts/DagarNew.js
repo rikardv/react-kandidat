@@ -105,6 +105,7 @@ const DagarNew = ({ kurskod, startDatum }) => {
       rowGap={2}
       justifyContent='space-evenly'
       width='100%'
+      padding={2}
     >
       <AnalysInfo
         firstVal={nrStudents && nrStudents}
@@ -112,61 +113,58 @@ const DagarNew = ({ kurskod, startDatum }) => {
         secondVal={nrCourses && nrCourses}
         secondTitle='Antalet kurser analyserade'
       />
-      <Card
-        style={{
-          width: '48%',
-          height: 'auto',
-        }}
-      >
-        <CardContent>
-          <Typography variant='h1' fontWeight='medium' align='center'>
-            Dagar till avklarad kurs
-          </Typography>
-          <ResponsiveContainer height={500} width='100%'>
-            <LineChart data={dagar} margin={10}>
-              <CartesianGrid strokeDasharray='6 6' vertical={false} />
-              <XAxis
-                dataKey='antalDagar'
-                type='number'
-                label={{
-                  value: 'Antal dagar till avslutad kurs',
-                  position: 'insideBottom',
-                }}
-                height={40}
-                domain={[0, 'dataMax']}
-              />
-              <YAxis
-                label={{
-                  value: 'Procent',
-                  angle: -90,
-                  position: 'insideLeft',
-                }}
-              />
-              <Tooltip />
-              <Legend verticalAlign='top' onClick={handleActive} />
-              {coursesWithState &&
-                coursesWithState.map((item, indx) => (
-                  <Line
-                    type='monotone'
-                    dataKey={item.kurs}
-                    hide={!item.active}
-                    dot={false}
-                    stroke={colorArray[indx]}
-                    connectNulls
-                  />
-                ))}
-            </LineChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
-      <Card
-        style={{
-          width: '48%',
-          height: 'auto',
-        }}
-      >
+      <Grid item sm={12} md={12} lg={12}>
+        <Card
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+        >
+          <CardContent>
+            <Typography variant='h1' fontWeight='medium' align='center'>
+              Dagar till avklarad kurs
+            </Typography>
+            <ResponsiveContainer height={300} width='100%'>
+              <LineChart data={dagar} margin={10}>
+                <CartesianGrid strokeDasharray='6 6' vertical={false} />
+                <XAxis
+                  dataKey='antalDagar'
+                  type='number'
+                  label={{
+                    value: 'Antal dagar till avslutad kurs',
+                    position: 'insideBottom',
+                  }}
+                  height={40}
+                  domain={[0, 'dataMax']}
+                />
+                <YAxis
+                  label={{
+                    value: 'Procent',
+                    angle: -90,
+                    position: 'insideLeft',
+                  }}
+                />
+                <Tooltip />
+                <Legend verticalAlign='top' onClick={handleActive} />
+                {coursesWithState &&
+                  coursesWithState.map((item, indx) => (
+                    <Line
+                      type='monotone'
+                      dataKey={item.kurs}
+                      hide={!item.active}
+                      dot={false}
+                      stroke={colorArray[indx]}
+                      connectNulls
+                    />
+                  ))}
+              </LineChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid item sm={12} md={12} lg={12}>
         <DagarPerKurs kurskod={kurskod} />
-      </Card>
+      </Grid>
     </Grid>
   );
 };

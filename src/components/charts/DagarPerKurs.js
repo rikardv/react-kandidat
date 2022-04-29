@@ -53,6 +53,7 @@ const DagarPerKurs = ({ kurskod }) => {
       );
 
       getDagarPerKurs(formattedStartDatum, selectedCourse).then((res) => {
+        console.log(res.data);
         setDagarData(res.data);
         let activeFormatted = res.dates.map((datum) => {
           return { ...res.dates }, { datum, active: true };
@@ -89,13 +90,13 @@ const DagarPerKurs = ({ kurskod }) => {
         setSelectedCourse={setSelectedCourse}
       />
 
-      <Card style={{ width: '90%', height: 550 }}>
+      <Card>
         <CardContent>
           <Typography variant='h1' fontWeight='medium' align='center'>
             Antal dagar till avslutad kurs
           </Typography>
 
-          <ResponsiveContainer height={500} width='100%'>
+          <ResponsiveContainer height={300} width='100%'>
             <LineChart data={dagarData}>
               <CartesianGrid strokeDasharray='6 6' vertical={false} />
               <XAxis
