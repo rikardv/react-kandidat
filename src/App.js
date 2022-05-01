@@ -24,7 +24,7 @@ const App = () => {
   const [selectedView, setSelectedView] = useState(1);
   const [selectedProgram, setSelectedProgram] = useState(['6CMEN']); //Alla progarmkoder lagras i denna, defaultvärde satt.
   const [selectedCoursesTemp, setSelectedCourses] = useState([
-    'TNMK30: Elektronisk publicering',
+    'TNA004: Analys II',
   ]); //Alla kurser lagras i denna temporärt och kursnamnet filtreras sedan bort.
   const [selectedStartDates, setSelectedStartDates] = useState(['2019-08-19']); //Alla startdatum lagras i denna, defaultvärde satt.
 
@@ -116,7 +116,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <TopContainer />
-      <Grid container direction='row' md={12} style={{ minHeight: '87vh' }}>
+      <Grid container direction='row' style={{ minHeight: '87vh' }}>
         <Grid item sm={2} md={2} lg={2}>
           <VisualiseringMeny
             selectedView={selectedView}

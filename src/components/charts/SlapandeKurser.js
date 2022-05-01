@@ -46,9 +46,9 @@ const SlapandeKurser = ({ startDatum, programKod, kursKoder }) => {
         secondTitle='Antal studenter med släpande kurser'
       />
 
-      {slapande &&
-        slapande.map((res, indx) => (
-          <Grid display='flex' justifyContent='space-evenly' marginTop={2}>
+              {slapande &&
+                  slapande.map((res, indx) => (
+                      <Grid display='flex' justifyContent='space-evenly' marginTop={2} key={indx}>
             <Card style={{ width: '55%', height: 300 }}>
               <CardContent>
                 <Typography variant='h2' fontWeight='medium' align='center'>

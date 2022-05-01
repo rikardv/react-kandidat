@@ -147,6 +147,7 @@ const DagarNew = ({ kurskod, startDatum }) => {
               {coursesWithState &&
                 coursesWithState.map((item, indx) => (
                   <Line
+                    key={indx}
                     type='monotone'
                     dataKey={item.kurs}
                     hide={!item.active}

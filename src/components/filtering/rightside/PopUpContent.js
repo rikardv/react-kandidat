@@ -26,7 +26,6 @@ const PopUpContent = ({ data, funktion, icon, search }) => {
         })
         .slice(0, limit)
         .map((element) => (
-          <>
             <Chip
               style={{ marginLeft: 15, marginBottom: 3, paddingRight: 3 }}
               variant='outlined'
@@ -41,7 +40,6 @@ const PopUpContent = ({ data, funktion, icon, search }) => {
               onDelete={() => funktion(element)}
               deleteIcon={icon}
             ></Chip>
-          </>
         ))}
     </Stack>
   );

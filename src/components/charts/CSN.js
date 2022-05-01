@@ -65,6 +65,7 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
       {HP &&
         HP.map((res, indx) => (
           <Card
+            key={indx}
             style={{
               width: '90%',
               height: 'auto',

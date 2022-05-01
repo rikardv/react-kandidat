@@ -57,7 +57,7 @@ const PopUp = (props) => {
           display: 'flex',
         }}
       >
-        <Typography variant='h2' fontWeight='medium'>
+        <Typography fontWeight='medium'>
           Lägg till {titel}
         </Typography>
 
@@ -99,7 +99,6 @@ const PopUp = (props) => {
       <DialogTitle>
         <Typography
           style={{ marginTop: 20 }}
-          variant='h2'
           fontWeight='medium'
           align='left'
         >

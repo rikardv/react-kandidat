@@ -125,6 +125,7 @@ const DagarPerKurs = ({ kurskod }) => {
               {datesWithState &&
                 datesWithState.map((res, indx) => (
                   <Line
+                    key={indx}
                     type='monotone'
                     dataKey={res.datum}
                     hide={!res.active}

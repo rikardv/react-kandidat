@@ -37,7 +37,6 @@ const Betygsfordelning = (props) => {
                 kursData.push({ name: prop, data: res.kursData[prop] });
             }
             
-            console.log(kursData)
             for (let q = 0; q < props.programKod.length; ++q) {
 
                 programData.push([]);
@@ -77,8 +76,8 @@ const Betygsfordelning = (props) => {
                     pieRow(kursData)
                 }                                                                                                                
                 {
-                    programData.map(data => {
-                        return stackedBar(data);
+                    programData.map((data, i) => {
+                        return stackedBar(data, i);
                     })
                 }
             </div>
@@ -93,6 +92,7 @@ function pieRow(kursData) {
                 kursData.map((kurs, i) => {
                     return (
                         <Pie
+                            key={i}
                             data={kurs.data}
                             cx={(i + 1) * 800 / (kursData.length + 1)}
                             cy={60}
@@ -112,7 +112,7 @@ function pieRow(kursData) {
             {
                 kursData.map((kurs, i) => {
                     return (
-                        <text x={(i + 1) * 800 / (kursData.length + 1) + 8} y={140} dy={8} textAnchor="middle" fill={"#11636C"}>
+                        <text key={i} x={(i + 1) * 800 / (kursData.length + 1) + 8} y={140} dy={8} textAnchor="middle" fill={"#11636C"}>
                             {kurs.name}
                         </text>
                     );
@@ -122,8 +122,8 @@ function pieRow(kursData) {
     );
 }
 
-function stackedBar(data) {
-    return (<div style={{ width: '100%', height: '400px' }}>
+function stackedBar(data, i) {
+    return (<div key={i} style={{ width: '100%', height: '400px' }}>
         <ResponsiveContainer width='100%' height='100%'>
             <BarChart
                 width={500}
