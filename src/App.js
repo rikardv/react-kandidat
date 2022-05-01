@@ -16,6 +16,7 @@ import LiuLogo from './img/LiU_primary_black.png';
 import BottomContainer from './components/containers/BottomContainer.js';
 import TopContainer from './components/containers/TopContainer.js';
 import AllaStudenter from './components/layout/AllaStudenter.js';
+import KursInfo from './components/layout/KursInfo.js';
 
 const App = () => {
   /**
@@ -41,11 +42,12 @@ const App = () => {
       case 1:
         return (
           //CSN
-          <CSN
+          /*<CSN
             startDatum={selectedStartDates[0]}
             programKod={selectedProgram}
             kursKoder={selectedCourses}
-          />
+          />*/
+          <KursInfo />
         );
 
       case 2:
