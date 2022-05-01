@@ -63,7 +63,7 @@ const App = () => {
         return (
           //Betygsfördelning
           <Betygsfordelning
-            programKod={selectedProgram[0]}
+            programKod={selectedProgram}
             kursKoder={selectedCourses}
           />
         );

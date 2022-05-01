@@ -4,6 +4,9 @@ import Loading from './Loading';
 import getStudenter from '../../connections/getStudenter';
 import formatDataToRequest from '../../functions/formatDataToRequest';
 import { Grid } from '@mui/material';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import StudentPopUp from './StudentPopUp';
 
 const columns = [
@@ -41,6 +44,12 @@ export default function AllaStudeter({ programKod, startDatum }) {
   return loading ? (
     <Loading />
   ) : (
+          <div>
+              <Tooltip title="Denna sida visar en lista på de studenter som går detta program!" placement="right-start">
+                  <IconButton>
+                      <QuestionMarkIcon />
+                  </IconButton>
+              </Tooltip>
     <Grid container>
       <DataGrid
         style={{ width: 950 }}
@@ -53,6 +62,7 @@ export default function AllaStudeter({ programKod, startDatum }) {
       {selectedPerson && (
         <StudentPopUp personNummer={selectedPerson} handleClose={handleClose} />
       )}
-    </Grid>
+              </Grid>
+              </div>
   );
 }
