@@ -52,42 +52,52 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
       />
       {avbrott &&
         avbrott.map((res, indx) => (
-          <Card
-            style={{
-              width: '90%',
-              height: 'auto',
-            }}
+          <Grid
+            display='flex'
+            justifyContent='space-evenly'
+            lg={12}
+            md={12}
+            sm={12}
           >
-            <CardContent>
-              <Typography variant='h1' fontWeight='medium' align='center'>
-                Avhopp per kurs för {res.program}
-              </Typography>
-              <ResponsiveContainer height={500} width='100%'>
-                <BarChart data={res.data}>
-                  <CartesianGrid horizontal={false} vertical={false} />
-                  <XAxis
-                    height={100}
-                    dataKey='kurskod'
-                    angle={-90}
-                    textAnchor='end'
-                    interval={0}
-                    tickMargin={10}
-                    label={{ value: 'Kurskod', position: 'insideBottom' }}
-                  />
-                  <YAxis
-                    label={{
-                      value: 'Antal studenter',
-                      angle: -90,
-                      position: 'insideLeft',
-                    }}
-                  />
-                  <Tooltip />
+            <Card
+              style={{
+                width: '90%',
+                height: 'auto',
+              }}
+            >
+              <CardContent>
+                <Typography variant='h1' fontWeight='medium' align='center'>
+                  Avhopp per kurs för {res.program}
+                </Typography>
+                <ResponsiveContainer height={500} width='100%'>
+                  <BarChart data={res.data}>
+                    <CartesianGrid horizontal={false} vertical={false} />
+                    <XAxis
+                      height={100}
+                      dataKey='kurskod'
+                      angle={-90}
+                      textAnchor='end'
+                      interval={0}
+                      tickMargin={10}
+                      label={{ value: 'Kurskod', position: 'insideBottom' }}
+                    />
+                    <YAxis
+                      label={{
+                        value: 'Antal studenter',
+                        angle: -90,
+                        position: 'insideLeft',
+                      }}
+                    />
+                    <Tooltip />
 
-                  <Bar dataKey='avbrott' fill={theme.palette.primary.main} />
-                </BarChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
+                    <Bar dataKey='avbrott' fill={theme.palette.primary.main} />
+                  </BarChart>
+                </ResponsiveContainer>
+                <Typography>Kurs med flest antal avhopp</Typography>
+                <Typography>{res.data[0].kurskod}</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
         ))}
     </Grid>
   );

@@ -103,9 +103,8 @@ const DagarNew = ({ kurskod, startDatum }) => {
       display='flex'
       flexWrap='wrap'
       rowGap={2}
-      justifyContent='space-evenly'
+      justifyContent='center'
       width='100%'
-      padding={2}
     >
       <AnalysInfo
         firstVal={nrStudents && nrStudents}
@@ -113,10 +112,16 @@ const DagarNew = ({ kurskod, startDatum }) => {
         secondVal={nrCourses && nrCourses}
         secondTitle='Antalet kurser analyserade'
       />
-      <Grid item sm={12} md={12} lg={12}>
+      <Grid
+        display='flex'
+        justifyContent='space-evenly'
+        sm={12}
+        md={12}
+        lg={12}
+      >
         <Card
           style={{
-            width: '100%',
+            width: '90%',
             height: 'auto',
           }}
         >
@@ -124,7 +129,7 @@ const DagarNew = ({ kurskod, startDatum }) => {
             <Typography variant='h1' fontWeight='medium' align='center'>
               Dagar till avklarad kurs
             </Typography>
-            <ResponsiveContainer height={300} width='100%'>
+            <ResponsiveContainer height={300} width='90%'>
               <LineChart data={dagar} margin={10}>
                 <CartesianGrid strokeDasharray='6 6' vertical={false} />
                 <XAxis
@@ -162,7 +167,13 @@ const DagarNew = ({ kurskod, startDatum }) => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item sm={12} md={12} lg={12}>
+      <Grid
+        display='flex'
+        justifyContent='space-evenly'
+        sm={12}
+        md={12}
+        lg={12}
+      >
         <DagarPerKurs kurskod={kurskod} />
       </Grid>
     </Grid>

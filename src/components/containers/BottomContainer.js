@@ -10,6 +10,7 @@ const BottomContainer = () => {
       width='100%'
       direction='column'
       alignItems='flex-start'
+      justifyContent='center'
     >
       <Typography marginLeft='1%' color='white' fontWeight={'bold'}>
         Kandidatarbete 2022. Hassan, Jane, John, Max, Rikard, Tim
