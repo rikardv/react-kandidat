@@ -25,7 +25,7 @@ export default function DataTable({ rows, loading }) {
   return loading ? (
     <Loading />
   ) : (
-          <div>qw
+          <div>
               <Tooltip title="Denna sida visar de kurser en specifik student läser!" placement="right-start">
                   <IconButton>
                       <QuestionMarkIcon />
