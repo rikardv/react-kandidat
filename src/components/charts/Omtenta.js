@@ -26,51 +26,56 @@ const Omtenta = (props) => {
   const [howManyStudents, setHowManyStudents] = useState('0');
   const [howManyCourses, setHowManyCourses] = useState('0');
   useEffect(() => {
-
     // res = data (re-exam data), data2 (how many students have done the tenta), data3 (data of students who passed the exam)
-      getOmtenta(props.kursKoder).then((res) => {
-           
-          setLoading(true);
-          let graphData = [{name: 1}, {name: 2}, {name: 3}, {name: 4}, {name: "5+"}];
-          for (let k in props.kursKoder) {
-              let kurs = props.kursKoder[k];
-              setLoading(true);
+    getOmtenta(props.kursKoder).then((res) => {
+      setLoading(true);
+      let graphData = [
+        { name: 1 },
+        { name: 2 },
+        { name: 3 },
+        { name: 4 },
+        { name: '5+' },
+      ];
+      for (let k in props.kursKoder) {
+        let kurs = props.kursKoder[k];
+        setLoading(true);
 
-              //Filtering out the students who have not passed the exam yet.
-              let student_data = res.data[kurs].filter((person) => {
-                  for (let i = 0; i < res.data3[kurs].length; ++i) {
-                      if (res.data3[kurs][i].persnr == person.persnr) return true;
-                  }
-
-                  return false;
-              });
-              // Storing the students based on how many re-exams they have done before passing the exam.
-              let counter = [[], [], [], [], []];
-              let v = 0;
-              for (let i = 0; i < student_data.length; ++i) {
-                if (student_data[i].value > 5) v = 4;
-                else v = student_data[i].value - 1;
-
-                ++counter[v];
-              }
-
-              // Rearanging the data to suit the recharts histogram
-              for (let i = 0; i < counter.length - 1; ++i)
-                graphData[i][kurs] = Math.round((10000 * counter[i]) / res.data2[kurs][0].value)/100;
-
-               graphData[4][kurs] = Math.round((10000 * counter[4]) / res.data2[kurs][0].value)/100;
+        //Filtering out the students who have not passed the exam yet.
+        let student_data = res.data[kurs].filter((person) => {
+          for (let i = 0; i < res.data3[kurs].length; ++i) {
+            if (res.data3[kurs][i].persnr == person.persnr) return true;
           }
 
-          let a = {};
-          for (let prop in res.data3)
-              for (let i = 0; i < res.data3[prop].length; ++i)
-                  a[res.data3[prop][i].persnr] = "";
+          return false;
+        });
+        // Storing the students based on how many re-exams they have done before passing the exam.
+        let counter = [[], [], [], [], []];
+        let v = 0;
+        for (let i = 0; i < student_data.length; ++i) {
+          if (student_data[i].value > 5) v = 4;
+          else v = student_data[i].value - 1;
 
+          ++counter[v];
+        }
 
-          setHowManyStudents(Object.keys(a).length);
-          setHowManyCourses(props.kursKoder.length);
-          setOmtenta(graphData);
-          setLoading(false);
+        // Rearanging the data to suit the recharts histogram
+        for (let i = 0; i < counter.length - 1; ++i)
+          graphData[i][kurs] =
+            Math.round((10000 * counter[i]) / res.data2[kurs][0].value) / 100;
+
+        graphData[4][kurs] =
+          Math.round((10000 * counter[4]) / res.data2[kurs][0].value) / 100;
+      }
+
+      let a = {};
+      for (let prop in res.data3)
+        for (let i = 0; i < res.data3[prop].length; ++i)
+          a[res.data3[prop][i].persnr] = '';
+
+      setHowManyStudents(Object.keys(a).length);
+      setHowManyCourses(props.kursKoder.length);
+      setOmtenta(graphData);
+      setLoading(false);
     });
   }, [props]);
 
@@ -109,18 +114,20 @@ const Omtenta = (props) => {
           </YAxis>
           <Tooltip />
           <Legend />
-                      {
-                          Object.keys(omTenta[0]).map(kurs => {
-                              if (kurs != "name")
-                                  return <Bar key={kurs} dataKey={kurs} fill={'#' + Math.floor(Math.random() * 16777215).toString(16)} />
-                          })
-                      }
+          {Object.keys(omTenta[0]).map((kurs) => {
+            if (kurs != 'name')
+              return (
+                <Bar
+                  key={kurs}
+                  dataKey={kurs}
+                  fill={'#' + Math.floor(Math.random() * 16777215).toString(16)}
+                />
+              );
+          })}
         </BarChart>
       </ResponsiveContainer>
     </Grid>
   );
 };
-
-
 
 export default Omtenta;
