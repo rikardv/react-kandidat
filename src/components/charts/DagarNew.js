@@ -119,6 +119,7 @@ const DagarNew = ({ kurskod, startDatum }) => {
         md={12}
         lg={12}
       >
+
         <Card
           style={{
             width: '90%',
@@ -160,6 +161,7 @@ const DagarNew = ({ kurskod, startDatum }) => {
                       dot={false}
                       stroke={colorArray[indx]}
                       connectNulls
+                      key={indx}
                     />
                   ))}
               </LineChart>

@@ -3,6 +3,9 @@ import { DataGrid } from '@mui/x-data-grid';
 import Loading from './Loading';
 import getStudenter from '../../connections/getStudenter';
 import formatDataToRequest from '../../functions/formatDataToRequest';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import { Card, CardContent, Typography } from '@mui/material';
 import StudentPopUp from './StudentPopUp';
 
@@ -48,6 +51,11 @@ export default function AllaStudenter({ programKod, startDatum }) {
     <Card style={{ width: '90%', margin: 10 }}>
       <CardContent width='100%' style={{ height: 500 }}>
         <Typography>Header - något ska skrivas här</Typography>
+ <Tooltip title="Denna sida visar en lista på de studenter som går detta program!" placement="right-start">
+                  <IconButton>
+                      <QuestionMarkIcon />
+                  </IconButton>
+              </Tooltip>
         <DataGrid
           style={{ cursor: 'pointer' }}
           rows={table}

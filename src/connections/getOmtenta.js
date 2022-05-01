@@ -1,7 +1,13 @@
-export default async function () {
-  var betygsfordelning;
+export default async function (kurskod) {
+    var betygsfordelning;
 
-  await fetch("http://localhost:8080" + `/omtenta`, {
+    let str = "?kurskod[]=" + kurskod[0];
+
+    for (let i = 1; i < kurskod.length; ++i) {
+        str += "&kurskod[]=" + kurskod[i];
+    }
+
+  await fetch("http://localhost:8080" + `/omtenta` + str, {
     method: "GET",
   })
     .then((response) => response.json())
