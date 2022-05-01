@@ -2,20 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, ResponsiveContainer, Cell } from 'recharts';
 import { useTheme, Card, CardContent, Typography } from '@mui/material';
 
-const PieSlapandeKurser = ({ data, title }) => {
+const CustomPieChart = ({ title, total, under }) => {
   const theme = useTheme();
   const COLORS = [theme.palette.success.light, theme.palette.error.main];
 
   return (
-    <Card style={{ width: '35%', height: 300 }}>
+    <Card style={{ width: '35%' }}>
       <CardContent>
         <Typography variant='h2' fontWeight='medium' align='center'>
-          Antal som har VS antal som inte har släpande kurser för {title}
+          {title}
         </Typography>
         <ResponsiveContainer height={200} width='100%'>
           <PieChart>
             <Pie
-              data={data}
+              data={[
+                {
+                  name: 'Analyzed',
+                  value: total,
+                },
+                {
+                  name: 'Under',
+                  value: under,
+                },
+              ]}
               cx='50%'
               cy='50%'
               outerRadius='80%'
@@ -24,7 +33,7 @@ const PieSlapandeKurser = ({ data, title }) => {
               nameKey='name'
               label
             >
-              {data.map((entry, index) => (
+              {COLORS.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
                   fill={COLORS[index % COLORS.length]}
@@ -38,4 +47,4 @@ const PieSlapandeKurser = ({ data, title }) => {
   );
 };
 
-export default PieSlapandeKurser;
+export default CustomPieChart;

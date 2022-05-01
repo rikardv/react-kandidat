@@ -53,6 +53,7 @@ const DagarPerKurs = ({ kurskod }) => {
       );
 
       getDagarPerKurs(formattedStartDatum, selectedCourse).then((res) => {
+        console.log(res.data);
         setDagarData(res.data);
         let activeFormatted = res.dates.map((datum) => {
           return { ...res.dates }, { datum, active: true };
@@ -82,63 +83,59 @@ const DagarPerKurs = ({ kurskod }) => {
   return loading ? (
     <Loading />
   ) : (
-    <>
-      <CourseList
-        kurskod={kurskod}
-        selectedCourse={selectedCourse}
-        setSelectedCourse={setSelectedCourse}
-      />
+    <Card style={{ width: '90%' }}>
+      <CardContent>
+        <Typography variant='h1' fontWeight='medium' align='center'>
+          Antal dagar till avslutad kurs
+        </Typography>
+        <CourseList
+          kurskod={kurskod}
+          selectedCourse={selectedCourse}
+          setSelectedCourse={setSelectedCourse}
+        />
 
-      <Card style={{ width: '90%', height: 550 }}>
-        <CardContent>
-          <Typography variant='h1' fontWeight='medium' align='center'>
-            Antal dagar till avslutad kurs
-          </Typography>
-
-          <ResponsiveContainer height={500} width='100%'>
-            <LineChart data={dagarData}>
-              <CartesianGrid strokeDasharray='6 6' vertical={false} />
-              <XAxis
-                type='number'
-                dataKey='antalDagar'
-                height={40}
-                domain={[0, 'dataMax']}
-              >
-                <Label
-                  value='Antal dagar till avslutad kurs'
-                  offset={0}
-                  position='insideBottom'
-                />
-              </XAxis>
-              <YAxis
-                domain={[0, 100]}
-                label={{
-                  value: 'Procent',
-                  angle: -90,
-                  position: 'insideLeft',
-                }}
+        <ResponsiveContainer height={300} width='100%'>
+          <LineChart data={dagarData}>
+            <CartesianGrid strokeDasharray='6 6' vertical={false} />
+            <XAxis
+              type='number'
+              dataKey='antalDagar'
+              height={40}
+              domain={[0, 'dataMax']}
+            >
+              <Label
+                value='Antal dagar till avslutad kurs'
+                offset={0}
+                position='insideBottom'
               />
-              <YAxis />
-              <Tooltip />
-
-              <Legend verticalAlign='top' onClick={handleActive} />
-              {datesWithState &&
-                datesWithState.map((res, indx) => (
-                  <Line
-                    key={indx}
-                    type='monotone'
-                    dataKey={res.datum}
-                    hide={!res.active}
-                    stroke={colorArray[indx]}
-                    connectNulls
-                    dot={false}
-                  />
-                ))}
-            </LineChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
-    </>
+            </XAxis>
+            <YAxis
+              domain={[0, 100]}
+              label={{
+                value: 'Procent',
+                angle: -90,
+                position: 'insideLeft',
+              }}
+            />
+            <YAxis />
+            <Tooltip />
+            <Legend verticalAlign='top' onClick={handleActive} />
+            {datesWithState &&
+              datesWithState.map((res, indx) => (
+                <Line
+                  type='monotone'
+                  dataKey={res.datum}
+                  hide={!res.active}
+                  stroke={colorArray[indx]}
+                  connectNulls
+                  dot={false}
+                  key={indx}
+                />
+              ))}
+          </LineChart>
+        </ResponsiveContainer>
+      </CardContent>
+    </Card>
   );
 };
 

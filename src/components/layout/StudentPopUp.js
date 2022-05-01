@@ -34,22 +34,20 @@ export default function StudentPopUp({ personNummer, handleClose }) {
     });
   }, []);
   return (
-    <div>
-      <Dialog
-        fullScreen
-        fullWidth
-        open
-        onClose={handleClose}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-      >
-        <DialogTitle id='alert-dialog-title'>
-          {name &&
-            name.map((person) => person.FORNAMN + ' ' + person.EFTERNAMN)}
-          <Typography> {personNummer}</Typography>
-        </DialogTitle>
-        <DialogContent>
-          {/* <Grid container spacing={3}>
+    <Dialog
+      style={{ width: '100%' }}
+      maxWidth={false}
+      open
+      onClose={handleClose}
+      aria-labelledby='alert-dialog-title'
+      aria-describedby='alert-dialog-description'
+    >
+      <DialogTitle id='alert-dialog-title'>
+        {name && name.map((person) => person.FORNAMN + ' ' + person.EFTERNAMN)}
+        <Typography> {personNummer}</Typography>
+      </DialogTitle>
+      <DialogContent>
+        {/* <Grid container spacing={3}>
             <Grid item md={5}>
               Registrerade program
               {program &&
@@ -71,20 +69,19 @@ export default function StudentPopUp({ personNummer, handleClose }) {
                 ))}
             </Grid>
           </Grid> */}
-          <Stack direction='row' spacing={1}>
-            <Box>
-              <Typography>Tillfällig rubrik</Typography>
-              <StudentInfoTable rows={table && table} loading={loading} />
-            </Box>
-          </Stack>
-        </DialogContent>
+        <Stack direction='row' spacing={1}>
+          <Box>
+            <Typography>Tillfällig rubrik</Typography>
+            <StudentInfoTable rows={table && table} loading={loading} />
+          </Box>
+        </Stack>
+      </DialogContent>
 
-        <DialogActions>
-          <Button onClick={handleClose} autoFocus variant='contained'>
-            Stäng
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+      <DialogActions>
+        <Button onClick={handleClose} autoFocus variant='contained'>
+          Stäng
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }

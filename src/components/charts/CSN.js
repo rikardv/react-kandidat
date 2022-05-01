@@ -10,12 +10,15 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  Pie,
+  PieChart,
 } from 'recharts';
 import Loading from '../layout/Loading';
 import { useTheme, Card, CardContent, Typography, Grid } from '@mui/material';
 import formatDataToRequest from '../../functions/formatDataToRequest';
 import AnalysInfo from '../layout/AnalysInfo';
 import StudentPopUp from '../layout/StudentPopUp';
+import CustomPieChart from './CustomPieChart';
 
 const CSN = ({ startDatum, programKod, kursKoder }) => {
   const [HP, setHP] = useState();
@@ -42,6 +45,8 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
     <Loading></Loading>
   ) : (
     <Grid
+      container
+      width='90%'
       display='flex'
       flexWrap='wrap'
       justifyContent='space-evenly'
@@ -62,58 +67,73 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
       {selectedPerson && (
         <StudentPopUp personNummer={selectedPerson} handleClose={closeDialog} />
       )}
+
       {HP &&
         HP.map((res, indx) => (
-          <Card
+          <Grid
+            display='flex'
+            justifyContent='space-evenly'
+            md={12}
+            sm={12}
+            lg={12}
             key={indx}
-            style={{
-              width: '90%',
-              height: 'auto',
-            }}
-          >
-            <CardContent>
-              <Typography variant='h1' fontWeight='medium' align='center'>
-                Studenter under- eller nära CSN-gränsen för {res.program}
-              </Typography>
-              <ResponsiveContainer height={200} width='100%'>
-                <ComposedChart
-                  data={res.sort_HP}
-                  onClick={(e) => setSelectedPerson(e.activeLabel)}
-                >
-                  <XAxis
-                    dataKey='name'
-                    tick={false}
-                    label={{ value: 'Student', position: 'insideBottom' }}
-                  />
-                  <YAxis
-                    label={{
-                      value: 'Antal HP',
-                      angle: -90,
-                      position: 'insideLeft',
-                    }}
-                  />
-                  <Tooltip />
-                  <Legend verticalAlign='top' align='right' />
-                  <CartesianGrid horizontal={false} vertical={false} />
 
-                  <Bar
-                    name='HP för student'
-                    dataKey='actual'
-                    barSize={8}
-                    fill='#413ea0'
-                  />
-                  <Area
-                    name='HP-gräns'
-                    type='monotone'
-                    dataKey='required'
-                    fill={theme.palette.secondary.main}
-                    opacity={0.7}
-                    stroke='#ff7300'
-                  />
-                </ComposedChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
+          >
+            <Card
+              style={{
+                width: '55%',
+                height: 'auto',
+              }}
+            >
+              <CardContent>
+                <Typography variant='h1' fontWeight='medium' align='center'>
+                  Studenter under- eller nära CSN-gränsen för {res.program}
+                </Typography>
+                <ResponsiveContainer height={200} width='100%'>
+                  <ComposedChart
+                    data={res.sort_HP}
+                    onClick={(e) => setSelectedPerson(e.activeLabel)}
+                  >
+                    <XAxis
+                      dataKey='name'
+                      tick={false}
+                      label={{ value: 'Student', position: 'insideBottom' }}
+                    />
+                    <YAxis
+                      label={{
+                        value: 'Antal HP',
+                        angle: -90,
+                        position: 'insideLeft',
+                      }}
+                    />
+                    <Tooltip />
+                    <Legend verticalAlign='top' align='right' />
+                    <CartesianGrid horizontal={false} vertical={false} />
+
+                    <Bar
+                      name='HP för student'
+                      dataKey='actual'
+                      barSize={8}
+                      fill='#413ea0'
+                    />
+                    <Area
+                      name='HP-gräns'
+                      type='monotone'
+                      dataKey='required'
+                      fill={theme.palette.secondary.main}
+                      opacity={0.7}
+                      stroke='#ff7300'
+                    />
+                  </ComposedChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+            <CustomPieChart
+              title={'Under och över CSN gränsen för ' + res.program}
+              total={res.total}
+              under={res.under}
+            />
+          </Grid>
         ))}
     </Grid>
   );

@@ -12,8 +12,8 @@ import {
 import Loading from '../layout/Loading';
 import { useTheme, Card, CardContent, Typography, Grid } from '@mui/material';
 import formatDataToRequest from '../../functions/formatDataToRequest';
-import PieSlapandeKurser from './PieSlapandeKurser';
 import AnalysInfo from '../layout/AnalysInfo';
+import CustomPieChart from './CustomPieChart';
 
 const SlapandeKurser = ({ startDatum, programKod, kursKoder }) => {
   const [slapande, setSlapande] = useState();
@@ -38,17 +38,24 @@ const SlapandeKurser = ({ startDatum, programKod, kursKoder }) => {
   return loading ? (
     <Loading />
   ) : (
-    <Grid container width='90%' height={300}>
+    <Grid container width='90%'>
       <AnalysInfo
         firstVal={nrStudents && nrStudents}
         firstTitle='Antal studenter analyserade'
         secondVal={nrSlapande && nrSlapande}
         secondTitle='Antal studenter med släpande kurser'
       />
-
-              {slapande &&
-                  slapande.map((res, indx) => (
-                      <Grid display='flex' justifyContent='space-evenly' marginTop={2} key={indx}>
+      {slapande &&
+        slapande.map((res, indx) => (
+          <Grid
+            display='flex'
+            justifyContent='space-evenly'
+            marginTop={2}
+            md={12}
+            lg={12}
+            sm={12}
+            key={indx}
+          >
             <Card style={{ width: '55%', height: 300 }}>
               <CardContent>
                 <Typography variant='h2' fontWeight='medium' align='center'>
@@ -83,7 +90,14 @@ const SlapandeKurser = ({ startDatum, programKod, kursKoder }) => {
                 </ResponsiveContainer>
               </CardContent>
             </Card>
-            <PieSlapandeKurser data={res.dataPie} title={res.program} />
+            <CustomPieChart
+              title={
+                'Antalet studenter med släpande och icke-släpande för ' +
+                res.program
+              }
+              total={res.dataPie[0].value}
+              under={res.dataPie[1].value}
+            />
           </Grid>
         ))}
     </Grid>

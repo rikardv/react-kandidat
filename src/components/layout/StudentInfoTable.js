@@ -23,10 +23,10 @@ const columns = [
 
 export default function DataTable({ rows, loading }) {
   return loading ? (
-    <Loading />
+    <Loading title='Laddar information om studenten....' />
   ) : (
           <div>
-              <Tooltip title="Denna sida visar de kurser en specifik student läser!" placement="right-start">
+              <Tooltip title="Denna sida visar de kurser en specifik student lï¿½ser!" placement="right-start">
                   <IconButton>
                       <QuestionMarkIcon />
                   </IconButton>
