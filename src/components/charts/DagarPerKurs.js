@@ -53,7 +53,6 @@ const DagarPerKurs = ({ kurskod }) => {
       );
 
       getDagarPerKurs(formattedStartDatum, selectedCourse).then((res) => {
-        console.log(res.data);
         setDagarData(res.data);
         let activeFormatted = res.dates.map((datum) => {
           return { ...res.dates }, { datum, active: true };
