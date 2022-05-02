@@ -14,6 +14,7 @@ import Loading from '../layout/Loading';
 import formatDataToRequest from '../../functions/formatDataToRequest';
 import AnalysInfo from '../layout/AnalysInfo';
 import KursInfoPopUp from '../layout/KursInfoPopUp';
+import { Help } from './Help';
 
 const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
   // const program = '6CDDD'; //6CMEN, 6CDDD, 6CIEN, 6CMJU, 6KGDK
@@ -50,6 +51,7 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
       justifyContent='space-evenly'
       width='100%'
     >
+      <Help text="Tryck på en kurskod för att få mer infomation om kursens studieresultat."/>
       <AnalysInfo
         firstVal={nrKurser && nrKurser}
         firstTitle='Antalet kurser analyserade'
@@ -61,12 +63,11 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
       )}
       {avbrott &&
         avbrott.map((res, indx) => (
-          <Grid
-            display='flex'
-            justifyContent='space-evenly'
-            lg={12}
-            md={12}
-            sm={12}
+            <Grid
+                key={indx}
+                display='flex'
+                justifyContent='space-evenly'
+                width="90%"
           >
             <Card
               style={{

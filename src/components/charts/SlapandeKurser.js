@@ -51,9 +51,6 @@ const SlapandeKurser = ({ startDatum, programKod, kursKoder }) => {
             display='flex'
             justifyContent='space-evenly'
             marginTop={2}
-            md={12}
-            lg={12}
-            sm={12}
             key={indx}
           >
             <Card style={{ width: '55%', height: 300 }}>

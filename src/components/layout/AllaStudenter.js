@@ -9,6 +9,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { Card, CardContent, Typography } from '@mui/material';
 import StudentPopUp from './StudentPopUp';
 import { localeText } from '../../functions/gridLocaleText';
+import { Help } from '../charts/Help';
 
 const columns = [
   { field: 'PERSONNUMMER', headerName: 'Personnummer', minWidth: 130 },
@@ -49,9 +50,10 @@ export default function AllaStudenter({ programKod, startDatum }) {
   return loading ? (
     <Loading title='Laddar in studenter.....' />
   ) : (
-    <Card style={{ width: '90%', margin: 10 }}>
+    <Card style={{ width: '90%', margin: 10, marginTop: 60 }}>
+      <Help text="Tryck på ett personnummer för att få mer information om studentens studieresultat."/>
       <CardContent width='100%' style={{ height: 500 }}>
-        <Typography>Header - något ska skrivas här</Typography>
+        <Typography>Studenter som läser valda program</Typography>
         <Tooltip
           title='Denna sida visar en lista på de studenter som går detta program!'
           placement='right-start'

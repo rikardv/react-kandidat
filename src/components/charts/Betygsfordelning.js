@@ -3,6 +3,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
+import {Grid } from '@mui/material';
 import {
   BarChart,
   Bar,
@@ -11,33 +12,32 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  PieChart,
-  Pie,
-  Sector,
-  Cell,
+  Label,
   ResponsiveContainer,
 } from 'recharts';
 import getBetygsfordelning from '../../connections/getBetygsfordelning';
 import Loading from '../layout/Loading';
 import AnalysInfo from '../layout/AnalysInfo';
+import { Help } from './Help';
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 let kursData;
 let programData;
 const Betygsfordelning = (props) => {
-  const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
+    const [howManyCoutses, setHowManyCourses] = useState(true);
 
   useEffect(() => {
     getBetygsfordelning(props.programKod, props.kursKoder).then((res) => {
       setLoading(true);
       kursData = [];
-      programData = [];
+      programData = {};
 
       for (let prop in res.kursData) {
         kursData.push({ name: prop, data: res.kursData[prop] });
       }
 
       for (let q = 0; q < props.programKod.length; ++q) {
-        programData.push([]);
+        programData[props.programKod[q]] = [];
         //Rearanging the data to suit the histogram
         let myData = {};
         for (let i = 0; i < res.programData[q].length; ++i) {
@@ -48,13 +48,15 @@ const Betygsfordelning = (props) => {
         }
 
         for (let prop in myData) {
-          programData[q].push({ name: prop });
+            programData[props.programKod[q]].push({ name: prop });
           for (let prop2 in myData[prop]) {
-            programData[q][programData[q].length - 1][prop2] =
+              programData[props.programKod[q]][programData[props.programKod[q]].length - 1][prop2] =
               myData[prop][prop2];
           }
         }
-      }
+        }
+
+        console.log(programData);
 
       setLoading(false);
     });
@@ -63,77 +65,42 @@ const Betygsfordelning = (props) => {
   return loading ? (
     <Loading />
   ) : (
-    <div style={{ width: '100%' }}>
+          <div style={{ width: '100%' }}>
+              <Help text="Håll muspekaren över en stapel i diagrammet för att se betygsfördelningen för respektive kurs."/>
       <AnalysInfo
         firstVal={69}
         firstTitle='Placeholder'
         secondVal={69}
         secondTitle='Placeholder'
       />
-      {pieRow(kursData)}
-      {programData.map((data, i) => {
-        return stackedBar(data, i);
+      {Object.keys(programData).map((program, i) => {
+          return stackedBar(programData[program], program, i);
       })}
     </div>
   );
 };
 
-function pieRow(kursData) {
-  return (
-    <PieChart width={800} height={160}>
-      {kursData.map((kurs, i) => {
-        return (
-          <Pie
+function stackedBar(data, program, i) {
+    return (
+        <Grid
+            display='flex'
+            justifyContent='space-evenly'
             key={i}
-            data={kurs.data}
-            cx={((i + 1) * 800) / (kursData.length + 1)}
-            cy={60}
-            innerRadius={30}
-            outerRadius={50}
-            fill='#8884d8'
-            paddingAngle={5}
-            dataKey='value'
-          >
-            {kurs.data.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
-            ))}
-          </Pie>
-        );
-      })}
-      {kursData.map((kurs, i) => {
-        return (
-          <text
-            key={i}
-            x={((i + 1) * 800) / (kursData.length + 1) + 8}
-            y={140}
-            dy={8}
-            textAnchor='middle'
-            fill={'#11636C'}
-          >
-            {kurs.name}
-          </text>
-        );
-      })}
-    </PieChart>
-  );
-}
+            width="100%"
+            height="400px"
 
-function stackedBar(data, i) {
-  return (
-    <div key={i} style={{ width: '100%', height: '400px' }}>
-      <ResponsiveContainer width='100%' height='100%'>
+        >
+        <ResponsiveContainer width='90%' height='100%'>
         <BarChart
-          width={500}
-          height={300}
-          data={data}
-          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                  width={500}
+                  height="100%"
+                  data={data}
+                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                  style={{backgroundColor: "white"}}
         >
           <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey='name' style={{ display: 'none' }} />
-          <YAxis />
+          <XAxis dataKey='name' style={{ display: 'none' }} label={{ value: 'Kurs', position: "insideBottom"}}/>
+          <YAxis/>
           <Tooltip />
           <Legend />
           <Bar dataKey='U' stackId='a' fill='#C82828' />
@@ -151,7 +118,7 @@ function stackedBar(data, i) {
           <Bar dataKey='5' stackId='a' fill='#00B6F0' />
         </BarChart>
       </ResponsiveContainer>
-    </div>
+    </Grid>
   );
 }
 

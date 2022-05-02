@@ -7,11 +7,9 @@ import {
   CartesianGrid,
   XAxis,
   YAxis,
-  Tooltip,
+  Tooltip as Tooltip,
   Legend,
   ResponsiveContainer,
-  Pie,
-  PieChart,
 } from 'recharts';
 import Loading from '../layout/Loading';
 import { useTheme, Card, CardContent, Typography, Grid } from '@mui/material';
@@ -19,6 +17,7 @@ import formatDataToRequest from '../../functions/formatDataToRequest';
 import AnalysInfo from '../layout/AnalysInfo';
 import StudentPopUp from '../layout/StudentPopUp';
 import CustomPieChart from './CustomPieChart';
+import { Help } from './Help';
 
 const CSN = ({ startDatum, programKod, kursKoder }) => {
   const [HP, setHP] = useState();
@@ -53,6 +52,7 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
       flexDirection='row'
       rowGap={2}
     >
+              <Help text={"Tryck på ett personnummer i grafen för att få mer infomation om studentens studieresultat."}/>
       <AnalysInfo
         firstVal={
           HP && HP.reduce((total, currentVal) => total + currentVal.total, 0)
@@ -73,10 +73,8 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
           <Grid
             display='flex'
             justifyContent='space-evenly'
-            md={12}
-            sm={12}
-            lg={12}
             key={indx}
+            width="100%"
 
           >
             <Card
@@ -107,9 +105,8 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
                       }}
                     />
                     <Tooltip />
-                    <Legend verticalAlign='top' align='right' />
+                    <Legend verticalAlign='top' align='right'/>
                     <CartesianGrid horizontal={false} vertical={false} />
-
                     <Bar
                       name='HP för student'
                       dataKey='actual'

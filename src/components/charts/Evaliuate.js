@@ -16,7 +16,7 @@ import { Card, CardContent, Typography, Grid } from '@mui/material';
 import formatDataToRequest from '../../functions/formatDataToRequest';
 import AnalysInfo from '../layout/AnalysInfo';
 import KursInfoPopUp from '../layout/KursInfoPopUp';
-
+import { Help } from './Help';
 const Evaliuate = ({ programKod, kursKoder, selectedCourses }) => {
   const [kursutvarderingsbetyg, setKursUtvarderingsBetyg] = useState();
   const [nrBetyg, setNrBetyg] = useState();
@@ -63,6 +63,7 @@ const Evaliuate = ({ programKod, kursKoder, selectedCourses }) => {
     <Loading />
   ) : (
     <Grid container justifyContent='center'>
+      <Help text="Välj kurser från filtreringen till höger för att visa data för fler kurser. Tryck på en kurskod för att få mer information om kursens studieresultat."/>
       <AnalysInfo
         firstVal={nrBetyg && nrBetyg}
         firstTitle='Antalet totala betyg'
@@ -75,7 +76,7 @@ const Evaliuate = ({ programKod, kursKoder, selectedCourses }) => {
       <Card style={{ width: '90%', height: 550 }}>
         <CardContent>
           <Typography variant='h1' fontWeight='medium' align='center'>
-            Snittbetyg för kurser i EvaLIUate
+            Snittbetyg för kurser i Evaliuate
           </Typography>
           <ResponsiveContainer height={500} width='100%'>
             <BarChart
