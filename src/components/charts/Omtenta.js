@@ -19,6 +19,7 @@ import getOmtenta from '../../connections/getOmtenta';
 import Loading from '../layout/Loading';
 import AnalysInfo from '../layout/AnalysInfo';
 import { Grid } from '@mui/material';
+import { Help } from './Help';
 
 const Omtenta = (props) => {
   const [loading, setLoading] = useState(true);
@@ -83,6 +84,7 @@ const Omtenta = (props) => {
     <Loading />
   ) : (
     <Grid container width='100%'>
+      <Help text="Lägg till fler kurser i filtret till höger för att jämföra hur många omtentor som görs i varje kurs."/>
       <AnalysInfo
         firstVal={howManyStudents}
         firstTitle='Antal studenter'

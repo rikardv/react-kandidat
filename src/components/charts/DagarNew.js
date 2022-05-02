@@ -15,6 +15,7 @@ import getDagarNew from '../../connections/getDagarNew';
 import Loading from '../layout/Loading';
 import AnalysInfo from '../layout/AnalysInfo';
 import DagarPerKurs from './DagarPerKurs';
+import {Help} from './Help'
 
 const DagarNew = ({ kurskod, startDatum }) => {
   const [dagar, setDagar] = useState();
@@ -105,7 +106,9 @@ const DagarNew = ({ kurskod, startDatum }) => {
       rowGap={2}
       justifyContent='center'
       width='100%'
-    >
+          >
+              <Help text="Fråga: Varför visas inte samma data i de olika graferna för samma år? Den första grafen visar data för årskullen medan den andra grafen visar data för kursens startdatum. Detta gör att den andra grafen kan visa data för stuenter från flera årskullar, beroende på när de registrerade sig på kursen. Av den anledningen kan graferna skilja sig något." />
+
       <AnalysInfo
         firstVal={nrStudents && nrStudents}
         firstTitle='Antalet studenter analyserade'
@@ -126,9 +129,10 @@ const DagarNew = ({ kurskod, startDatum }) => {
             height: 'auto',
           }}
         >
+        <Help info={true} text="Grafen visar procentuella antalet som klarat kurserna vid resultatrapporteringarna. Välj kurser från filtreringen till höger för att visa data för flera kurser." x="-10px" y = "10px" position="relative"/>
           <CardContent>
             <Typography variant='h1' fontWeight='medium' align='center'>
-              Dagar till avklarad kurs
+              Dagar till avklarad kurs för flera kurser
             </Typography>
             <ResponsiveContainer height={300} width='90%'>
               <LineChart data={dagar} margin={10}>
@@ -176,7 +180,7 @@ const DagarNew = ({ kurskod, startDatum }) => {
         md={12}
         lg={12}
       >
-        <DagarPerKurs kurskod={kurskod} />
+        <DagarPerKurs kurskod={kurskod}/>
       </Grid>
     </Grid>
   );

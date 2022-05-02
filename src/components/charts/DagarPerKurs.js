@@ -17,6 +17,7 @@ import getKursStartDatum from '../../connections/getKursStartDatum';
 import getDagarPerKurs from '../../connections/getDagarPerKurs';
 import formatDataToRequest from '../../functions/formatDataToRequest';
 import Loading from '../layout/Loading';
+import { Help } from './Help';
 
 const DagarPerKurs = ({ kurskod }) => {
   const [dagarData, setDagarData] = useState([]);
@@ -83,9 +84,10 @@ const DagarPerKurs = ({ kurskod }) => {
     <Loading />
   ) : (
     <Card style={{ width: '90%' }}>
+      <Help info={true} text="Grafen visar procentuella antalet som klarat kursen vid de olika resultatrapporteringarna. Genom att välja kurser från filtreringen uppdateras listan över kuser i listan i grafen." position="relative" x="-10px" y = "10px"/>
       <CardContent>
         <Typography variant='h1' fontWeight='medium' align='center'>
-          Antal dagar till avslutad kurs
+          Antal dagar till avslutad kurs för specifk kurs vid olika år.
         </Typography>
         <CourseList
           kurskod={kurskod}

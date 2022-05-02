@@ -9,6 +9,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { Card, CardContent, Typography } from '@mui/material';
 import StudentPopUp from './StudentPopUp';
 import { localeText } from '../../functions/gridLocaleText';
+import { Help } from '../charts/Help';
 
 const columns = [
   { field: 'PERSONNUMMER', headerName: 'Personnummer', minWidth: 130 },
