@@ -8,6 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import { Card, CardContent, Typography } from '@mui/material';
 import StudentPopUp from './StudentPopUp';
+import { localeText } from '../../functions/gridLocaleText';
 
 const columns = [
   { field: 'PERSONNUMMER', headerName: 'Personnummer', minWidth: 130 },
@@ -51,11 +52,14 @@ export default function AllaStudenter({ programKod, startDatum }) {
     <Card style={{ width: '90%', margin: 10 }}>
       <CardContent width='100%' style={{ height: 500 }}>
         <Typography>Header - något ska skrivas här</Typography>
- <Tooltip title="Denna sida visar en lista på de studenter som går detta program!" placement="right-start">
-                  <IconButton>
-                      <QuestionMarkIcon />
-                  </IconButton>
-              </Tooltip>
+        <Tooltip
+          title='Denna sida visar en lista på de studenter som går detta program!'
+          placement='right-start'
+        >
+          <IconButton>
+            <QuestionMarkIcon />
+          </IconButton>
+        </Tooltip>
         <DataGrid
           style={{ cursor: 'pointer' }}
           rows={table}
@@ -64,6 +68,7 @@ export default function AllaStudenter({ programKod, startDatum }) {
           onRowClick={(e) => handleClick(e)}
           pageSize={30}
           components={{ Toolbar: GridToolbar }}
+          localeText={localeText}
         />
         {selectedPerson && (
           <StudentPopUp

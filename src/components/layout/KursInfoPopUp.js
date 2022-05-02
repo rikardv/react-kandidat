@@ -6,6 +6,7 @@ import { Dialog, DialogTitle, DialogContent } from '@mui/material';
 import Button from '@mui/material/Button';
 import { PieChart, Pie, Cell, Label } from 'recharts';
 import { useTheme } from '@emotion/react';
+import { localeText } from '../../functions/gridLocaleText';
 
 const RADIAN = Math.PI / 180;
 
@@ -108,6 +109,7 @@ export default function KursInfoPopUp({ kursKod, handleClose }) {
             rowHeight={200}
             disableVirtualization
             components={{ Toolbar: GridToolbar }}
+            localeText={localeText}
           />
         )}
       </DialogContent>
