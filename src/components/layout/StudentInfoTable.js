@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import Loading from './Loading';
 
 const columns = [
@@ -22,7 +25,13 @@ export default function DataTable({ rows, loading }) {
   return loading ? (
     <Loading title='Laddar information om studenten....' />
   ) : (
-    <DataGrid
+          <div>
+              <Tooltip title="Denna sida visar de kurser en specifik student l�ser!" placement="right-start">
+                  <IconButton>
+                      <QuestionMarkIcon />
+                  </IconButton>
+              </Tooltip>
+               <DataGrid
       style={{ width: 1000 }}
       rows={rows}
       columns={columns}
@@ -30,5 +39,6 @@ export default function DataTable({ rows, loading }) {
       autoHeight
       components={{ Toolbar: GridToolbar }}
     />
+          </div>
   );
 }

@@ -76,6 +76,8 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
             md={12}
             sm={12}
             lg={12}
+            key={indx}
+
           >
             <Card
               style={{

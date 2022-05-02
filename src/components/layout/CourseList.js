@@ -12,7 +12,7 @@ const CourseList = ({ kurskod, selectedCourse, setSelectedCourse }) => {
       <InputLabel id='demo-simple-select-label'>Välj kurs</InputLabel>
       <Select label='Kurskod' value={selectedCourse} onChange={handleSelect}>
         {kurskod &&
-          kurskod.map((res, indx) => <MenuItem value={res}>{res}</MenuItem>)}
+          kurskod.map((res, indx) => <MenuItem key={indx} value={res}>{res}</MenuItem>)}
       </Select>
     </FormControl>
   );

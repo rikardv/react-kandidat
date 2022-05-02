@@ -118,7 +118,6 @@ const DagarPerKurs = ({ kurskod }) => {
             />
             <YAxis />
             <Tooltip />
-
             <Legend verticalAlign='top' onClick={handleActive} />
             {datesWithState &&
               datesWithState.map((res, indx) => (
@@ -129,6 +128,7 @@ const DagarPerKurs = ({ kurskod }) => {
                   stroke={colorArray[indx]}
                   connectNulls
                   dot={false}
+                  key={indx}
                 />
               ))}
           </LineChart>

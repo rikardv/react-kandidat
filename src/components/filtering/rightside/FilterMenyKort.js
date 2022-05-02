@@ -54,13 +54,11 @@ const FilterMenyKort = ({ titel, data, selected, setSelected }) => {
         </Stack>
         <Stack spacing={1}>
           {selected.map((pgr) => (
-            <>
               <Chip
+                key={pgr}
                 variant='outlined'
                 label={<Typography variant='h3'>{pgr}</Typography>}
               />
-              <Divider />
-            </>
           ))}
         </Stack>
       </CardContent>

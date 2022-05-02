@@ -45,7 +45,6 @@ const SlapandeKurser = ({ startDatum, programKod, kursKoder }) => {
         secondVal={nrSlapande && nrSlapande}
         secondTitle='Antal studenter med släpande kurser'
       />
-
       {slapande &&
         slapande.map((res, indx) => (
           <Grid
@@ -55,6 +54,7 @@ const SlapandeKurser = ({ startDatum, programKod, kursKoder }) => {
             md={12}
             lg={12}
             sm={12}
+            key={indx}
           >
             <Card style={{ width: '55%', height: 300 }}>
               <CardContent>
