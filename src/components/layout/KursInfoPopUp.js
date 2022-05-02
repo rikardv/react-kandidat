@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Loading from './Loading';
 import getKursInfo from '../../connections/getKursInfo';
 import { Dialog, DialogTitle, DialogContent } from '@mui/material';
@@ -103,10 +103,11 @@ export default function KursInfoPopUp({ kursKod, handleClose }) {
             style={{ width: 1000 }}
             rows={table}
             columns={columns}
-            checkboxSelection={false}
+            checkboxSelection
             pageSize={30}
             rowHeight={200}
             disableVirtualization
+            components={{ Toolbar: GridToolbar }}
           />
         )}
       </DialogContent>

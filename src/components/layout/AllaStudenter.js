@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Loading from './Loading';
 import getStudenter from '../../connections/getStudenter';
 import formatDataToRequest from '../../functions/formatDataToRequest';
@@ -52,9 +52,10 @@ export default function AllaStudenter({ programKod, startDatum }) {
           style={{ cursor: 'pointer' }}
           rows={table}
           columns={columns}
-          checkboxSelection={false}
+          checkboxSelection
           onRowClick={(e) => handleClick(e)}
           pageSize={30}
+          components={{ Toolbar: GridToolbar }}
         />
         {selectedPerson && (
           <StudentPopUp

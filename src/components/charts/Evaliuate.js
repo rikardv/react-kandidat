@@ -15,12 +15,14 @@ import Loading from '../layout/Loading';
 import { Card, CardContent, Typography, Grid } from '@mui/material';
 import formatDataToRequest from '../../functions/formatDataToRequest';
 import AnalysInfo from '../layout/AnalysInfo';
+import KursInfoPopUp from '../layout/KursInfoPopUp';
 
 const Evaliuate = ({ programKod, kursKoder, selectedCourses }) => {
   const [kursutvarderingsbetyg, setKursUtvarderingsBetyg] = useState();
   const [nrBetyg, setNrBetyg] = useState();
   const [nrKurser, setNrKurser] = useState();
   const [loading, setLoading] = useState(true);
+  const [selectedCourse, setSelectedCourse] = useState();
 
   useEffect(() => {
     const formattedKurskoder = formatDataToRequest(kursKoder, 'kurskod');
@@ -31,6 +33,10 @@ const Evaliuate = ({ programKod, kursKoder, selectedCourses }) => {
       setLoading(false);
     });
   }, [programKod, kursKoder]);
+
+  const handleClose = () => {
+    setSelectedCourse();
+  };
   //Kräver DataKey för varje period då vi vill kunna använda namn som datakey för Xaxeln och utvärderingsbetyget för Yaxeln
   //Hämtar data i formatet [{name:****, 2019HT: ****,2020VT: ****, etc.... }]
   return loading ? (
@@ -43,13 +49,20 @@ const Evaliuate = ({ programKod, kursKoder, selectedCourses }) => {
         secondVal={nrKurser && nrKurser}
         secondTitle='Antalet kurser analyserade'
       />
+      {selectedCourse && (
+        <KursInfoPopUp kursKod={selectedCourse} handleClose={handleClose} />
+      )}
       <Card style={{ width: '90%', height: 550 }}>
         <CardContent>
           <Typography variant='h1' fontWeight='medium' align='center'>
             Snittbetyg för kurser i EvaLIUate
           </Typography>
           <ResponsiveContainer height={500} width='100%'>
-            <BarChart data={kursutvarderingsbetyg} height={250}>
+            <BarChart
+              data={kursutvarderingsbetyg}
+              height={250}
+              onClick={(e) => setSelectedCourse(e.activeLabel)}
+            >
               <CartesianGrid
                 strokeDasharray='3 0'
                 CartesianGrid

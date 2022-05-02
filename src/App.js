@@ -16,7 +16,6 @@ import LiuLogo from './img/LiU_primary_black.png';
 import BottomContainer from './components/containers/BottomContainer.js';
 import TopContainer from './components/containers/TopContainer.js';
 import AllaStudenter from './components/layout/AllaStudenter.js';
-import KursInfo from './components/layout/KursInfoPopUp.js';
 
 const App = () => {
   /**

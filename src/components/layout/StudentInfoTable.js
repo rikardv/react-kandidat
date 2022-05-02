@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Loading from './Loading';
 
 const columns = [
@@ -26,8 +26,9 @@ export default function DataTable({ rows, loading }) {
       style={{ width: 1000 }}
       rows={rows}
       columns={columns}
-      checkboxSelection={false}
+      checkboxSelection
       autoHeight
+      components={{ Toolbar: GridToolbar }}
     />
   );
 }
