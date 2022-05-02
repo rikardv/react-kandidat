@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
@@ -31,13 +31,14 @@ export default function DataTable({ rows, loading }) {
                       <QuestionMarkIcon />
                   </IconButton>
               </Tooltip>
-              <DataGrid
-                  style={{ width: 1000 }}
-                  rows={rows}
-                  columns={columns}
-                  checkboxSelection
-                  autoHeight
-              />
+               <DataGrid
+      style={{ width: 1000 }}
+      rows={rows}
+      columns={columns}
+      checkboxSelection
+      autoHeight
+      components={{ Toolbar: GridToolbar }}
+    />
           </div>
   );
 }

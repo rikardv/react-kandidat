@@ -13,6 +13,7 @@ import { useTheme, Card, CardContent, Typography, Grid } from '@mui/material';
 import Loading from '../layout/Loading';
 import formatDataToRequest from '../../functions/formatDataToRequest';
 import AnalysInfo from '../layout/AnalysInfo';
+import KursInfoPopUp from '../layout/KursInfoPopUp';
 
 const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
   // const program = '6CDDD'; //6CMEN, 6CDDD, 6CIEN, 6CMJU, 6KGDK
@@ -23,6 +24,7 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
   const [nrAvbrott, setNrAvbrott] = useState();
   const [nrKurser, setNrKurser] = useState();
   const [loading, setLoading] = useState(true);
+  const [selectedCourse, setSelectedCourse] = useState();
 
   useEffect(() => {
     setLoading(true);
@@ -34,6 +36,10 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
       setLoading(false);
     });
   }, [programKod]);
+
+  const handleClose = () => {
+    setSelectedCourse();
+  };
   return loading ? (
     <Loading />
   ) : (
@@ -50,6 +56,9 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
         secondVal={nrAvbrott && nrAvbrott}
         secondTitle='Antalet totala avhopp '
       />
+      {selectedCourse && (
+        <KursInfoPopUp kursKod={selectedCourse} handleClose={handleClose} />
+      )}
       {avbrott &&
         avbrott.map((res, indx) => (
           <Grid
@@ -70,7 +79,10 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
                   Avhopp per kurs för {res.program}
                 </Typography>
                 <ResponsiveContainer height={500} width='100%'>
-                  <BarChart data={res.data}>
+                  <BarChart
+                    data={res.data}
+                    onClick={(e) => setSelectedCourse(e.activeLabel)}
+                  >
                     <CartesianGrid horizontal={false} vertical={false} />
                     <XAxis
                       height={100}
