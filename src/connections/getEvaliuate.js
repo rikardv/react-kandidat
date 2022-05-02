@@ -4,7 +4,13 @@ export default async function (kursKoder) {
   await fetch('http://localhost:8080' + `/kurser/evaliuate?${kursKoder}`, {
     method: 'GET',
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        return Promise.reject(new Error('Något gick fel'));
+      }
+      return response.json();
+    })
+
     .then((response) => {
       kursbetyg = response;
     })

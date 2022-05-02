@@ -23,20 +23,40 @@ const Evaliuate = ({ programKod, kursKoder, selectedCourses }) => {
   const [nrKurser, setNrKurser] = useState();
   const [loading, setLoading] = useState(true);
   const [selectedCourse, setSelectedCourse] = useState();
+  const [errorMsg, setErrorMsg] = useState();
 
   useEffect(() => {
     const formattedKurskoder = formatDataToRequest(kursKoder, 'kurskod');
-    getEvaliuate(formattedKurskoder).then((res) => {
-      setKursUtvarderingsBetyg(res.data);
-      setNrBetyg(res.total_betyg);
-      setNrKurser(res.total_kurser);
-      setLoading(false);
-    });
+    getEvaliuate(formattedKurskoder)
+      .then((res) => {
+        setKursUtvarderingsBetyg(res.data);
+        setNrBetyg(res.total_betyg);
+        setNrKurser(res.total_kurser);
+        setLoading(false);
+      })
+      .catch((err) => setErrorMsg(true));
   }, [programKod, kursKoder]);
 
   const handleClose = () => {
     setSelectedCourse();
   };
+
+  if (errorMsg) {
+    return (
+      <Grid
+        container
+        justifyContent='center'
+        alignItems='center'
+        height={'50vh'}
+      >
+        <Typography>
+          Inget hittades för de valda parameterarna. Försök med andra kurser
+          eller program
+        </Typography>
+      </Grid>
+    );
+  }
+
   //Kräver DataKey för varje period då vi vill kunna använda namn som datakey för Xaxeln och utvärderingsbetyget för Yaxeln
   //Hämtar data i formatet [{name:****, 2019HT: ****,2020VT: ****, etc.... }]
   return loading ? (
