@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, ResponsiveContainer, Cell } from 'recharts';
 import { useTheme, Card, CardContent, Typography } from '@mui/material';
+import { Info } from './Help';
 
-const CustomPieChart = ({ title, total, under }) => {
+const CustomPieChart = ({ title, total, under, info }) => {
   const theme = useTheme();
   const COLORS = [theme.palette.success.light, theme.palette.error.main];
 
   return (
     <Card style={{ width: '35%' }}>
+      <Info text={info}/>
       <CardContent>
         <Typography variant='h2' fontWeight='medium' align='center'>
           {title}

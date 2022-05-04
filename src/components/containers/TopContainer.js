@@ -10,7 +10,7 @@ const TopContainer = () => {
       direction='row'
       width='100%'
       borderBottom={'1px solid #D3D3D3'}
-      height='7vh'
+      height='10vh'
       alignItems='center'
     >
       <Grid item md={2} sm={2} lg={2}></Grid>

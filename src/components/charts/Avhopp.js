@@ -14,7 +14,7 @@ import Loading from '../layout/Loading';
 import formatDataToRequest from '../../functions/formatDataToRequest';
 import AnalysInfo from '../layout/AnalysInfo';
 import KursInfoPopUp from '../layout/KursInfoPopUp';
-import { Help } from './Help';
+import { Help, Info } from './Help';
 
 const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
   // const program = '6CDDD'; //6CMEN, 6CDDD, 6CIEN, 6CMJU, 6KGDK
@@ -68,13 +68,14 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
                 display='flex'
                 justifyContent='space-evenly'
                 width="90%"
-          >
+            >
             <Card
               style={{
                 width: '90%',
                 height: 'auto',
               }}
-            >
+                >
+                    <Info text={"Histogrammet visar hur många studenter som hoppat av varje kurs."} />
               <CardContent>
                 <Typography variant='h1' fontWeight='medium' align='center'>
                   Avhopp per kurs för {res.program}
