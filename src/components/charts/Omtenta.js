@@ -19,7 +19,7 @@ import getOmtenta from '../../connections/getOmtenta';
 import Loading from '../layout/Loading';
 import AnalysInfo from '../layout/AnalysInfo';
 import { Grid } from '@mui/material';
-import { Help } from './Help';
+import { Help, Info } from './Help';
 
 const Omtenta = (props) => {
   const [loading, setLoading] = useState(true);
@@ -80,10 +80,10 @@ const Omtenta = (props) => {
     });
   }, [props]);
 
-  return loading ? (
-    <Loading />
-  ) : (
-    <Grid container width='100%'>
+    return loading ? (
+        <Loading />
+    ) : (
+            <Grid container width='100%' style={{display: "flex", flexDirection: "column", alignItems: "center"} }>
       <Help text="Lägg till fler kurser i filtret till höger för att jämföra hur många omtentor som görs i varje kurs."/>
       <AnalysInfo
         firstVal={howManyStudents}
@@ -91,7 +91,10 @@ const Omtenta = (props) => {
         secondVal={howManyCourses}
         secondTitle='Antal kurser'
       />
-      <ResponsiveContainer width={'100%'} height={500}>
+                <Grid style={{ backgroundColor: "white", width: "90%", height: "500px" }}>
+                    <Info text="Grafen visar hur många omtentor det krävs för att klara en kurs. Datan visas i procent." />
+
+      <ResponsiveContainer width='100%' height='90%'>
         <BarChart
           width={500}
           height={300}
@@ -128,6 +131,7 @@ const Omtenta = (props) => {
           })}
         </BarChart>
       </ResponsiveContainer>
+    </Grid>
     </Grid>
   );
 };

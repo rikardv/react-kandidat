@@ -3,9 +3,10 @@ import React from 'react';
 
 const BottomContainer = () => {
   const theme = useTheme();
-  return (
+    return (
     <Stack
-      height='8vh'
+            
+      height='10vh'
       style={{ backgroundColor: 'black' }}
       width='100%'
       direction='column'
@@ -18,7 +19,7 @@ const BottomContainer = () => {
       <Typography marginLeft='1%' color='white'>
         Baseras på data från Evaliuate och Ladok.
       </Typography>
-    </Stack>
+            </Stack>
   );
 };
 
