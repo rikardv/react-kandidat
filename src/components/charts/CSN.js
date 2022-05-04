@@ -17,7 +17,7 @@ import formatDataToRequest from '../../functions/formatDataToRequest';
 import AnalysInfo from '../layout/AnalysInfo';
 import StudentPopUp from '../layout/StudentPopUp';
 import CustomPieChart from './CustomPieChart';
-import { Help } from './Help';
+import { Help, Info } from './Help';
 
 const CSN = ({ startDatum, programKod, kursKoder }) => {
   const [HP, setHP] = useState();
@@ -45,14 +45,14 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
   ) : (
     <Grid
       container
-      width='90%'
+      width='100%'
       display='flex'
       flexWrap='wrap'
       justifyContent='space-evenly'
       flexDirection='row'
       rowGap={2}
     >
-              <Help text={"Tryck på ett personnummer i grafen för att få mer infomation om studentens studieresultat."}/>
+      <Help text={"Klicka på en stapel i diagrammet \"Studenter under- eller nära CSN-gränsen\" för att få mer infomation om studieresultat för en specifik student."}/>
       <AnalysInfo
         firstVal={
           HP && HP.reduce((total, currentVal) => total + currentVal.total, 0)
@@ -70,22 +70,19 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
 
       {HP &&
         HP.map((res, indx) => (
-          <Grid
-            display='flex'
-            justifyContent='space-evenly'
-            key={indx}
-            width="100%"
-
-          >
+          <div key={indx} width="100%" style={{ backgroundColor: "#dde3ed", marginBottom: "20px", padding: "15px", paddingBottom: "40px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <h1 style={{color: "#11636C", margin: 0, marginBottom: "15px"}}>{res.program}</h1>
+          <Grid style={{ width: "100%", display: "flex", flexDirection: "row", justifyContent: "space-around" }}>
             <Card
               style={{
-                width: '55%',
+                width: '75%',
                 height: 'auto',
               }}
-            >
+                >
+              <Info text={"Histogrammet visar vilka studenter som ligger under eller nära CSN-gränsen."} />
               <CardContent>
                 <Typography variant='h1' fontWeight='medium' align='center'>
-                  Studenter under- eller nära CSN-gränsen för {res.program}
+                  Studenter under- eller nära CSN-gränsen
                 </Typography>
                 <ResponsiveContainer height={200} width='100%'>
                   <ComposedChart
@@ -126,11 +123,13 @@ const CSN = ({ startDatum, programKod, kursKoder }) => {
               </CardContent>
             </Card>
             <CustomPieChart
-              title={'Under och över CSN gränsen för ' + res.program}
+              title={'Andel studenter under och över CSN gränsen'}
               total={res.total}
               under={res.under}
+              info={"Diagramet visar antalet studenter på programmet " + res.program + " som ligger över samt under CSN-gränsen."}
             />
           </Grid>
+          </div>
         ))}
     </Grid>
   );
