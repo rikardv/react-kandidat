@@ -42,7 +42,7 @@ const columns = [
   { field: 'Startdatum', headerName: 'Startdatum' },
   { field: 'Registrerade', headerName: 'Registrerade' },
   { field: 'Avklarade', headerName: 'Avklarade' },
-  { field: 'Betyg', headerName: 'Betyg' },
+  { field: 'Betyg', headerName: 'Betygsskala' },
   {
     field: 'Betygsfördelning',
     headerName: 'Betygsfördelning',

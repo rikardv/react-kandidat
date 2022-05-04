@@ -50,18 +50,20 @@ export default function AllaStudenter({ programKod, startDatum }) {
     <Loading title='Laddar in studenter.....' />
   ) : (
     <Card style={{ width: '90%', margin: 10 }}>
-      <CardContent width='100%' style={{ height: 500 }}>
-        <Typography>Header - något ska skrivas här</Typography>
-        <Tooltip
-          title='Denna sida visar en lista på de studenter som går detta program!'
-          placement='right-start'
-        >
-          <IconButton>
-            <QuestionMarkIcon />
-          </IconButton>
-        </Tooltip>
+      <CardContent width='100%'>
+        <div style={{ display: 'flex' }}>
+          <Typography>Header - något ska skrivas här</Typography>
+          <Tooltip
+            title='Denna sida visar en lista på de studenter som går detta program!'
+            placement='right-start'
+          >
+            <IconButton style={{ marginLeft: 'auto' }}>
+              <QuestionMarkIcon />
+            </IconButton>
+          </Tooltip>
+        </div>
         <DataGrid
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: 'pointer', height: 500 }}
           rows={table}
           columns={columns}
           checkboxSelection

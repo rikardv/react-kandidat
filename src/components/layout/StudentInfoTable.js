@@ -26,12 +26,12 @@ export default function DataTable({ rows, loading }) {
   return loading ? (
     <Loading title='Laddar information om studenten....' />
   ) : (
-    <div>
+    <div style={{ display: 'flex' }}>
       <Tooltip
         title='Denna sida visar de kurser en specifik student l�ser!'
         placement='right-start'
       >
-        <IconButton>
+        <IconButton style={{ marginLeft: 'auto' }}>
           <QuestionMarkIcon />
         </IconButton>
       </Tooltip>
