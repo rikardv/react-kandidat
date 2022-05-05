@@ -77,7 +77,6 @@ const CSN = ({ startDatum, programKod }) => {
             key={indx}
             style={{
               width: '100%',
-              backgroundColor: '#dde3ed',
               marginBottom: '20px',
               padding: '15px',
               paddingBottom: '40px',
@@ -92,7 +91,7 @@ const CSN = ({ startDatum, programKod }) => {
               fontWeight='bold'
               marginBottom={1}
             >
-              {res.program}
+              {res.program_namn ?? res.program}
             </Typography>
             <Grid
               style={{
