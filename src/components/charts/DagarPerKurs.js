@@ -86,7 +86,7 @@ const DagarPerKurs = ({ kurskod }) => {
     <Card style={{ width: '100%' }}>
       <CardContent>
         <Typography variant='h1' fontWeight='medium' align='center'>
-          Antal dagar till avslutad kurs för specifk kurs vid olika år.
+          Antal dagar till avslutad kurs fÃ¶r specifk kurs vid olika Ã¥r.
         </Typography>
         <CourseList
           kurskod={kurskod}
