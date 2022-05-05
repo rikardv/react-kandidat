@@ -3,9 +3,7 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Loading from './Loading';
 import getKursInfo from '../../connections/getKursInfo';
 import { Dialog, DialogTitle, DialogContent } from '@mui/material';
-import Button from '@mui/material/Button';
-import { PieChart, Pie, Cell, Label } from 'recharts';
-import { useTheme } from '@emotion/react';
+import { PieChart, Pie } from 'recharts';
 import { localeText } from '../../functions/gridLocaleText';
 
 const RADIAN = Math.PI / 180;
@@ -16,9 +14,6 @@ const renderCustomizedLabel = ({
   midAngle,
   innerRadius,
   outerRadius,
-  percent,
-  index,
-  value,
   name,
 }) => {
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;

@@ -3,8 +3,6 @@ import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import Loading from './Loading';
 import getStudenter from '../../connections/getStudenter';
 import formatDataToRequest from '../../functions/formatDataToRequest';
-import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
-import InfoIcon from '@mui/icons-material/Info';
 import {
   Card,
   CardContent,
