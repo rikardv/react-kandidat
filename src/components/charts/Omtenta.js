@@ -18,7 +18,7 @@ import {
 import getOmtenta from '../../connections/getOmtenta';
 import Loading from '../layout/Loading';
 import AnalysInfo from '../layout/AnalysInfo';
-import { Grid } from '@mui/material';
+import { Grid, useTheme } from '@mui/material';
 import { Help, Info } from './Help';
 
 const Omtenta = (props) => {
@@ -26,6 +26,7 @@ const Omtenta = (props) => {
   const [omTenta, setOmtenta] = useState();
   const [howManyStudents, setHowManyStudents] = useState('0');
   const [howManyCourses, setHowManyCourses] = useState('0');
+  const theme = useTheme();
   useEffect(() => {
     // res = data (re-exam data), data2 (how many students have done the tenta), data3 (data of students who passed the exam)
     getOmtenta(props.kursKoder).then((res) => {
@@ -80,58 +81,62 @@ const Omtenta = (props) => {
     });
   }, [props]);
 
-    return loading ? (
-        <Loading />
-    ) : (
-            <Grid container width='100%' style={{display: "flex", flexDirection: "column", alignItems: "center"} }>
-      <Help text="Lägg till fler kurser i filtret till höger för att jämföra hur många omtentor som görs i varje kurs."/>
+  return loading ? (
+    <Loading />
+  ) : (
+    <Grid
+      container
+      width='100%'
+      style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+    >
+      <Help text='Lï¿½gg till fler kurser i filtret till hï¿½ger fï¿½r att jï¿½mfï¿½ra hur mï¿½nga omtentor som gï¿½rs i varje kurs.' />
       <AnalysInfo
         firstVal={howManyStudents}
         firstTitle='Antal studenter'
         secondVal={howManyCourses}
         secondTitle='Antal kurser'
       />
-                <Grid style={{ backgroundColor: "white", width: "90%", height: "500px" }}>
-                    <Info text="Grafen visar hur många omtentor det krävs för att klara en kurs. Datan visas i procent." />
+      <Grid style={{ backgroundColor: 'white', width: '90%', height: '500px' }}>
+        <Info text='Grafen visar hur mï¿½nga omtentor det krï¿½vs fï¿½r att klara en kurs. Datan visas i procent.' />
 
-      <ResponsiveContainer width='100%' height='90%'>
-        <BarChart
-          width={500}
-          height={300}
-          data={omTenta}
-          margin={{
-            top: 20,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey='name'>
-            <Label
-              value='Antal omtentor tills klarad tenta'
-              offset={0}
-              position='insideBottom'
-            />
-          </XAxis>
-          <YAxis>
-            <Label value='Antal studnter i procent' offset={0} angle={-90} />
-          </YAxis>
-          <Tooltip />
-          <Legend />
-          {Object.keys(omTenta[0]).map((kurs) => {
-            if (kurs != 'name')
-              return (
-                <Bar
-                  key={kurs}
-                  dataKey={kurs}
-                  fill={'#' + Math.floor(Math.random() * 16777215).toString(16)}
-                />
-              );
-          })}
-        </BarChart>
-      </ResponsiveContainer>
-    </Grid>
+        <ResponsiveContainer width='100%' height='90%'>
+          <BarChart
+            width={500}
+            height={300}
+            data={omTenta}
+            margin={{
+              top: 20,
+              right: 30,
+              left: 20,
+              bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray='3 3' />
+            <XAxis dataKey='name'>
+              <Label
+                value='Antal omtentor tills klarad tenta'
+                offset={0}
+                position='insideBottom'
+              />
+            </XAxis>
+            <YAxis>
+              <Label value='Antal studnter i procent' offset={0} angle={-90} />
+            </YAxis>
+            <Tooltip />
+            <Legend />
+            {Object.keys(omTenta[0]).map((kurs) => {
+              if (kurs != 'name')
+                return (
+                  <Bar
+                    key={kurs}
+                    dataKey={kurs}
+                    fill={theme.palette.primary.main}
+                  />
+                );
+            })}
+          </BarChart>
+        </ResponsiveContainer>
+      </Grid>
     </Grid>
   );
 };

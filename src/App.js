@@ -20,7 +20,9 @@ const App = () => {
    * CSN-gräns as default
    */
   const [selectedView, setSelectedView] = useState(1);
-  const [selectedProgram, setSelectedProgram] = useState(['6CMEN']); //Alla progarmkoder lagras i denna, defaultvärde satt.
+  const [selectedProgramsTemp, setSelectedProgram] = useState([
+    '6CMEN: Civilingenjörsprogram i medieteknik',
+  ]); //Alla progarmkoder lagras i denna, defaultvärde satt.
   const [selectedCoursesTemp, setSelectedCourses] = useState([
     'TNM061: 3-D Datorgrafik',
   ]); //Alla kurser lagras i denna temporärt och kursnamnet filtreras sedan bort.
@@ -32,6 +34,12 @@ const App = () => {
     selectedCourses.push(course.split(':')[0])
   );
 
+  //Filtrera bort programnamet likt ovan
+  const selectedPrograms = [];
+  selectedProgramsTemp.map((program) => {
+    selectedPrograms.push(program.split(':')[0]);
+  });
+
   //Function that takes in user selection and return component accordingly
   const componentToRender = (selectedView) => {
     switch (selectedView) {
@@ -40,7 +48,7 @@ const App = () => {
           //CSN
           <CSN
             startDatum={selectedStartDates[0]}
-            programKod={selectedProgram}
+            programKod={selectedPrograms}
             kursKoder={selectedCourses}
           />
         );
@@ -51,7 +59,7 @@ const App = () => {
           <>
             <SlapandeKurser
               startDatum={selectedStartDates}
-              programKod={selectedProgram}
+              programKod={selectedPrograms}
               kursKoder={selectedCourses}
             />
           </>
@@ -61,7 +69,7 @@ const App = () => {
         return (
           //Betygsfördelning
           <Betygsfordelning
-            programKod={selectedProgram}
+            programKod={selectedPrograms}
             kursKoder={selectedCourses}
           />
         );
@@ -72,7 +80,7 @@ const App = () => {
           <Avhopp
             startDatum='2012-01-03'
             slutDatum='2022-03-04'
-            programKod={selectedProgram}
+            programKod={selectedPrograms}
             kursKoder={selectedCourses}
           />
         );
@@ -80,7 +88,7 @@ const App = () => {
         return (
           //Kursbetyg evaliuate
           <Evaliuate
-            programKod={selectedProgram[0]}
+            programKod={selectedPrograms[0]}
             kursKoder={selectedCourses}
           />
         );
@@ -96,14 +104,14 @@ const App = () => {
         return (
           //Betygsfördelning
           <Omtenta
-            programKod={selectedProgram[0]}
+            programKod={selectedPrograms[0]}
             kursKoder={selectedCourses}
           />
         );
       case 8:
         return (
           <AllaStudenter
-            programKod={selectedProgram}
+            programKod={selectedPrograms}
             startDatum={selectedStartDates[0]}
           />
         );
@@ -142,9 +150,9 @@ const App = () => {
         </Grid>
         <Grid item sm={2} md={2} lg={2}>
           <FiltreringContainer
-            selectedProgram={selectedProgram}
+            selectedProgram={selectedPrograms}
             setSelectedProgram={setSelectedProgram}
-            selectedCourses={selectedCoursesTemp}
+            selectedCourses={selectedCourses}
             setSelectedCourses={setSelectedCourses}
             selectedStartDates={selectedStartDates}
             setSelectedStartDates={setSelectedStartDates}

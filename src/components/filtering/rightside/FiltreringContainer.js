@@ -19,6 +19,7 @@ const FiltreringContainer = ({
   setSelectedStartDates,
 }) => {
   const [programs, setPrograms] = useState([]);
+  const [programNames, setProgramNames] = useState([]);
   const [courses, setCourses] = useState([]);
   const [startDates, setStartDates] = useState([]);
   const formattedProgramKoder = formatDataToRequest(selectedProgram, 'program');
@@ -44,12 +45,17 @@ const FiltreringContainer = ({
   useEffect(() => {
     getProgramKoder().then((res) => {
       let programsMapped = [];
+      let programsName = [];
       res.data.map((programs) => {
         if (
           !programsMapped.includes(programs.YTTERSTA_KURSPAKETERING_KOD) &&
           !selectedProgram.includes(programs.YTTERSTA_KURSPAKETERING_KOD)
         )
-          programsMapped.push(programs.YTTERSTA_KURSPAKETERING_KOD);
+          programsMapped.push(
+            programs.YTTERSTA_KURSPAKETERING_KOD +
+              ': ' +
+              programs.YTTERSTA_KURSPAKETERING_SV
+          );
       });
       setPrograms(programsMapped);
     });

@@ -80,7 +80,7 @@ const Avhopp = ({ programKod, startDatum, slutDatum }) => {
                   }
                 />
                 <Typography variant='h1' fontWeight='medium' align='center'>
-                  Avhopp per kurs för {res.program}
+                  Avhopp per kurs för {res.program_namn ?? res.program}
                 </Typography>
 
                 <ResponsiveContainer height={500} width='100%'>
