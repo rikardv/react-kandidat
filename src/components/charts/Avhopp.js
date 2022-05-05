@@ -16,10 +16,7 @@ import AnalysInfo from '../layout/AnalysInfo';
 import KursInfoPopUp from '../layout/KursInfoPopUp';
 import { Help, Info } from './Help';
 
-const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
-  // const program = '6CDDD'; //6CMEN, 6CDDD, 6CIEN, 6CMJU, 6KGDK
-  // const startDatum = '2012-01-03';
-  // const slutDatum = '2022-03-04';
+const Avhopp = ({ programKod, startDatum, slutDatum }) => {
   const theme = useTheme();
   const [avbrott, setAvbrott] = useState([]);
   const [nrAvbrott, setNrAvbrott] = useState();
@@ -51,7 +48,7 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
       justifyContent='space-evenly'
       width='100%'
     >
-      <Help text='Tryck på en kurskod för att få mer infomation om kursens studieresultat.' />
+      <Help text='Histogrammet visar hur många studenter som hoppat av varje kurs.' />
       <AnalysInfo
         firstVal={nrKurser && nrKurser}
         firstTitle='Antalet kurser analyserade'
@@ -73,12 +70,13 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
               style={{
                 width: '90%',
                 height: 'auto',
+                marginBottom: '20px',
               }}
             >
               <CardContent>
                 <Info
                   text={
-                    'Histogrammet visar hur många studenter som hoppat av varje kurs.'
+                    'Tryck på en kurskod för att få mer infomation om kursens studieresultat.'
                   }
                 />
                 <Typography variant='h1' fontWeight='medium' align='center'>
