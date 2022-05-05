@@ -51,35 +51,40 @@ const Avhopp = ({ programKod, selectedCourses, startDatum, slutDatum }) => {
       justifyContent='space-evenly'
       width='100%'
     >
-      <Help text="Tryck på en kurskod för att få mer infomation om kursens studieresultat."/>
+      <Help text='Tryck på en kurskod för att få mer infomation om kursens studieresultat.' />
       <AnalysInfo
         firstVal={nrKurser && nrKurser}
         firstTitle='Antalet kurser analyserade'
         secondVal={nrAvbrott && nrAvbrott}
-        secondTitle='Antalet totala avhopp '
+        secondTitle='Totalt antal avhopp '
       />
       {selectedCourse && (
         <KursInfoPopUp kursKod={selectedCourse} handleClose={handleClose} />
       )}
       {avbrott &&
         avbrott.map((res, indx) => (
-            <Grid
-                key={indx}
-                display='flex'
-                justifyContent='space-evenly'
-                width="90%"
-            >
+          <Grid
+            key={indx}
+            display='flex'
+            justifyContent='space-evenly'
+            width='90%'
+          >
             <Card
               style={{
                 width: '90%',
                 height: 'auto',
               }}
-                >
-                    <Info text={"Histogrammet visar hur många studenter som hoppat av varje kurs."} />
+            >
               <CardContent>
+                <Info
+                  text={
+                    'Histogrammet visar hur många studenter som hoppat av varje kurs.'
+                  }
+                />
                 <Typography variant='h1' fontWeight='medium' align='center'>
                   Avhopp per kurs för {res.program}
                 </Typography>
+
                 <ResponsiveContainer height={500} width='100%'>
                   <BarChart
                     data={res.data}

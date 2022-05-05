@@ -2,17 +2,14 @@ import React, { useState } from 'react';
 import Evaliuate from './components/charts/Evaliuate.js';
 import Avhopp from './components/charts/Avhopp.js';
 import theme from './style/themeProvider';
-import SandBoxContainer from './components/containers/SandBoxContainer.js';
 import { ThemeProvider, Typography, Grid, Stack } from '@mui/material';
 import VisualiseringMeny from './components/filtering/leftside/VisualiseringMeny.js';
 import FiltreringContainer from './components/filtering/rightside/FiltreringContainer.js';
 import SlapandeKurser from './components/charts/SlapandeKurser.js';
 import CSN from './components/charts/CSN.js';
-import DagarPerKurs from './components/charts/DagarPerKurs.js';
 import Betygsfordelning from './components/charts/Betygsfordelning.js';
 import Omtenta from './components/charts/Omtenta.js';
 import DagarNew from './components/charts/DagarNew.js';
-import LiuLogo from './img/LiU_primary_black.png';
 import BottomContainer from './components/containers/BottomContainer.js';
 import TopContainer from './components/containers/TopContainer.js';
 import AllaStudenter from './components/layout/AllaStudenter.js';
@@ -25,7 +22,7 @@ const App = () => {
   const [selectedView, setSelectedView] = useState(1);
   const [selectedProgram, setSelectedProgram] = useState(['6CMEN']); //Alla progarmkoder lagras i denna, defaultvärde satt.
   const [selectedCoursesTemp, setSelectedCourses] = useState([
-    'TNA004: Analys II',
+    'TNM061: 3-D Datorgrafik',
   ]); //Alla kurser lagras i denna temporärt och kursnamnet filtreras sedan bort.
   const [selectedStartDates, setSelectedStartDates] = useState(['2019-08-19']); //Alla startdatum lagras i denna, defaultvärde satt.
 
